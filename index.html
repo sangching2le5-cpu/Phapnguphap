@@ -1,1474 +1,1305 @@
 <!DOCTYPE html>
 <html lang="vi">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-<meta name="theme-color" content="#4a90d9" />
-<title>French Grammar Quiz A1 — Le Nouveau Taxi ! 1 (Leçons 7–12)</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ôn tập tiếng Pháp A1 — Le Nouveau Taxi ! 1 (Leçons 7–12)</title>
 <style>
-/* ============================================================
-   DESIGN TOKENS — Pastel blue palette
-   ============================================================ */
+*,*::before,*::after{box-sizing:border-box}
+html,body{margin:0;padding:0}
 :root{
-  --bg:#eef6ff;
-  --bg-grad-1:#e8f2fd;
-  --bg-grad-2:#f6fbff;
-  --surface:#ffffff;
-  --surface-soft:#f5faff;
-  --primary:#4a90d9;
-  --primary-dark:#3573b5;
-  --primary-soft:#dceaf9;
-  --primary-soft-2:#eaf3fd;
-  --text:#1e3a5f;
-  --text-soft:#3d5c80;
-  --muted:#7b98b6;
-  --border:#d3e3f5;
-  --border-strong:#b9d4ee;
-  --ok:#2e9e6b;
-  --ok-soft:#e2f6ec;
-  --ok-border:#a9e0c4;
-  --bad:#d95757;
-  --bad-soft:#fdeaea;
-  --bad-border:#f2bcbc;
-  --warn:#b8801a;
-  --warn-soft:#fdf3e0;
-  --warn-border:#f0d9a8;
-  --radius:18px;
-  --radius-sm:12px;
-  --shadow:0 6px 24px rgba(74,144,217,.10);
-  --shadow-sm:0 2px 10px rgba(74,144,217,.08);
-  --font:'Segoe UI',system-ui,-apple-system,'Helvetica Neue',Roboto,Arial,sans-serif;
+  --bg:#eef5fd; --card:#fff; --primary:#3f86d0; --primary-d:#2f6cae; --primary-l:#e6f0fb;
+  --text:#1d2b3a; --muted:#6b7c93; --border:#dbe7f4;
+  --ok:#2b8f57; --ok-bg:#e9f7ef; --bad:#c9483f; --bad-bg:#fdeceb; --warn:#b8801a; --warn-bg:#fdf6e6;
+  --r:14px; --sh:0 2px 10px rgba(63,134,208,.10);
 }
-
-*{box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
-html,body{margin:0;padding:0;}
 body{
-  font-family:var(--font);
-  color:var(--text);
-  background:linear-gradient(160deg,var(--bg-grad-1) 0%,var(--bg-grad-2) 55%,#eaf4ff 100%);
-  background-attachment:fixed;
-  min-height:100vh;
-  line-height:1.55;
-  -webkit-font-smoothing:antialiased;
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif;
+  background:var(--bg); color:var(--text); line-height:1.55; -webkit-text-size-adjust:100%;
 }
-button{font-family:inherit;cursor:pointer;border:none;background:none;color:inherit;}
-h1,h2,h3,h4,p,ul{margin:0;}
-ul{padding-left:1.1rem;}
-
-/* ============================================================
-   LAYOUT
-   ============================================================ */
-.app{max-width:920px;margin:0 auto;padding:0 14px 48px;}
-
-.app-header{
-  position:sticky;top:0;z-index:40;
-  display:flex;align-items:center;justify-content:space-between;gap:12px;
-  padding:12px 14px;margin:0 -14px 16px;
-  background:rgba(255,255,255,.86);
-  backdrop-filter:blur(12px);
-  -webkit-backdrop-filter:blur(12px);
-  border-bottom:1px solid var(--border);
+#app{max-width:900px;margin:0 auto;padding:16px 14px 70px}
+h1,h2,h3{margin:0 0 .5em;line-height:1.25}
+h1{font-size:1.5rem}
+h2{font-size:1.15rem}
+p{margin:0 0 .8em}
+.hero{text-align:center;padding:18px 8px 10px}
+.hero p.sub{color:var(--muted);font-size:.94rem;margin:0}
+.card{background:var(--card);border-radius:var(--r);box-shadow:var(--sh);padding:18px;margin-bottom:16px;border:1px solid var(--border)}
+.grid{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(230px,1fr))}
+.grid.two{grid-template-columns:repeat(auto-fit,minmax(260px,1fr))}
+.mode{
+  display:flex;flex-direction:column;align-items:flex-start;gap:2px;text-align:left;
+  background:#f8fbff;border:1.5px solid var(--border);border-radius:12px;padding:14px 16px;
+  cursor:pointer;font:inherit;color:inherit;transition:.15s;width:100%;
 }
-.brand{display:flex;align-items:center;gap:11px;min-width:0;}
-.brand .logo{
-  font-size:22px;width:42px;height:42px;flex:0 0 42px;
-  display:grid;place-items:center;border-radius:13px;
-  background:linear-gradient(140deg,var(--primary-soft),#eaf3fd);
-  border:1px solid var(--border);
+.mode:hover{border-color:var(--primary);background:var(--primary-l);transform:translateY(-1px)}
+.mode .ic{font-size:1.35rem}
+.mode strong{font-size:.98rem}
+.mode small{color:var(--muted);font-size:.82rem;line-height:1.4}
+.lessons{display:grid;gap:10px;grid-template-columns:repeat(auto-fit,minmax(170px,1fr))}
+.lesson-btn{
+  display:flex;flex-direction:column;gap:2px;text-align:left;background:#f8fbff;border:1.5px solid var(--border);
+  border-radius:12px;padding:12px 14px;cursor:pointer;font:inherit;color:inherit;transition:.15s;
 }
-.brand h1{font-size:17px;font-weight:700;letter-spacing:-.2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
-.brand .sub{font-size:11.5px;color:var(--muted);font-weight:500;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
-
-.view{animation:fade .28s ease;}
-@keyframes fade{from{opacity:0;transform:translateY(6px);}to{opacity:1;transform:none;}}
-.hidden{display:none !important;}
-
-.card{
-  background:var(--surface);
-  border:1px solid var(--border);
-  border-radius:var(--radius);
-  box-shadow:var(--shadow-sm);
-  padding:18px;
-  margin-bottom:14px;
-}
-.card > h3{font-size:15px;font-weight:700;margin-bottom:12px;color:var(--text);}
-
-.row{display:flex;flex-wrap:wrap;gap:10px;}
-
-/* ============================================================
-   BUTTONS
-   ============================================================ */
+.lesson-btn:hover{border-color:var(--primary);background:var(--primary-l)}
+.lesson-btn small{color:var(--muted);font-size:.78rem}
 .btn{
-  display:inline-flex;align-items:center;justify-content:center;gap:7px;
-  padding:12px 20px;border-radius:12px;
-  font-size:14.5px;font-weight:600;
-  transition:transform .12s ease,box-shadow .12s ease,background .15s ease,opacity .15s;
-  min-height:46px;white-space:nowrap;
-  border:1.5px solid transparent;
+  font:inherit;font-weight:600;border-radius:10px;padding:11px 18px;cursor:pointer;border:1.5px solid transparent;
+  transition:.15s;min-height:44px;
 }
-.btn:active{transform:scale(.975);}
-.btn:disabled{opacity:.45;cursor:not-allowed;transform:none;}
-.btn-primary{background:linear-gradient(140deg,#5a9ee0,#4179c2);color:#fff;box-shadow:0 5px 16px rgba(74,144,217,.32);}
-.btn-primary:hover:not(:disabled){box-shadow:0 7px 20px rgba(74,144,217,.42);}
-.btn-secondary{background:var(--primary-soft);color:var(--primary-dark);border-color:var(--border-strong);}
-.btn-secondary:hover:not(:disabled){background:#cfe3f8;}
-.btn-ghost{background:#fff;color:var(--text-soft);border-color:var(--border-strong);}
-.btn-ghost:hover:not(:disabled){background:var(--primary-soft-2);}
-.btn-danger{background:var(--bad-soft);color:#a83b3b;border-color:var(--bad-border);}
-.btn-danger:hover:not(:disabled){background:#fbdada;}
-.btn-block{width:100%;}
-
-/* ============================================================
-   HOME
-   ============================================================ */
-.banner{
-  border-radius:var(--radius-sm);padding:13px 15px;font-size:13.5px;
-  margin-bottom:14px;line-height:1.55;border:1px solid;
+.btn:focus-visible{outline:3px solid #9cc7ee;outline-offset:2px}
+.btn.primary{background:var(--primary);color:#fff}
+.btn.primary:hover{background:var(--primary-d)}
+.btn.ghost{background:#fff;color:var(--primary-d);border-color:var(--border)}
+.btn.ghost:hover{background:var(--primary-l);border-color:var(--primary)}
+.btn.small{padding:7px 13px;font-size:.86rem;min-height:38px}
+.btn:disabled{opacity:.45;cursor:not-allowed}
+.btn.wide{width:100%}
+.row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.row.nav{justify-content:space-between;margin-bottom:12px}
+.row.center{justify-content:center}
+.submitbar{text-align:center;margin-bottom:12px}
+.qhead{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:10px;flex-wrap:wrap}
+.qtitle{font-weight:700;font-size:.95rem;color:var(--primary-d)}
+.qcount{font-weight:700;color:var(--muted);font-size:.9rem;white-space:nowrap}
+.progress{height:9px;background:#dceaf8;border-radius:99px;overflow:hidden;margin-bottom:14px}
+.progress .bar{height:100%;background:linear-gradient(90deg,#5aa2e4,#3f86d0);border-radius:99px;transition:width .25s}
+.qcard{padding:20px}
+.tag{display:inline-block;font-size:.74rem;font-weight:700;letter-spacing:.02em;color:var(--primary-d);
+  background:var(--primary-l);border-radius:99px;padding:3px 11px;margin-bottom:12px;text-transform:uppercase}
+.qtext{font-size:1.18rem;font-weight:600;margin-bottom:16px;line-height:1.5}
+.opts{display:flex;flex-direction:column;gap:10px}
+.opt{
+  display:flex;align-items:center;gap:12px;text-align:left;font:inherit;color:inherit;cursor:pointer;
+  background:#fff;border:1.5px solid var(--border);border-radius:11px;padding:12px 14px;transition:.13s;width:100%;
 }
-.banner.warn{background:var(--warn-soft);border-color:var(--warn-border);color:#7a5610;}
-.banner b{font-weight:700;}
-
-.hero{
-  background:linear-gradient(140deg,#ffffff 0%,#f2f8ff 100%);
-  text-align:center;padding:26px 18px;
+.opt:hover{border-color:var(--primary);background:#f6fbff}
+.opt:focus-visible{outline:3px solid #9cc7ee;outline-offset:2px}
+.opt .letter{
+  flex:0 0 30px;height:30px;display:flex;align-items:center;justify-content:center;border-radius:50%;
+  background:var(--primary-l);color:var(--primary-d);font-weight:800;font-size:.9rem;
 }
-.hero h2{font-size:21px;font-weight:700;letter-spacing:-.3px;margin-bottom:8px;}
-.hero p{color:var(--muted);font-size:14px;}
-.hero p b{color:var(--primary-dark);font-weight:700;}
-
-.modes{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:14px;}
-.mode-card{
-  text-align:left;background:var(--surface);border:1.5px solid var(--border);
-  border-radius:var(--radius);padding:18px;box-shadow:var(--shadow-sm);
-  display:flex;flex-direction:column;gap:9px;
-  transition:border-color .18s,box-shadow .18s,transform .18s;
+.opt.selected{border-color:var(--primary);background:var(--primary-l)}
+.opt.selected .letter{background:var(--primary);color:#fff}
+.hint{color:var(--muted);font-size:.85rem;text-align:center;margin-top:10px}
+.navtoggle{background:none;border:none;color:var(--primary-d);font:inherit;font-size:.86rem;font-weight:600;cursor:pointer;padding:6px 0;text-decoration:underline}
+.nav-grid{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px;max-height:220px;overflow-y:auto;padding:4px}
+.navcell{
+  width:34px;height:34px;border-radius:8px;border:1.5px solid var(--border);background:#fff;
+  font:inherit;font-size:.78rem;font-weight:600;cursor:pointer;color:var(--muted);
 }
-.mode-card:hover{border-color:var(--primary);box-shadow:0 8px 26px rgba(74,144,217,.18);transform:translateY(-2px);}
-.mode-icon{font-size:26px;line-height:1;}
-.mode-card h3{font-size:16px;font-weight:700;}
-.mode-card ul{font-size:13px;color:var(--muted);margin:0;padding-left:1.05rem;}
-.mode-card ul li{margin-bottom:3px;}
-.mode-cta{margin-top:auto;padding-top:8px;font-size:13.5px;font-weight:700;color:var(--primary);}
-
-.stat-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(122px,1fr));gap:10px;}
-.stat{
-  background:var(--surface-soft);border:1px solid var(--border);
-  border-radius:var(--radius-sm);padding:12px 13px;
-}
-.stat .val{font-size:20px;font-weight:700;color:var(--primary-dark);line-height:1.2;}
-.stat .lbl{font-size:11.5px;color:var(--muted);font-weight:600;margin-top:3px;}
-
-.history-item{
-  display:flex;align-items:center;justify-content:space-between;gap:10px;
-  padding:10px 12px;border-radius:var(--radius-sm);
-  background:var(--surface-soft);border:1px solid var(--border);margin-bottom:8px;font-size:13.5px;
-}
-.history-item:last-child{margin-bottom:0;}
-.history-item .h-mode{font-weight:700;font-size:12.5px;}
-.history-item .h-date{font-size:11.5px;color:var(--muted);}
-.pill{
-  display:inline-block;padding:3px 11px;border-radius:999px;font-size:12.5px;font-weight:700;
-  background:var(--primary-soft);color:var(--primary-dark);white-space:nowrap;
-}
-
-.lesson-row{margin-bottom:12px;}
-.lesson-row:last-child{margin-bottom:0;}
-.lesson-row .lr-top{display:flex;justify-content:space-between;font-size:13.5px;font-weight:600;margin-bottom:5px;}
-.lesson-row .lr-top span:last-child{color:var(--muted);font-weight:600;font-size:12.5px;}
-.bar{height:8px;border-radius:99px;background:var(--primary-soft);overflow:hidden;}
-.bar > i{display:block;height:100%;border-radius:99px;background:linear-gradient(90deg,#7fb6e8,#4a90d9);transition:width .4s ease;}
-
-.wrong-item{
-  display:flex;justify-content:space-between;align-items:center;gap:10px;
-  padding:10px 12px;border-radius:var(--radius-sm);
-  background:var(--bad-soft);border:1px solid var(--bad-border);margin-bottom:8px;
-}
-.wrong-item:last-child{margin-bottom:0;}
-.wrong-item .w-q{font-size:13.5px;font-weight:600;color:#8c3b3b;overflow:hidden;text-overflow:ellipsis;}
-.wrong-item .w-meta{font-size:11.5px;color:#a86a6a;margin-top:2px;}
-.wrong-item .w-count{
-  flex:0 0 auto;background:#fff;border:1px solid var(--bad-border);color:#a83b3b;
-  font-size:12px;font-weight:700;padding:3px 10px;border-radius:99px;
-}
-.empty-note{font-size:13.5px;color:var(--muted);font-style:italic;padding:6px 0;}
-
-.danger-zone{text-align:center;background:#fffafb;border-color:#f3dcdc;}
-
-/* ============================================================
-   QUIZ
-   ============================================================ */
-.quiz-top{padding:14px 16px;}
-.quiz-top-row{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:10px;}
-.badge{
-  display:inline-block;padding:4px 12px;border-radius:99px;
-  font-size:12.5px;font-weight:700;background:var(--primary-soft);color:var(--primary-dark);
-}
-.badge.practice{background:var(--ok-soft);color:#1f7a52;}
-.counter{font-size:13.5px;font-weight:700;color:var(--text-soft);}
-.progress{height:9px;border-radius:99px;background:var(--primary-soft);overflow:hidden;}
-.progress-bar{height:100%;width:0;border-radius:99px;background:linear-gradient(90deg,#7fb6e8,#4a90d9);transition:width .3s ease;}
-
-.question-card{padding:20px;}
-.tags{display:flex;flex-wrap:wrap;gap:7px;margin-bottom:13px;}
-.tag{
-  font-size:11.5px;font-weight:700;padding:4px 11px;border-radius:99px;
-  background:var(--primary-soft-2);color:var(--primary-dark);border:1px solid var(--border);
-}
-.tag-soft{background:#f3f0fb;color:#6b5aa8;border-color:#e2daf5;}
-
-.q-text{
-  font-size:19px;font-weight:600;line-height:1.6;color:var(--text);
-  margin-bottom:18px;word-break:break-word;
-}
-.q-text .blank{color:var(--primary);font-weight:800;letter-spacing:1px;}
-
-.options{display:flex;flex-direction:column;gap:10px;}
-.option{
-  display:flex;align-items:center;gap:13px;text-align:left;width:100%;
-  padding:14px 16px;border-radius:14px;
-  background:var(--surface-soft);border:1.5px solid var(--border);
-  font-size:15.5px;font-weight:500;color:var(--text);
-  transition:background .15s,border-color .15s,transform .1s;
-  min-height:54px;
-}
-.option:hover:not(.locked){background:var(--primary-soft-2);border-color:var(--border-strong);}
-.option:active:not(.locked){transform:scale(.99);}
-.opt-key{
-  flex:0 0 30px;width:30px;height:30px;border-radius:9px;
-  display:grid;place-items:center;font-size:13.5px;font-weight:800;
-  background:#fff;border:1.5px solid var(--border-strong);color:var(--primary-dark);
-  transition:background .15s,color .15s,border-color .15s;
-}
-.option.selected{border-color:var(--primary);background:var(--primary-soft);}
-.option.selected .opt-key{background:var(--primary);color:#fff;border-color:var(--primary);}
-.option.correct{border-color:var(--ok-border);background:var(--ok-soft);}
-.option.correct .opt-key{background:var(--ok);color:#fff;border-color:var(--ok);}
-.option.wrong{border-color:var(--bad-border);background:var(--bad-soft);}
-.option.wrong .opt-key{background:var(--bad);color:#fff;border-color:var(--bad);}
-.option.locked{cursor:default;}
-.option .opt-mark{margin-left:auto;font-size:16px;font-weight:800;flex:0 0 auto;}
-
-.feedback{margin-top:16px;border-radius:14px;padding:15px 16px;border:1.5px solid;animation:fade .25s ease;}
-.feedback.ok{background:var(--ok-soft);border-color:var(--ok-border);}
-.feedback.bad{background:var(--bad-soft);border-color:var(--bad-border);}
-.feedback .fb-title{font-size:15px;font-weight:800;margin-bottom:9px;}
-.feedback.ok .fb-title{color:#1f7a52;}
-.feedback.bad .fb-title{color:#a83b3b;}
-.feedback .fb-block{margin-top:9px;font-size:13.8px;line-height:1.65;color:var(--text-soft);}
-.feedback .fb-block b{color:var(--text);font-weight:700;}
-.feedback .fb-label{
-  display:inline-block;font-size:11.5px;font-weight:800;letter-spacing:.4px;text-transform:uppercase;
-  color:var(--muted);margin-bottom:2px;
-}
-.feedback .fb-trans{
-  margin-top:10px;padding-top:10px;border-top:1px dashed var(--border-strong);
-  font-size:13.8px;color:var(--text-soft);font-style:italic;
-}
-
-.practice-actions{margin-top:14px;display:flex;gap:10px;}
-.practice-actions .btn{flex:1;}
-
-.nav-card{padding:16px;}
-.nav-head{font-size:13px;font-weight:700;color:var(--text-soft);margin-bottom:10px;}
-.nav-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(44px,1fr));gap:8px;}
-.nav-btn{
-  aspect-ratio:1/1;border-radius:11px;font-size:13.5px;font-weight:700;
-  background:#fff;border:1.5px solid var(--border-strong);color:var(--text-soft);
-  display:grid;place-items:center;transition:all .15s;min-height:44px;
-}
-.nav-btn:hover{border-color:var(--primary);}
-.nav-btn.answered{background:var(--primary-soft);border-color:var(--primary);color:var(--primary-dark);}
-.nav-btn.current{background:linear-gradient(140deg,#5a9ee0,#4179c2);border-color:var(--primary-dark);color:#fff;box-shadow:0 4px 12px rgba(74,144,217,.35);}
-.nav-btn.ok{background:var(--ok-soft);border-color:var(--ok);color:#1f7a52;}
-.nav-btn.no{background:var(--bad-soft);border-color:var(--bad);color:#a83b3b;}
-.legend{display:flex;flex-wrap:wrap;gap:14px;margin-top:12px;font-size:12px;color:var(--muted);}
-.legend i{display:inline-block;width:11px;height:11px;border-radius:4px;margin-right:5px;vertical-align:-1px;border:1.5px solid;}
-
-.quiz-footer{
-  display:flex;gap:10px;position:sticky;bottom:10px;z-index:30;
-  background:rgba(255,255,255,.94);backdrop-filter:blur(10px);
-  border:1px solid var(--border);border-radius:var(--radius);
-  padding:11px;box-shadow:var(--shadow);margin-top:14px;
-}
-.quiz-footer .btn{flex:1;padding-left:10px;padding-right:10px;}
-
-/* ============================================================
-   RESULT
-   ============================================================ */
-.result-hero{text-align:center;padding:28px 20px;background:linear-gradient(150deg,#ffffff,#f3f9ff);}
-.score-ring{
-  width:132px;height:132px;border-radius:50%;margin:0 auto 16px;
-  display:grid;place-items:center;position:relative;
-  background:conic-gradient(var(--primary) 0deg, var(--primary-soft) 0deg);
-  transition:background .6s ease;
-}
-.score-ring::after{
-  content:'';position:absolute;inset:11px;border-radius:50%;background:#fff;
-  box-shadow:inset 0 2px 10px rgba(74,144,217,.10);
-}
-.score-ring .inner{position:relative;z-index:1;text-align:center;}
-.score-ring .big{font-size:31px;font-weight:800;color:var(--primary-dark);line-height:1;}
-.score-ring .small{font-size:12px;color:var(--muted);font-weight:600;margin-top:3px;}
-.result-hero h2{font-size:20px;font-weight:700;margin-bottom:6px;}
-.result-hero .level-msg{font-size:14.5px;color:var(--text-soft);margin-bottom:16px;}
-.result-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;max-width:400px;margin:0 auto;}
-
-.review-item{
-  background:var(--surface);border:1px solid var(--border);border-left:5px solid var(--ok);
-  border-radius:var(--radius-sm);padding:16px;margin-bottom:12px;box-shadow:var(--shadow-sm);
-}
-.review-item.is-wrong{border-left-color:var(--bad);}
-.review-item .rv-head{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin-bottom:10px;}
-.rv-num{font-size:12.5px;font-weight:800;color:var(--muted);}
-.rv-q{font-size:16px;font-weight:600;margin-bottom:12px;line-height:1.55;}
-.rv-opts{display:flex;flex-direction:column;gap:6px;margin-bottom:12px;}
-.rv-opt{
-  display:flex;align-items:center;gap:10px;font-size:14px;
-  padding:8px 12px;border-radius:10px;background:var(--surface-soft);border:1px solid var(--border);
-}
-.rv-opt.correct{background:var(--ok-soft);border-color:var(--ok-border);font-weight:700;color:#1f7a52;}
-.rv-opt.wrong{background:var(--bad-soft);border-color:var(--bad-border);font-weight:700;color:#a83b3b;}
-.rv-opt .rv-key{font-weight:800;flex:0 0 auto;width:20px;}
-.rv-opt .rv-tag{margin-left:auto;font-size:11.5px;font-weight:800;}
-.rv-answer-line{font-size:13.5px;margin-bottom:8px;color:var(--text-soft);}
-.rv-answer-line b{color:var(--text);}
-.rv-expl{
-  background:var(--primary-soft-2);border:1px solid var(--border);border-radius:10px;
-  padding:12px 13px;font-size:13.8px;line-height:1.65;color:var(--text-soft);
-}
-.rv-expl .rv-lbl{font-size:11.5px;font-weight:800;letter-spacing:.4px;text-transform:uppercase;color:var(--muted);display:block;margin-bottom:3px;}
-.rv-expl p + .rv-lbl{margin-top:10px;}
-
-.switch{display:flex;align-items:center;gap:9px;font-size:14px;font-weight:600;color:var(--text-soft);cursor:pointer;}
-.switch input{width:19px;height:19px;accent-color:var(--primary);cursor:pointer;}
-
-/* ============================================================
-   MODAL
-   ============================================================ */
-.modal{
-  position:fixed;inset:0;z-index:100;
-  background:rgba(30,58,95,.42);backdrop-filter:blur(3px);
-  display:grid;place-items:center;padding:18px;
-  animation:fade .18s ease;
-}
-.modal-box{
-  background:#fff;border-radius:var(--radius);padding:22px;max-width:420px;width:100%;
-  box-shadow:0 20px 60px rgba(30,58,95,.28);animation:pop .22s ease;
-}
-@keyframes pop{from{transform:scale(.94);opacity:0;}to{transform:scale(1);opacity:1;}}
-.modal-box h3{font-size:17px;font-weight:700;margin-bottom:9px;}
-.modal-box p{font-size:14px;color:var(--text-soft);line-height:1.6;margin-bottom:18px;white-space:pre-line;}
-.modal-actions{display:flex;gap:10px;justify-content:flex-end;}
-.modal-actions .btn{min-width:104px;}
-
-/* ============================================================
-   RESPONSIVE
-   ============================================================ */
-@media (max-width:640px){
-  .app{padding:0 10px 36px;}
-  .app-header{padding:10px;margin:0 -10px 12px;}
-  .brand h1{font-size:15px;}
-  .brand .sub{font-size:10.5px;}
-  .brand .logo{width:38px;height:38px;flex-basis:38px;font-size:19px;}
-  .card{padding:15px;border-radius:15px;}
-  .hero{padding:20px 14px;}
-  .hero h2{font-size:18px;}
-  .modes{grid-template-columns:1fr;}
-  .q-text{font-size:17.5px;}
-  .option{font-size:15px;padding:13px 14px;min-height:56px;}
-  .quiz-footer{flex-wrap:wrap;bottom:6px;padding:9px;gap:8px;}
-  .quiz-footer .btn{flex:1 1 45%;font-size:13.5px;padding:11px 8px;min-height:48px;}
-  #btnSubmit{flex:1 1 100%;order:3;}
-  .nav-grid{grid-template-columns:repeat(auto-fill,minmax(40px,1fr));gap:6px;}
-  .nav-btn{min-height:40px;font-size:12.5px;border-radius:9px;}
-  .score-ring{width:112px;height:112px;}
-  .score-ring .big{font-size:26px;}
-  .result-stats{grid-template-columns:repeat(3,1fr);gap:7px;}
-  .stat .val{font-size:17px;}
-  .stat .lbl{font-size:10.5px;}
-  .modal-actions{flex-direction:column-reverse;}
-  .modal-actions .btn{width:100%;}
-  .practice-actions{flex-direction:column;}
-}
-
-@media (min-width:641px) and (max-width:1024px){
-  .option{min-height:58px;font-size:16px;}
-  .nav-grid{grid-template-columns:repeat(auto-fill,minmax(48px,1fr));}
-}
-
-@media (prefers-reduced-motion:reduce){
-  *{animation-duration:.001ms !important;transition-duration:.001ms !important;}
+.navcell.done{background:#dff0e6;border-color:#a9d8bd;color:#1f6d43}
+.navcell.cur{border-color:var(--primary);background:var(--primary);color:#fff}
+.scorecard{text-align:center;padding:26px 18px}
+.scorecard .big{font-size:2.6rem;font-weight:800;color:var(--primary-d);line-height:1.1}
+.scorecard .pct{font-size:1.05rem;font-weight:700;color:var(--muted);margin-bottom:8px}
+.scorecard .msg{font-size:1.05rem;font-weight:600}
+.stats{display:grid;gap:10px;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));margin:16px 0}
+.stat{background:#f8fbff;border:1px solid var(--border);border-radius:11px;padding:12px;text-align:center}
+.stat .n{font-size:1.4rem;font-weight:800}
+.stat .l{font-size:.78rem;color:var(--muted);text-transform:uppercase;letter-spacing:.03em}
+.stat.ok .n{color:var(--ok)} .stat.bad .n{color:var(--bad)} .stat.warn .n{color:var(--warn)}
+.revitem{background:#fff;border:1px solid var(--border);border-left:5px solid var(--muted);border-radius:11px;padding:14px;margin-bottom:12px}
+.revitem.correct{border-left-color:var(--ok)}
+.revitem.incorrect{border-left-color:var(--bad)}
+.revitem.blank{border-left-color:var(--warn)}
+.revitem .rq{font-weight:600;margin:6px 0 10px}
+.ansline{font-size:.92rem;margin:3px 0}
+.ansline b{font-weight:700}
+.pill{display:inline-block;font-size:.72rem;font-weight:800;padding:2px 9px;border-radius:99px;margin-left:6px;vertical-align:middle}
+.pill.correct{background:var(--ok-bg);color:var(--ok)}
+.pill.incorrect{background:var(--bad-bg);color:var(--bad)}
+.pill.blank{background:var(--warn-bg);color:var(--warn)}
+.expl{background:#f6fbff;border-radius:9px;padding:10px 12px;font-size:.9rem;margin-top:9px;color:#2c4258}
+.expl b{color:var(--primary-d)}
+.lessonbar{margin-bottom:12px}
+.lessonbar .lb-head{display:flex;justify-content:space-between;font-size:.88rem;margin-bottom:4px}
+.lessonbar .lb-track{height:9px;background:#e2eefa;border-radius:99px;overflow:hidden}
+.lessonbar .lb-fill{height:100%;background:linear-gradient(90deg,#7db8ea,#3f86d0);border-radius:99px}
+details.mistake{border:1px solid var(--border);border-radius:11px;padding:10px 14px;margin-bottom:10px;background:#fff}
+details.mistake summary{cursor:pointer;font-weight:600;font-size:.94rem}
+details.mistake[open] summary{margin-bottom:8px}
+.similar{background:var(--warn-bg);border-radius:9px;padding:10px 12px;margin-top:9px;font-size:.9rem}
+.similar b{color:var(--warn)}
+.notice{background:var(--warn-bg);border:1px solid #f0d9a3;color:#7a5510;border-radius:11px;padding:12px 14px;margin-bottom:14px;font-size:.9rem}
+.foot{text-align:center;color:var(--muted);font-size:.8rem;margin-top:20px}
+.kbd{font-family:ui-monospace,Menlo,Consolas,monospace;background:#eef3f9;border-radius:5px;padding:1px 5px;font-size:.85em}
+@media(max-width:520px){
+  #app{padding:12px 10px 60px}
+  .qtext{font-size:1.06rem}
+  .card{padding:14px}
+  .hero h1{font-size:1.22rem}
+  .btn{padding:11px 14px}
+  .row.nav .btn{flex:1}
 }
 </style>
 </head>
 <body>
+<div id="app"></div>
+<script>
+"use strict";
 
-<div class="app">
-  <header class="app-header">
-    <div class="brand">
-      <span class="logo">🇫🇷</span>
-      <div>
-        <h1>French Grammar Quiz A1</h1>
-        <p class="sub">Le Nouveau Taxi ! 1 · Leçons 7–12</p>
-      </div>
-    </div>
-    <button id="btnHome" class="btn btn-ghost hidden" style="padding:9px 15px;min-height:40px;font-size:13.5px;">Trang chủ</button>
+/* ============================================================
+   1. NGÂN HÀNG CÂU HỎI  (Le Nouveau Taxi ! 1 — Leçons 7–12)
+   ============================================================ */
+const BANK = [];
+let _id = 0;
+function q(lesson, category, topic, question, options, correct, explanation){
+  BANK.push({
+    id: ++_id, lesson, category, topic, question, options,
+    correct, explanation, difficulty: "A1"
+  });
+}
+
+const LESSON_NAMES = {
+  7: "Shopping",
+  8: "Le coin des artistes",
+  9: "Appartement à louer",
+  10: "C'est par où ?",
+  11: "Bon voyage !",
+  12: "Marseille"
+};
+
+/* ---------------- LEÇON 7 — SHOPPING ---------------- */
+/* Từ vựng: quần áo & phụ kiện */
+q(7,"vocabulaire","Vêtements","Il fait froid aujourd'hui. Je mets un ______ chaud.",["manteau","tableau","musée","pont"],0,"Trời lạnh nên mặc áo khoác ấm: un manteau.");
+q(7,"vocabulaire","Vêtements","Marie porte une jolie ______ rouge pour la fête.",["robe","gare","cuisine","photo"],0,"Une robe = váy/đầm. 'Jolie robe rouge' hợp với ngữ cảnh dự tiệc.");
+q(7,"vocabulaire","Vêtements","Pour aller à l'université, Paul porte un ______ et un pantalon.",["pull","île","poète","salon"],0,"Un pull = áo len, mặc cùng pantalon khi đi học.");
+q(7,"vocabulaire","Vêtements","Il pleut. Je mets mon ______.",["blouson","poème","jardin","tableau"],0,"Un blouson = áo khoác ngắn, dùng khi trời mưa hoặc se lạnh.");
+q(7,"vocabulaire","Vêtements","Pour un entretien, elle porte une ______ blanche.",["chemise","piscine","banque","plage"],0,"Une chemise = áo sơ mi, trang phục phù hợp buổi phỏng vấn.");
+q(7,"vocabulaire","Vêtements","En été, je porte un ______ parce qu'il fait chaud.",["tee-shirt","manteau","ascenseur","château"],0,"Mùa hè nóng → mặc áo phông: un tee-shirt.");
+q(7,"vocabulaire","Vêtements","Mon père porte un ______ bleu pour travailler.",["jean","île","photo","musée"],0,"Un jean = quần bò. 'Un jean bleu' là cách nói rất tự nhiên.");
+q(7,"vocabulaire","Vêtements","Je veux acheter des ______ pour courir.",["baskets","lunettes","chapeaux","chemises"],0,"Des baskets = giày thể thao, dùng để chạy bộ.");
+q(7,"vocabulaire","Vêtements","Elle ne voit pas bien. Elle porte des ______.",["lunettes","chaussures","pantalons","manteaux"],0,"Des lunettes = kính. Không nhìn rõ thì đeo kính.");
+q(7,"vocabulaire","Vêtements","Je mets mes livres dans mon ______.",["sac","pull","jean","chapeau"],0,"Un sac = túi, dùng để đựng sách.");
+q(7,"vocabulaire","Vêtements","En été, il met un ______ sur sa tête.",["chapeau","sac","jean","pull"],0,"Un chapeau = mũ, đội trên đầu (sur la tête).");
+q(7,"vocabulaire","Vêtements","Ces ______ sont trop petites pour mes pieds.",["chaussures","lunettes","robes","chemises"],0,"Chaussures = giày, đi ở chân (aux pieds).");
+q(7,"vocabulaire","Vêtements","Elle achète une ______ pour l'été : c'est plus léger qu'un manteau.",["robe","gare","poste","cour"],0,"Une robe = váy, nhẹ hơn manteau nên hợp mùa hè.");
+q(7,"vocabulaire","Vêtements","Ce ______ est trop petit : je ne peux pas mettre mes bras.",["manteau","bus","pont","film"],0,"Manteau là áo khoác; nếu quá nhỏ thì không mặc vừa.");
+/* Từ vựng: màu sắc */
+q(7,"vocabulaire","Couleurs","Le ciel est généralement ______ quand il fait beau.",["bleu","rouge","noir","gris"],0,"Trời đẹp thì bầu trời thường màu xanh dương: bleu.");
+q(7,"vocabulaire","Couleurs","La tomate est souvent ______.",["rouge","jaune","verte","blanche"],0,"Cà chua thường có màu đỏ: rouge.");
+q(7,"vocabulaire","Couleurs","L'herbe est ______.",["verte","grise","noire","bleue"],0,"Cỏ màu xanh lá: verte (herbe là danh từ giống cái).");
+q(7,"vocabulaire","Couleurs","La neige est ______.",["blanche","rouge","jaune","verte"],0,"Tuyết màu trắng: blanche (neige giống cái).");
+q(7,"vocabulaire","Couleurs","La nuit, le ciel est souvent ______.",["noir","blanc","jaune","rouge"],0,"Ban đêm bầu trời thường đen: noir.");
+q(7,"vocabulaire","Couleurs","Le ciel est couvert. Les nuages sont ______.",["gris","verts","rouges","jaunes"],0,"Mây xám thì trời âm u: gris (nuages số nhiều).");
+q(7,"vocabulaire","Couleurs","Le soleil est souvent représenté en ______.",["jaune","noir","gris","bleu"],0,"Mặt trời thường được vẽ màu vàng: jaune.");
+q(7,"vocabulaire","Couleurs","Elle porte une robe ______ comme une tomate.",["rouge","blanche","grise","verte"],0,"So sánh với tomate (cà chua) → màu đỏ: rouge.");
+q(7,"vocabulaire","Couleurs","Il aime les vêtements de couleur ______, comme l'herbe.",["vert","noir","blanc","gris"],0,"So sánh với herbe (cỏ) → màu xanh lá: vert.");
+q(7,"vocabulaire","Couleurs","Elle achète un pantalon ______ pour une tenue élégante.",["noir","rouge","jaune","vert"],0,"Quần đen (noir) thường được coi là thanh lịch.");
+q(7,"vocabulaire","Couleurs","La chemise de Paul n'est ni blanche ni noire : elle est ______.",["grise","rouge","jaune","verte"],0,"Không trắng không đen → màu xám: grise (chemise giống cái).");
+/* Từ vựng: kích cỡ, giá, số đếm */
+q(7,"vocabulaire","Taille et prix","« Vous faites quelle ______ ? » — « Je fais du 38. »",["taille","prix","couleur","voyage"],0,"Câu hỏi về cỡ quần áo dùng 'la taille'; trả lời 'je fais du 38'.");
+q(7,"vocabulaire","Taille et prix","« Combien coûte cette robe ? » — « Le ______ est de 60 euros. »",["prix","taille","salon","métro"],0,"Le prix = giá cả. Câu hỏi về tiền thì trả lời bằng prix.");
+q(7,"vocabulaire","Taille et prix","Ce tee-shirt coûte 20 ______.",["euros","tailles","robes","couleurs"],0,"Đơn vị tiền tệ châu Âu là euros.");
+q(7,"vocabulaire","Taille et prix","« Ce pantalon coûte combien ? » — « Il ______ 45 euros. »",["coûte","visite","voyage","habite"],0,"Động từ coûter = có giá. 'Il coûte 45 euros'.");
+q(7,"vocabulaire","Taille et prix","Cette veste coûte 150 euros. Elle est très ______.",["chère","calme","claire","ancienne"],0,"Giá cao thì nói 'c'est cher / elle est chère' (veste giống cái).");
+q(7,"vocabulaire","Nombres","70 euros se dit :",["soixante-dix euros","soixante et onze euros","quatre-vingts euros","cent euros"],0,"70 = soixante-dix (60 + 10).");
+q(7,"vocabulaire","Nombres","Le magasin affiche le prix de 80 euros. On dit :",["quatre-vingts","quatre-vingt-dix","soixante-dix","mille"],0,"80 = quatre-vingts (4 × 20), có 's' khi không theo sau bởi số khác.");
+q(7,"vocabulaire","Nombres","Le prix est de 91 euros. On dit :",["quatre-vingt-onze","quatre-vingt-dix","quatre-vingts","soixante et onze"],0,"91 = quatre-vingt-onze (80 + 11).");
+q(7,"vocabulaire","Nombres","Ce vélo coûte 200 euros. Le nombre est :",["deux cents","deux mille","cent deux","vingt cents"],0,"200 = deux cents. 'Cent' lấy 's' khi ở dạng số nhiều và không theo sau bởi số khác.");
+q(7,"vocabulaire","Nombres","La voiture coûte 1000 euros. On dit :",["mille","cent","deux cents","quatre-vingts"],0,"1000 = mille. Chú ý: 'mille' không bao giờ có 's'.");
+q(7,"vocabulaire","Nombres","71 se dit :",["soixante et onze","soixante-dix","quatre-vingt-onze","septante et un"],0,"71 = soixante et onze (có 'et' vì 1).");
+q(7,"vocabulaire","Nombres","90 se dit :",["quatre-vingt-dix","quatre-vingts","nonante","neuf-dix"],0,"90 = quatre-vingt-dix (80 + 10), không có 's'.");
+q(7,"vocabulaire","Nombres","100 se dit :",["cent","mille","dix","cents"],0,"100 = cent (số ít, không có 's').");
+/* Ngữ pháp: tính từ chỉ định */
+q(7,"grammaire","Adjectifs démonstratifs","___ pantalon est très beau.",["Ce","Cette","Ces","Cet"],0,"Pantalon là danh từ giống đực số ít, bắt đầu bằng phụ âm → dùng 'ce'.");
+q(7,"grammaire","Adjectifs démonstratifs","J'aime ___ robe rouge.",["cette","ce","cet","ces"],0,"Robe là danh từ giống cái số ít → dùng 'cette'.");
+q(7,"grammaire","Adjectifs démonstratifs","Regarde ___ hôtel !",["cet","ce","cette","ces"],0,"Hôtel giống đực số ít, bắt đầu bằng nguyên âm/h câm → dùng 'cet'.");
+q(7,"grammaire","Adjectifs démonstratifs","___ chaussures sont chères.",["Ces","Cette","Cet","Ce"],0,"Chaussures là số nhiều → dùng 'ces'.");
+q(7,"grammaire","Adjectifs démonstratifs","Tu préfères ___ chemise blanche ?",["cette","ce","cet","ces"],0,"Chemise giống cái số ít → 'cette'.");
+q(7,"grammaire","Adjectifs démonstratifs","___ appartement est grand.",["Cet","Cette","Ces","Ce"],0,"Appartement giống đực số ít, bắt đầu bằng nguyên âm 'a' → 'cet'.");
+q(7,"grammaire","Adjectifs démonstratifs","J'achète ___ lunettes.",["ces","ce","cette","cet"],0,"Lunettes luôn ở số nhiều → 'ces'.");
+q(7,"grammaire","Adjectifs démonstratifs","___ blouson est noir.",["Ce","Cet","Cette","Ces"],0,"Blouson giống đực số ít, bắt đầu bằng phụ âm → 'ce'.");
+q(7,"grammaire","Adjectifs démonstratifs","Elle aime ___ objets.",["Ces","Cette","Ce","Cet"],0,"Objets số nhiều → 'ces'.");
+q(7,"grammaire","Adjectifs démonstratifs","___ manteau coûte 100 euros.",["Ce","Cet","Cette","Ces"],0,"Manteau giống đực số ít, phụ âm đầu → 'ce'.");
+q(7,"grammaire","Adjectifs démonstratifs","___ amie est très sympathique.",["Cette","Ce","Cet","Ces"],0,"Amie giống cái số ít → 'cette'.");
+q(7,"grammaire","Adjectifs démonstratifs","___ arbre est très grand.",["Cet","Ce","Cette","Ces"],0,"Arbre giống đực số ít, bắt đầu bằng nguyên âm → 'cet'.");
+/* Ngữ pháp: tính từ nghi vấn */
+q(7,"grammaire","Adjectifs interrogatifs","___ pantalon tu préfères ?",["Quel","Quelle","Quels","Quelles"],0,"Pantalon giống đực số ít → 'quel'.");
+q(7,"grammaire","Adjectifs interrogatifs","___ couleur aimes-tu ?",["Quelle","Quel","Quels","Quelles"],0,"Couleur giống cái số ít → 'quelle'.");
+q(7,"grammaire","Adjectifs interrogatifs","___ vêtements achètes-tu ?",["Quels","Quel","Quelle","Quelles"],0,"Vêtements giống đực số nhiều → 'quels'.");
+q(7,"grammaire","Adjectifs interrogatifs","___ chaussures sont à ta taille ?",["Quelles","Quel","Quelle","Quels"],0,"Chaussures giống cái số nhiều → 'quelles'.");
+q(7,"grammaire","Adjectifs interrogatifs","___ robe est la plus jolie ?",["Quelle","Quel","Quels","Quelles"],0,"Robe giống cái số ít → 'quelle'.");
+q(7,"grammaire","Adjectifs interrogatifs","___ prix fait ce sac ?",["Quel","Quelle","Quels","Quelles"],0,"Prix giống đực số ít → 'quel'.");
+/* Ngữ pháp: Comment / Combien */
+q(7,"grammaire","Comment / Combien","— Comment tu trouves ce pull ? — ______",["Il est très joli.","Il coûte 30 euros.","Il est à la banque.","Il est chez moi."],0,"'Comment tu trouves...' hỏi ý kiến/nhận xét → trả lời bằng tính từ như 'très joli'.");
+q(7,"grammaire","Comment / Combien","— Combien coûte cette chemise ? — ______",["Elle coûte 25 euros.","Elle est rouge.","Elle est devant.","Elle est grande."],0,"'Combien coûte' hỏi giá → trả lời bằng số tiền.");
+q(7,"grammaire","Comment / Combien","— Ça fait combien ? — ______",["Ça fait 80 euros.","C'est un hôtel.","C'est à gauche.","C'est noir."],0,"'Ça fait combien ?' hỏi tổng số tiền → trả lời 'Ça fait + số tiền'.");
+q(7,"grammaire","Comment / Combien","___ coûtent ces chaussures ?",["Combien","Comment","Quel","Où"],0,"Hỏi giá dùng 'Combien' (Combien coûtent...).");
+q(7,"grammaire","Comment / Combien","— Elle est comment, cette robe ? — ______",["Elle est magnifique.","Elle coûte 50 euros.","Elle est au musée.","Elle est chez lui."],0,"'Elle est comment ?' hỏi nhận xét → trả lời bằng tính từ.");
+q(7,"grammaire","Comment / Combien","___ coûte ce sac ?",["Combien","Comment","Quelle","Qui"],0,"'Combien coûte...' là mẫu câu hỏi giá chuẩn.");
+
+/* ---------------- LEÇON 8 — LE COIN DES ARTISTES ---------------- */
+q(8,"vocabulaire","Métiers de l'art","Victor Hugo est un célèbre ______ français.",["écrivain","musicien","sculpteur","peintre"],0,"Victor Hugo viết tiểu thuyết và thơ → un écrivain (nhà văn).");
+q(8,"vocabulaire","Métiers de l'art","L'artiste travaille la pierre pour créer une statue. C'est un ______.",["sculpteur","poète","écrivain","musicien"],0,"Người tạc tượng từ đá là un sculpteur (nhà điêu khắc).");
+q(8,"vocabulaire","Métiers de l'art","Monet est un célèbre ______.",["peintre","musicien","écrivain","poète"],0,"Monet là họa sĩ nổi tiếng → un peintre.");
+q(8,"vocabulaire","Métiers de l'art","Il écrit des vers et des textes poétiques. C'est un ______.",["poète","sculpteur","peintre","photographe"],0,"Người viết thơ là un poète (nhà thơ).");
+q(8,"vocabulaire","Métiers de l'art","Elle joue du piano et compose des chansons. C'est une ______.",["musicienne","peintre","écrivaine","sculptrice"],0,"Phụ nữ chơi nhạc và sáng tác → une musicienne.");
+q(8,"vocabulaire","Œuvres d'art","Le musée présente un beau ______ de Monet.",["tableau","film","poème","sac"],0,"Monet vẽ tranh → un tableau (bức tranh).");
+q(8,"vocabulaire","Œuvres d'art","Ce soir, nous allons regarder un ______ au cinéma.",["film","tableau","poète","manteau"],0,"Ở rạp chiếu phim thì xem un film (phim).");
+q(8,"vocabulaire","Œuvres d'art","J'aime prendre une ______ quand je voyage.",["photo","chambre","rue","taille"],0,"'Prendre une photo' = chụp ảnh.");
+q(8,"vocabulaire","Œuvres d'art","Le professeur lit un ______ aux étudiants.",["poème","jean","pont","bus"],0,"Đọc cho sinh viên nghe → un poème (bài thơ).");
+q(8,"vocabulaire","Œuvres d'art","L'artiste expose plusieurs ______ dans la galerie.",["tableaux","cuisines","ascenseurs","aéroports"],0,"Số nhiều của 'tableau' là 'tableaux'.");
+q(8,"vocabulaire","Métiers de l'art","Une femme qui écrit des livres est une ______.",["écrivaine","peintre","musicienne","sculptrice"],0,"Dạng nữ của 'écrivain' là 'écrivaine'.");
+q(8,"vocabulaire","Métiers de l'art","Celui qui prend des photos est un ______.",["photographe","peintre","poète","sculpteur"],0,"Người chụp ảnh là un photographe.");
+q(8,"vocabulaire","Métiers de l'art","Le ______ joue du violon dans un orchestre.",["musicien","écrivain","peintre","poète"],0,"Người chơi nhạc cụ là un musicien.");
+q(8,"vocabulaire","Métiers de l'art","Le ______ peint des portraits et des paysages.",["peintre","poète","sculpteur","écrivain"],0,"Người vẽ tranh là un peintre.");
+q(8,"vocabulaire","Métiers de l'art","Le ______ crée des statues en marbre.",["sculpteur","musicien","écrivain","photographe"],0,"Người tạo tượng là un sculpteur.");
+q(8,"vocabulaire","Métiers de l'art","Le ______ écrit des poèmes en vers.",["poète","peintre","sculpteur","musicien"],0,"Người viết thơ là un poète.");
+q(8,"vocabulaire","Œuvres d'art","J'ai vu un beau ______ au cinéma hier soir.",["film","tableau","poème","roman"],0,"Ở rạp chiếu phim thì xem un film.");
+q(8,"vocabulaire","Œuvres d'art","Il prend une ______ de la tour Eiffel.",["photo","peinture","chanson","statue"],0,"'Prendre une photo de...' = chụp ảnh cái gì.");
+q(8,"vocabulaire","Œuvres d'art","Le musée expose un ______ de Monet dans la salle 3.",["tableau","film","poème","livre"],0,"Tác phẩm hội họa là un tableau.");
+q(8,"vocabulaire","Œuvres d'art","Elle lit un ______ de Rimbaud.",["poème","tableau","film","roman"],0,"Rimbaud là nhà thơ → đọc un poème.");
+/* Ngữ pháp: giới từ vị trí */
+q(8,"grammaire","Prépositions de lieu","Le tableau est ___ centre du mur.",["au","à la","aux","du"],0,"'Au centre' = ở giữa (au = à + le).");
+q(8,"grammaire","Prépositions de lieu","Le sac est ___ la chaise : il est par terre, dessous.",["sous","entre","contre","devant"],0,"'Sous' = ở dưới. Túi ở dưới ghế.");
+q(8,"grammaire","Prépositions de lieu","Le musée est ___ la banque et la poste.",["entre","à droite","sous","derrière de"],0,"'Entre... et...' = ở giữa hai vật.");
+q(8,"grammaire","Prépositions de lieu","Le peintre est ___ la porte : il attend dehors.",["devant","entre","sous de","au"],0,"'Devant' = phía trước (không có 'de' theo sau).");
+q(8,"grammaire","Prépositions de lieu","La chaise est ___ la table.",["à côté de","derrière","à côté","entre de"],0,"'À côté de' = bên cạnh, luôn có 'de'.");
+q(8,"grammaire","Prépositions de lieu","Le vélo est ___ le mur.",["contre","entre","au centre","à droite de"],0,"'Contre' = dựa vào, áp sát vào tường.");
+q(8,"grammaire","Prépositions de lieu","Le tableau est ___ le mur.",["sur","sous de","entre de","au"],0,"Tranh treo trên tường → 'sur le mur'.");
+q(8,"grammaire","Prépositions de lieu","Le sac est à droite ___ la chaise.",["de","à","du","des"],0,"'À droite de' luôn cần giới từ 'de'.");
+q(8,"grammaire","Prépositions de lieu","La photo est ___ gauche du tableau.",["à","au","à la","aux"],0,"'À gauche de' — dùng 'à' + 'gauche' (không có mạo từ).");
+q(8,"grammaire","Prépositions de lieu","Le chat dort ___ la table.",["sous","sur de","entre de","à"],0,"'Sous la table' = ở dưới bàn.");
+q(8,"grammaire","Prépositions de lieu","Le musée est ___ la gare et l'hôtel.",["entre","devant","contre","sous"],0,"'Entre A et B' = ở giữa A và B.");
+q(8,"grammaire","Prépositions de lieu","L'affiche est collée ___ le mur, dans l'entrée.",["contre","entre","sous","au centre"],0,"Áp phích dán sát tường → 'contre le mur'.");
+q(8,"grammaire","Prépositions de lieu","La lampe est ___ du lit.",["au-dessus","entre","contre","devant"],0,"'Au-dessus de' = ở phía trên. (Đèn ở phía trên giường.)");
+q(8,"grammaire","Prépositions de lieu","Le jardin est ___ la maison.",["derrière","entre","contre","sur"],0,"'Derrière' = phía sau. Vườn ở sau nhà.");
+q(8,"grammaire","Prépositions de lieu","Le sculpteur se place ___ son œuvre pour la photo.",["devant","sous","entre","contre"],0,"Đứng trước tác phẩm để chụp ảnh → 'devant'.");
+/* Ngữ pháp: đại từ nhấn mạnh */
+q(8,"grammaire","Pronoms toniques","___, j'aime beaucoup la musique classique.",["Moi","Je","Me","Mon"],0,"'Moi' là đại từ nhấn mạnh dùng để nhấn chủ ngữ đứng đầu câu.");
+q(8,"grammaire","Pronoms toniques","Tu viens avec ___ au musée ?",["moi","je","me","mon"],0,"Sau giới từ 'avec' phải dùng đại từ nhấn mạnh: moi.");
+q(8,"grammaire","Pronoms toniques","L'homme brun, ___, a un blouson noir.",["lui","il","le","son"],0,"'Lui' nhấn mạnh cho chủ ngữ giống đực số ít.");
+q(8,"grammaire","Pronoms toniques","C'est un cadeau pour ___ .",["elle","la","lui-même","son"],0,"Sau giới từ 'pour' dùng đại từ nhấn mạnh: elle.");
+q(8,"grammaire","Pronoms toniques","— Qui aime ce tableau ? — ___ !",["Lui","Il","Le","Son"],0,"Trả lời ngắn bằng đại từ nhấn mạnh: Lui !");
+q(8,"grammaire","Pronoms toniques","___, tu préfères quelle couleur ?",["Toi","Tu","Te","Ton"],0,"'Toi' nhấn mạnh chủ ngữ 'tu'.");
+q(8,"grammaire","Pronoms toniques","___ et moi, nous allons au cinéma.",["Lui","Il","Le","Son"],0,"'Lui et moi' = anh ấy và tôi (đại từ nhấn mạnh).");
+q(8,"grammaire","Pronoms toniques","Elle pense souvent à ___ .",["toi","tu","te","ton"],0,"Sau giới từ 'à' dùng đại từ nhấn mạnh: toi.");
+q(8,"grammaire","Pronoms toniques","Ce tableau est pour ___ , pas pour moi.",["lui","il","le","son"],0,"Sau 'pour' dùng đại từ nhấn mạnh giống đực: lui.");
+q(8,"grammaire","Pronoms toniques","___ , elle est peintre ; lui, il est sculpteur.",["Elle","La","Son","Lui"],0,"Nhấn mạnh chủ ngữ giống cái → 'Elle' đứng đầu câu.");
+
+/* ---------------- LEÇON 9 — APPARTEMENT À LOUER ---------------- */
+q(9,"vocabulaire","Logement","Nous habitons au troisième étage d'un grand ______.",["immeuble","tableau","jardin","restaurant"],0,"Un immeuble = tòa nhà nhiều tầng.");
+q(9,"vocabulaire","Logement","Elle cherche un ______ à louer près de l'université.",["appartement","poème","pont","chapeau"],0,"Un appartement = căn hộ. 'À louer' = cho thuê.");
+q(9,"vocabulaire","Logement","Pour aller à la chambre, je passe par le ______.",["couloir","musée","parking","bar"],0,"Le couloir = hành lang, lối đi giữa các phòng.");
+q(9,"vocabulaire","Logement","Quand j'arrive chez moi, je passe par l'______.",["entrée","île","opéra","plage"],0,"L'entrée = lối vào.");
+q(9,"vocabulaire","Logement","Nous préparons le dîner dans la ______.",["cuisine","chambre","salle de bains","entrée"],0,"La cuisine = nhà bếp, nơi nấu ăn.");
+q(9,"vocabulaire","Logement","Je dors dans ma ______.",["chambre","banque","gare","cour"],0,"La chambre = phòng ngủ.");
+q(9,"vocabulaire","Logement","Je prends une douche dans la ______.",["salle de bains","cuisine","terrasse","place"],0,"La salle de bains = phòng tắm.");
+q(9,"vocabulaire","Logement","Après le repas, je vais aux ______.",["toilettes","salons","musées","jardins"],0,"Les toilettes = nhà vệ sinh (luôn số nhiều).");
+q(9,"vocabulaire","Logement","Nous regardons la télévision dans le ______.",["salon","bureau","couloir","parking"],0,"Le salon = phòng khách.");
+q(9,"vocabulaire","Logement","Je travaille sur mon ordinateur dans le ______.",["bureau","restaurant","bar","pont"],0,"Le bureau = phòng làm việc.");
+q(9,"vocabulaire","Logement","Je range mes vêtements dans le ______.",["placard","métro","musée","poème"],0,"Le placard = tủ quần áo.");
+q(9,"vocabulaire","Logement","Pour monter au quatrième étage, je prends l'______.",["ascenseur","avenue","aéroport","avion"],0,"L'ascenseur = thang máy.");
+q(9,"vocabulaire","Logement","Je gare ma voiture dans le ______ de l'immeuble.",["parking","salon","tableau","jardin"],0,"Le parking = bãi đỗ xe.");
+q(9,"vocabulaire","Logement","Nous buvons le café sur la ______ , au soleil.",["terrasse","chambre","cuisine","entrée"],0,"La terrasse = sân thượng / hiên ngoài trời.");
+q(9,"vocabulaire","Logement","Les enfants jouent dans le ______ derrière la maison.",["jardin","couloir","placard","ascenseur"],0,"Le jardin = khu vườn.");
+q(9,"vocabulaire","Adjectifs de logement","Une maison avec beaucoup d'espace est une maison ______.",["grande","petite","sombre","bruyante"],0,"Nhiều không gian → grand (to, rộng).");
+q(9,"vocabulaire","Adjectifs de logement","Il y a beaucoup de bruit dans la rue. L'appartement est ______.",["bruyant","calme","clair","récent"],0,"Nhiều tiếng ồn → bruyant (ồn ào).");
+q(9,"vocabulaire","Adjectifs de logement","Cet immeuble a été construit l'année dernière. Il est ______.",["récent","ancien","sombre","petit"],0,"Mới xây năm ngoái → récent (mới).");
+q(9,"vocabulaire","Adjectifs de logement","Cette chambre reçoit beaucoup de lumière. Elle est ______.",["claire","sombre","bruyante","ancienne"],0,"Nhiều ánh sáng → clair / claire (sáng sủa).");
+q(9,"vocabulaire","Adjectifs de logement","Cet appartement est très petit. Le contraire de « petit » est ______.",["grand","calme","ancien","sombre"],0,"Trái nghĩa của petit (nhỏ) là grand (to).");
+q(9,"vocabulaire","Adjectifs de logement","La rue est très silencieuse. Elle est ______.",["calme","bruyante","sombre","petite"],0,"Yên tĩnh → calme (trái nghĩa với bruyant).");
+q(9,"vocabulaire","Adjectifs de logement","Cet immeuble date de 1900. Il est ______.",["ancien","récent","clair","grand"],0,"Xây từ năm 1900 → ancien (cũ).");
+q(9,"vocabulaire","Adjectifs de logement","Sans fenêtre et sans lumière, cette pièce est très ______.",["sombre","claire","calme","récente"],0,"Không có cửa sổ, không ánh sáng → sombre (tối).");
+q(9,"vocabulaire","Adjectifs de logement","Le studio est très ______ : il n'y a qu'une seule pièce.",["petit","grand","bruyant","ancien"],0,"Chỉ một phòng → petit (nhỏ).");
+q(9,"vocabulaire","Étages","L'appartement au niveau de la rue est au ______.",["rez-de-chaussée","dernier étage","premier étage","sous-sol"],0,"Tầng trệt (ngang mặt đường) = rez-de-chaussée.");
+q(9,"vocabulaire","Étages","L'appartement tout en haut de l'immeuble est au ______.",["dernier étage","rez-de-chaussée","premier étage","parking"],0,"Tầng trên cùng = dernier étage.");
+q(9,"vocabulaire","Abréviations","Dans une annonce, « 3e étg. » signifie :",["troisième étage","trois chambres","trois entrées","trois euros"],0,"'étg.' là viết tắt của 'étage' (tầng).");
+q(9,"vocabulaire","Abréviations","Dans une annonce, « chbre » signifie :",["chambre","chambre de bain","chauffage","chaise"],0,"'chbre' là viết tắt của 'chambre' (phòng ngủ).");
+q(9,"vocabulaire","Abréviations","Dans une annonce, « cuis. » signifie :",["cuisine","couloir","cuisinière","culture"],0,"'cuis.' là viết tắt của 'cuisine' (nhà bếp).");
+q(9,"vocabulaire","Abréviations","Dans une annonce, « sdb » signifie :",["salle de bains","salle à manger","salon de beauté","sous-sol"],0,"'sdb' là viết tắt của 'salle de bains' (phòng tắm).");
+q(9,"vocabulaire","Abréviations","Dans une annonce, « imm. » signifie :",["immeuble","immédiat","immense","immobilier"],0,"'imm.' là viết tắt của 'immeuble' (tòa nhà).");
+q(9,"vocabulaire","Abréviations","Dans une annonce, « park. » signifie :",["parking","parc","parka","parquet"],0,"'park.' là viết tắt của 'parking' (bãi đỗ xe).");
+/* Ngữ pháp: đại từ nhấn mạnh số nhiều */
+q(9,"grammaire","Pronoms toniques (pluriel)","___ , nous habitons au centre-ville.",["Nous","On","Notre","Nos"],0,"'Nous' là đại từ nhấn mạnh số nhiều ngôi 1.");
+q(9,"grammaire","Pronoms toniques (pluriel)","Je viens avec ___ , si vous êtes d'accord.",["vous","votre","vos","on"],0,"Sau 'avec' dùng đại từ nhấn mạnh: vous.");
+q(9,"grammaire","Pronoms toniques (pluriel)","___ , ils ont un grand appartement.",["Eux","Ils","Les","Leurs"],0,"'Eux' là đại từ nhấn mạnh số nhiều giống đực.");
+q(9,"grammaire","Pronoms toniques (pluriel)","___ , elles louent un studio près de la gare.",["Elles","Leurs","Les","Eux"],0,"'Elles' là đại từ nhấn mạnh số nhiều giống cái.");
+q(9,"grammaire","Chez + pronom","Je rentre ___ moi à 18 heures.",["chez","à","dans","au"],0,"'Chez moi' = về nhà tôi (chez + đại từ nhấn mạnh).");
+q(9,"grammaire","Chez + pronom","Tu dînes ___ toi ce soir ?",["chez","à","dans","au"],0,"'Chez toi' = ở nhà bạn.");
+q(9,"grammaire","Chez + pronom","Il habite ___ lui, au troisième étage.",["chez","à","dans","sur"],0,"'Chez lui' = ở nhà anh ấy.");
+q(9,"grammaire","Chez + pronom","Nous allons ___ eux dimanche.",["chez","à","dans","sur"],0,"'Chez eux' = đến nhà họ.");
+q(9,"grammaire","Chez + pronom","Elle laisse les clés ___ elle.",["chez","à","dans","sur"],0,"'Chez elle' = ở nhà cô ấy.");
+q(9,"grammaire","Prépositions","Le café est ___ de la poste.",["en face","en face de","face","au face"],0,"'En face de' = đối diện, luôn có 'de'.");
+q(9,"grammaire","Prépositions","Le magasin est ___ de la rue.",["au bout","au bout de","à bout de","en bout"],0,"'Au bout de' = ở cuối (con phố).");
+q(9,"grammaire","Prépositions","Le musée est ___ la gare.",["près de","près","près du de","au près"],0,"'Près de' = gần. Luôn có 'de'.");
+q(9,"grammaire","Prépositions","Le restaurant est ___ de la banque et de la poste.",["au coin","au coin de","coin de","à coin"],0,"'Au coin de' = ở góc (phố).");
+q(9,"grammaire","Prépositions","Le livre est ___ le sac.",["dans","devant de","au","à côté"],0,"'Dans' = ở trong. Sách ở trong túi.");
+q(9,"grammaire","Prépositions","L'appartement est ___ troisième étage.",["au","à la","aux","en"],0,"'Au troisième étage' = ở tầng ba (à + le = au).");
+q(9,"grammaire","Prépositions","Nous louons un studio ___ une cuisine équipée.",["avec","pour","dans","sur"],0,"'Avec' = với, cùng với (có kèm).");
+q(9,"grammaire","Prépositions","C'est un cadeau ___ ma sœur.",["pour","avec","dans","sur"],0,"'Pour' = dành cho, để tặng cho ai.");
+q(9,"grammaire","Prépositions","La boulangerie est ___ côté de la pharmacie.",["à","au","de","en"],0,"'À côté de' = bên cạnh (à + côté).");
+q(9,"grammaire","Prépositions","Le parking est ___ sous-sol de l'immeuble.",["au","à la","aux","en"],0,"'Au sous-sol' = ở tầng hầm (à + le = au).");
+/* Ngữ pháp: Où */
+q(9,"grammaire","Questions avec Où","— ___ est l'appartement ? — Il est au deuxième étage.",["Où","Comment","Combien","Quel"],0,"Hỏi vị trí dùng 'Où'.");
+q(9,"grammaire","Questions avec Où","— La poste, c'est ___ ? — C'est en face de la banque.",["où","comment","combien","quelle"],0,"'C'est où ?' là cách hỏi vị trí thân mật.");
+q(9,"grammaire","Questions avec Où","— Ça se trouve où ? — ______",["C'est près de la gare.","Ça coûte 50 euros.","Il est rouge.","C'est une chemise."],0,"Câu hỏi vị trí → trả lời bằng nơi chốn.");
+q(9,"grammaire","Questions avec Où","— Où sont les toilettes ? — ______",["Elles sont au bout du couloir.","Ils sont au bout du couloir.","Elle est au bout du couloir.","Il est au bout du couloir."],0,"'Toilettes' là số nhiều giống cái → dùng 'Elles sont'.");
+q(9,"grammaire","Questions avec Où","— Vous habitez où ? — ______",["À Can Tho.","Chez eux.","En face.","Un appartement."],0,"Câu hỏi 'où' về nơi ở → trả lời bằng tên thành phố.");
+q(9,"grammaire","Questions avec Où","— ___ se trouve la cuisine ? — À droite de l'entrée.",["Où","Quel","Comment","Qui"],0,"'Où se trouve...' là mẫu hỏi vị trí trang trọng hơn.");
+q(9,"grammaire","Questions avec Où","— Où est la chambre ? — ______",["Elle est à côté du salon.","Il est à côté du salon.","Ça coûte cher.","C'est grand."],0,"Chambre giống cái số ít → 'Elle est...'.");
+q(9,"grammaire","Questions avec Où","— C'est où, le parking ? — ______",["C'est au sous-sol.","C'est 20 euros.","C'est très grand.","C'est bleu."],0,"Câu hỏi vị trí → trả lời bằng nơi chốn.");
+q(9,"grammaire","Questions avec Où","— Où habites-tu ? — ______",["J'habite dans un petit appartement.","Je m'appelle Paul.","J'ai 20 ans.","Je suis étudiant."],0,"Câu hỏi 'où' về nơi ở → trả lời nơi ở.");
+q(9,"grammaire","Questions avec Où","— ___ est le bureau ? — Au premier étage.",["Où","Combien","Quelle","Qui"],0,"Hỏi vị trí phòng làm việc → 'Où'.");
+
+/* ---------------- LEÇON 10 — C'EST PAR OÙ ? ---------------- */
+q(10,"vocabulaire","Lieux publics","Nous allons au ______ pour voir des œuvres d'art.",["musée","parking","salon","bar"],0,"Le musée = bảo tàng, nơi trưng bày tác phẩm nghệ thuật.");
+q(10,"vocabulaire","Lieux publics","Je dois retirer de l'argent à la ______.",["banque","plage","cuisine","gare"],0,"La banque = ngân hàng, nơi rút tiền.");
+q(10,"vocabulaire","Lieux publics","Je vais à la ______ pour envoyer une lettre.",["poste","place","cour","piscine"],0,"La poste = bưu điện, nơi gửi thư.");
+q(10,"vocabulaire","Lieux publics","Je prends le train à la ______.",["gare","banque","avenue","rue"],0,"La gare = ga tàu.");
+q(10,"vocabulaire","Lieux publics","Nous allons voir un spectacle à l'______.",["opéra","aéroport","appartement","île"],0,"L'opéra = nhà hát opera, nơi xem biểu diễn.");
+q(10,"vocabulaire","Lieux publics","La voiture traverse le ______ pour passer au-dessus de la rivière.",["pont","musée","jardin","salon"],0,"Le pont = cây cầu, bắc qua sông.");
+q(10,"vocabulaire","Lieux publics","Les enfants jouent dans la ______ de l'école.",["cour","banque","poste","gare"],0,"La cour = sân (sân trường).");
+q(10,"vocabulaire","Lieux publics","J'habite dans une petite ______ près du centre.",["rue","piscine","plage","chambre"],0,"La rue = con phố.");
+q(10,"vocabulaire","Lieux publics","Le bus circule sur le ______ .",["boulevard","tableau","placard","poème"],0,"Le boulevard = đại lộ rộng có nhiều làn xe.");
+q(10,"vocabulaire","Lieux publics","Le magasin est situé sur une grande ______ .",["avenue","chambre","terrasse","cuisine"],0,"L'avenue = đại lộ, đường lớn có cây hai bên.");
+q(10,"vocabulaire","Lieux publics","Nous nous donnons rendez-vous sur la ______ du marché.",["place","gare","poste","banque"],0,"La place = quảng trường.");
+q(10,"vocabulaire","Lieux publics","Il y a beaucoup de fleurs dans le ______ public.",["jardin","couloir","parking","ascenseur"],0,"Le jardin public = công viên.");
+q(10,"vocabulaire","Lieux publics","Pour retirer de l'argent, je vais à la ______ .",["banque","poste","gare","piscine"],0,"Rút tiền thì đến ngân hàng (la banque).");
+q(10,"vocabulaire","Lieux publics","Pour envoyer une carte postale, je vais à la ______ .",["poste","banque","place","cour"],0,"Gửi bưu thiếp thì đến bưu điện (la poste).");
+q(10,"vocabulaire","Lieux publics","Les élèves jouent dans la ______ de l'école.",["cour","gare","poste","banque"],0,"Học sinh chơi ở sân trường (la cour).");
+/* Ngữ pháp: phương tiện */
+q(10,"vocabulaire","Transports","L'école est proche de chez moi. J'y vais ______.",["à pied","en voiture","en métro","en taxi"],0,"Đi bộ thì dùng 'à pied'.");
+q(10,"vocabulaire","Transports","Pour faire du sport, je vais au parc ______.",["à vélo","en avion","en bus","en train"],0,"Đạp xe thì dùng 'à vélo'.");
+q(10,"vocabulaire","Transports","Mon frère conduit une moto. Il va au travail ______.",["à moto","en rollers","à pied","en métro"],0,"Đi xe máy thì dùng 'à moto'.");
+q(10,"vocabulaire","Transports","Les enfants font du patinage ______.",["en rollers","en taxi","en bateau","à pied"],0,"Trượt patin thì dùng 'en rollers'.");
+q(10,"vocabulaire","Transports","Pour aller au centre de Paris, je prends le ______.",["métro","chapeau","tableau","jardin"],0,"Ở Paris đi lại bằng tàu điện ngầm (le métro).");
+q(10,"vocabulaire","Transports","Je prends le ______ pour aller à l'université.",["bus","musée","poème","placard"],0,"Đi xe buýt thì 'prendre le bus'.");
+q(10,"vocabulaire","Transports","Il est tard. Je prends un ______ pour rentrer.",["taxi","vélo","rollers","métro"],0,"Khuya rồi thì bắt taxi (un taxi).");
+q(10,"vocabulaire","Transports","Ma famille voyage ______ pour les vacances.",["en voiture","à pied","à vélo","en rollers"],0,"Cả nhà đi nghỉ bằng ô tô → 'en voiture'.");
+q(10,"vocabulaire","Transports","Je préfère me déplacer ______ parce que je n'ai pas de voiture.",["à pied","en voiture","en avion","en bateau"],0,"Không có xe hơi thì đi bộ: 'à pied'.");
+q(10,"vocabulaire","Transports","Pour visiter la ville, nous louons des vélos et nous circulons ______.",["à vélo","en taxi","en bus","en métro"],0,"Thuê xe đạp thì đi 'à vélo'.");
+/* Ngữ pháp: mệnh lệnh */
+q(10,"grammaire","Impératif","___ à gauche ! (tu)",["Tourne","Tournes","Tournez","Tourner"],0,"Mệnh lệnh với 'tu' bỏ 's' ở động từ nhóm 1: Tourne !");
+q(10,"grammaire","Impératif","___ tout droit ! (vous)",["Allez","Va","Vas","Aller"],0,"Mệnh lệnh với 'vous' dùng dạng 'vous allez' → Allez !");
+q(10,"grammaire","Impératif","___ le bus ! (tu)",["Prends","Prenez","Prend","Prendre"],0,"Mệnh lệnh với 'tu': Prends ! (động từ prendre giữ 's').");
+q(10,"grammaire","Impératif","___ la rue ! (vous)",["Traversez","Traverse","Traverses","Traverser"],0,"Mệnh lệnh với 'vous': Traversez !");
+q(10,"grammaire","Impératif","___ à droite ! (tu)",["Tourne","Tournez","Tourner","Tournes"],0,"Với 'tu' bỏ 's': Tourne !");
+q(10,"grammaire","Impératif","___ le métro ! (vous)",["Prenez","Prends","Prenons","Prendre"],0,"Với 'vous': Prenez !");
+q(10,"grammaire","Impératif","___ tout droit et prenez la première rue à gauche. (vous)",["Allez","Va","Vas","Aller"],0,"Với 'vous': Allez ! (đồng bộ với 'prenez' theo sau).");
+q(10,"grammaire","Impératif","___ devant la banque ! (tu)",["Passe","Passes","Passez","Passer"],0,"Với 'tu' bỏ 's': Passe !");
+q(10,"grammaire","Impératif","___ à gauche, puis traverse la rue. (tu)",["Tourne","Tournez","Tourner","Tournes"],0,"Với 'tu': Tourne ! (đồng bộ với 'traverse').");
+q(10,"grammaire","Impératif","___ au musée ! (vous)",["Allez","Va","Vas","Aller"],0,"Với 'vous': Allez !");
+q(10,"grammaire","Impératif","Ne ___ pas à droite ! (tu)",["tourne","tournes","tournez","tourner"],0,"Phủ định mệnh lệnh: Ne + động từ + pas. Với 'tu' bỏ 's'.");
+q(10,"grammaire","Impératif","___ bien les explications ! (vous)",["Écoutez","Écoute","Écoutes","Écouter"],0,"Với 'vous': Écoutez !");
+/* Ngữ pháp: prendre */
+q(10,"grammaire","Prendre au présent","Je ___ le bus tous les matins.",["prends","prend","prenez","prennent"],0,"Ngôi 1 số ít của 'prendre' là 'je prends'.");
+q(10,"grammaire","Prendre au présent","Tu ___ le métro ?",["prends","prend","prenons","prenez"],0,"Ngôi 2 số ít: tu prends.");
+q(10,"grammaire","Prendre au présent","Elle ___ un taxi pour aller à l'aéroport.",["prend","prenez","prennent","prends"],0,"Ngôi 3 số ít: il/elle/on prend.");
+q(10,"grammaire","Prendre au présent","Nous ___ le train à 8 heures.",["prenons","prennent","prenez","prend"],0,"Ngôi 1 số nhiều: nous prenons.");
+q(10,"grammaire","Prendre au présent","Vous ___ la voiture ?",["prenez","prenons","prennent","prends"],0,"Ngôi 2 số nhiều: vous prenez.");
+q(10,"grammaire","Prendre au présent","Ils ___ le bus de 7 h.",["prennent","prends","prend","prenez"],0,"Ngôi 3 số nhiều: ils/elles prennent (2 chữ n).");
+q(10,"grammaire","Prendre au présent","Je ___ le métro pour aller au travail.",["prends","prend","prenez","prennent"],0,"'Je prends' là dạng đúng ở ngôi 1 số ít.");
+q(10,"grammaire","Prendre au présent","Nous ___ le TGV pour Marseille.",["prenons","prenez","prennent","prend"],0,"'Nous prenons' là dạng đúng ở ngôi 1 số nhiều.");
+/* Ngữ pháp: mạo từ rút gọn */
+q(10,"grammaire","Articles contractés","Je vais ___ musée.",["au","à le","aux","du"],0,"à + le = au. Không bao giờ nói 'à le'.");
+q(10,"grammaire","Articles contractés","Nous allons ___ toilettes.",["aux","au","à la","du"],0,"à + les = aux (toilettes số nhiều).");
+q(10,"grammaire","Articles contractés","Elle revient ___ musée.",["du","de le","des","au"],0,"de + le = du.");
+q(10,"grammaire","Articles contractés","Je vais ___ banque.",["à la","au","aux","du"],0,"'Banque' giống cái số ít → 'à la' (không rút gọn).");
+q(10,"grammaire","Articles contractés","Il vient ___ toilettes.",["des","de la","du","aux"],0,"de + les = des.");
+q(10,"grammaire","Articles contractés","Nous allons ___ aéroport.",["à l'","au","à le","aux"],0,"'Aéroport' bắt đầu bằng nguyên âm → à + l' = à l'.");
+q(10,"grammaire","Articles contractés","Le musée est à côté ___ parc.",["du","de le","des","au"],0,"'À côté de + le' → à côté du parc.");
+q(10,"grammaire","Articles contractés","La banque est près ___ toilettes.",["des","du","de les","au"],0,"'Près de + les' → près des toilettes.");
+q(10,"grammaire","Articles contractés","Je vais ___ cinéma ce soir.",["au","à le","aux","du"],0,"à + le = au → au cinéma.");
+q(10,"grammaire","Articles contractés","Il rentre ___ bureau à 18 h.",["du","de le","des","au"],0,"de + le = du → du bureau.");
+q(10,"grammaire","Articles contractés","Les enfants vont ___ école.",["à l'","au","à la","aux"],0,"'École' bắt đầu bằng nguyên âm → à l'école.");
+q(10,"grammaire","Articles contractés","Nous parlons ___ étudiants de la classe.",["aux","au","à les","des"],0,"à + les = aux.");
+/* Ngữ pháp: đại từ y */
+q(10,"grammaire","Pronom Y","Tu vas à la banque ? — Oui, j'___ vais.",["y","en","au","à"],0,"'y' thay cho nơi chốn 'à la banque'.");
+q(10,"grammaire","Pronom Y","Nous allons au musée. → Nous ___ allons.",["y","en","au","le"],0,"'y' thay cho 'au musée' (nơi chốn).");
+q(10,"grammaire","Pronom Y","Elle est à la gare. → Elle ___ est.",["y","en","au","la"],0,"'y' thay cho 'à la gare'.");
+q(10,"grammaire","Pronom Y","Je vais à Paris. → J'___ vais.",["y","en","au","à"],0,"'y' thay cho 'à Paris' (địa điểm).");
+q(10,"grammaire","Pronom Y","Vous allez au restaurant ? — Oui, nous ___ allons.",["y","en","au","le"],0,"'y' thay cho 'au restaurant'.");
+q(10,"grammaire","Pronom Y","Je vais ___ aller demain.",["y","au","en","à"],0,"'y' đứng trước động từ nguyên mẫu: je vais y aller.");
+q(10,"grammaire","Pronom Y","— Tu vas souvent à la piscine ? — Oui, j'___ vais le samedi.",["y","en","la","à"],0,"'y' thay cho 'à la piscine'.");
+q(10,"grammaire","Pronom Y","Ils vont au cinéma. → Ils ___ vont.",["y","en","au","le"],0,"'y' thay cho 'au cinéma'.");
+q(10,"grammaire","Pronom Y","— Elle est au bureau ? — Oui, elle ___ est.",["y","en","au","le"],0,"'y' thay cho 'au bureau'.");
+q(10,"grammaire","Pronom Y","Va___ ! Il est déjà tard.",["-y","-en","-au","-le"],0,"Mệnh lệnh khẳng định: động từ + -y → Vas-y !");
+
+/* ---------------- LEÇON 11 — BON VOYAGE ! ---------------- */
+q(11,"vocabulaire","Tourisme","La Martinique est une belle ______ des Caraïbes.",["île","gare","avenue","chambre"],0,"La Martinique là một hòn đảo → une île.");
+q(11,"vocabulaire","Tourisme","Nous passons la journée sur la ______ .",["plage","banque","cuisine","poste"],0,"La plage = bãi biển.");
+q(11,"vocabulaire","Hébergement","L'hôtel possède une grande ______ avec vue sur la mer.",["terrasse","rue","cour","entrée"],0,"La terrasse = sân thượng / hiên, nơi ngắm cảnh.");
+q(11,"vocabulaire","Hébergement","Les enfants nagent dans la ______ de l'hôtel.",["piscine","salle de bains","place","gare"],0,"La piscine = bể bơi.");
+q(11,"vocabulaire","Hébergement","Dans cet hôtel, il y a l'______ dans toutes les chambres.",["air conditionné","ascenseur","opéra","musée"],0,"L'air conditionné = điều hòa không khí.");
+q(11,"vocabulaire","Hébergement","Nous dînons dans un ______ au bord de la mer.",["restaurant","parking","appartement","bureau"],0,"Le restaurant = nhà hàng.");
+q(11,"vocabulaire","Hébergement","Après le dîner, nous prenons un verre au ______ .",["bar","couloir","jardin","salon"],0,"Le bar = quán bar, nơi uống nước.");
+q(11,"vocabulaire","Tourisme","Pour visiter une île rapidement, les touristes prennent un ______ .",["hélicoptère","métro","bus","vélo"],0,"L'hélicoptère = trực thăng, di chuyển nhanh trên đảo.");
+q(11,"vocabulaire","Tourisme","Je vais à l'______ pour réserver un voyage.",["agence de voyages","salle de bains","gare","cuisine"],0,"L'agence de voyages = đại lý du lịch, nơi đặt tour.");
+q(11,"vocabulaire","Tourisme","Nous arrivons à l'______ deux heures avant le vol.",["aéroport","appartement","musée","restaurant"],0,"L'aéroport = sân bay, nơi làm thủ tục bay.");
+q(11,"vocabulaire","Orientation","Le nord est opposé au ______ .",["sud","centre","bord","côté"],0,"Bắc (nord) đối lập với Nam (sud).");
+q(11,"vocabulaire","Orientation","Le soleil se lève à l'______ .",["est","ouest","nord","sud"],0,"Mặt trời mọc ở hướng Đông: à l'est.");
+q(11,"vocabulaire","Orientation","Le soleil se couche à l'______ .",["ouest","est","nord","centre"],0,"Mặt trời lặn ở hướng Tây: à l'ouest.");
+q(11,"vocabulaire","Orientation","L'hôtel est ______ de l'île, près de la frontière nord.",["au nord","au bord","au centre","à côté"],0,"'Au nord de' = ở phía bắc của...");
+q(11,"vocabulaire","Orientation","Nous habitons ______ de la mer.",["au bord","au sud","au centre","à l'est"],0,"'Au bord de la mer' = bên bờ biển.");
+q(11,"vocabulaire","Orientation","Le restaurant est ______ de l'hôtel.",["à côté","au nord","au bord","au sud"],0,"'À côté de' = bên cạnh.");
+q(11,"vocabulaire","Orientation","Le musée est ______ de la ville, près de la mairie.",["au centre","à l'ouest","au bord","au sud"],0,"'Au centre de' = ở trung tâm của...");
+q(11,"vocabulaire","Orientation","La plage est ______ de l'hôtel. Il faut marcher cinq minutes.",["à côté","au sud","à l'ouest","au centre"],0,"Đi bộ 5 phút → rất gần, 'à côté de'.");
+q(11,"vocabulaire","Orientation","La ville se trouve ______ de l'île.",["au centre","à côté","au bord","à l'est"],0,"'Au centre de l'île' = ở giữa đảo.");
+q(11,"vocabulaire","Orientation","Nice est ______ de la France, près de l'Italie.",["au sud-est","au nord-ouest","au bord","à côté"],0,"Nice nằm ở phía đông nam nước Pháp.");
+q(11,"vocabulaire","Tourisme","Nous prenons le petit-déjeuner sur la ______ face à la mer.",["terrasse","chambre","cuisine","gare"],0,"La terrasse = sân thượng, nơi ăn sáng ngắm biển.");
+q(11,"vocabulaire","Hébergement","Pour dormir à l'hôtel, je réserve une ______ .",["chambre","piscine","terrasse","plage"],0,"La chambre = phòng (ngủ) trong khách sạn.");
+q(11,"vocabulaire","Tourisme","L'______ du vol est à 6 h du matin.",["arrivée","entrée","ascenseur","avenue"],0,"'L'arrivée du vol' = giờ đến của chuyến bay.");
+q(11,"vocabulaire","Tourisme","Pour réserver un billet d'avion, je vais à l'______ de voyages.",["agence","aéroport","office","arrêt"],0,"'Agence de voyages' = đại lý du lịch.");
+q(11,"vocabulaire","Orientation","La Martinique se trouve ______ des Caraïbes.",["à l'est","au bord","au centre","au nord"],0,"'À l'est des Caraïbes' = ở phía đông vùng Caribe.");
+q(11,"vocabulaire","Hébergement","Dans l'hôtel, on monte au 5e étage par l'______ .",["ascenseur","escalier","entrée","avenue"],0,"L'ascenseur = thang máy (escalier = cầu thang bộ).");
+/* Ngữ pháp: C'est */
+q(11,"grammaire","Structures avec C'est","___ un hôtel au bord de la plage.",["C'est","Il est","Elle est","Ils sont"],0,"'C'est + danh từ có mạo từ' dùng để giới thiệu.");
+q(11,"grammaire","Structures avec C'est","___ parfait !",["C'est","Il est","Elle est","Ils sont"],0,"'C'est + tính từ' dùng để nhận xét chung: C'est parfait !");
+q(11,"grammaire","Structures avec C'est","L'hôtel est ___ nord de l'île.",["au","à la","en","du"],0,"'Au nord de' = ở phía bắc của...");
+q(11,"grammaire","Structures avec C'est","___ une plage magnifique.",["C'est","Elle est","Ils sont","Il est"],0,"Giới thiệu chung với danh từ → 'C'est une plage magnifique'.");
+q(11,"grammaire","Structures avec C'est","Le restaurant est ___ centre de la ville.",["au","à la","aux","en"],0,"'Au centre de' = ở trung tâm.");
+q(11,"grammaire","Structures avec C'est","___ sympa, ce petit hôtel !",["C'est","Il est","Elle est","Ils sont"],0,"Nhận xét chung → 'C'est sympa !'");
+q(11,"grammaire","Structures avec C'est","Le village est ___ est de la ville.",["à l'","au","à la","aux"],0,"'À l'est de' = ở phía đông của...");
+q(11,"grammaire","Structures avec C'est","___ un restaurant au bord de la mer.",["C'est","Il est","Elle est","Ils sont"],0,"'C'est un + danh từ giống đực' để giới thiệu.");
+q(11,"grammaire","Structures avec C'est","___ très joli, ce paysage !",["C'est","Il est","Elle est","Ils sont"],0,"'C'est + tính từ' khi nhận xét một sự vật/sự việc nói chung.");
+q(11,"grammaire","Structures avec C'est","L'île est ___ centre de l'océan.",["au","à la","aux","en"],0,"'Au centre de' = ở giữa.");
+/* Ngữ pháp: On */
+q(11,"grammaire","Pronom On","On ______ l'île en bateau.",["visite","visitons","visiter","visitez"],0,"'On' luôn chia như ngôi thứ 3 số ít: on visite.");
+q(11,"grammaire","Pronom On","On ______ au restaurant ce soir.",["va","allons","allez","vont"],0,"'On' + động từ chia ngôi 3 số ít: on va.");
+q(11,"grammaire","Pronom On","À la Martinique, on ______ français.",["parle","parlent","parlons","parler"],0,"'On parle' — chia như il/elle.");
+q(11,"grammaire","Pronom On","On ______ le bus pour aller à la plage.",["prend","prenons","prenez","prennent"],0,"'On prend' — chia ngôi 3 số ít.");
+q(11,"grammaire","Pronom On","Dans la phrase « On visite l'île », « on » signifie :",["nous","vous","ils","je"],0,"Trong khẩu ngữ, 'on' thường thay cho 'nous'.");
+q(11,"grammaire","Pronom On","On ______ à midi au restaurant de l'hôtel.",["mange","mangeons","mangez","mangent"],0,"'On mange' — chia ngôi 3 số ít.");
+q(11,"grammaire","Pronom On","On ______ demain matin à Marseille.",["arrive","arrivons","arrivez","arrivent"],0,"'On arrive' — chia ngôi 3 số ít.");
+q(11,"grammaire","Pronom On","On ______ visiter les Calanques en bateau.",["peut","pouvons","pouvez","peuvent"],0,"'On peut' — chia ngôi 3 số ít.");
+q(11,"grammaire","Pronom On","On ______ beaucoup la plage en été.",["aime","aimons","aimez","aiment"],0,"'On aime' — chia ngôi 3 số ít.");
+q(11,"grammaire","Pronom On","On ______ en vacances à Nice.",["est","sommes","êtes","sont"],0,"'On est' — chia ngôi 3 số ít.");
+
+/* ---------------- LEÇON 12 — MARSEILLE ---------------- */
+q(12,"vocabulaire","Lieux touristiques","Les touristes visitent le ______ pour admirer les bateaux.",["Vieux-Port","Musée Cantini","Château d'If","bureau"],0,"Le Vieux-Port = bến cảng cũ, nơi có nhiều thuyền.");
+q(12,"vocabulaire","Lieux touristiques","Nous montons à ______ pour voir Marseille d'en haut.",["Notre-Dame-de-la-Garde","la piscine","l'aéroport","la gare"],0,"Notre-Dame-de-la-Garde là nhà thờ trên đồi cao, ngắm toàn cảnh Marseille.");
+q(12,"vocabulaire","Lieux touristiques","Le ______ présente des œuvres artistiques.",["Musée Cantini","Vieux-Port","Château d'If","bar"],0,"Musée Cantini là bảo tàng nghệ thuật ở Marseille.");
+q(12,"vocabulaire","Lieux touristiques","Les touristes prennent un bateau pour visiter le ______ .",["Château d'If","bureau","musée","salon"],0,"Château d'If là pháo đài trên đảo, phải đi thuyền mới tới.");
+q(12,"vocabulaire","Lieux touristiques","Nous admirons les paysages naturels des ______ .",["Calanques","appartements","banques","avenues"],0,"Les Calanques = các vịnh đá vôi đẹp nổi tiếng gần Marseille.");
+q(12,"vocabulaire","Lieux touristiques","Pour obtenir des informations touristiques, je vais à l'______ .",["office de tourisme","agence de voyages","entrée","ascenseur"],0,"L'office de tourisme = phòng thông tin du lịch.");
+q(12,"vocabulaire","Transports de voyage","Pour aller à Marseille rapidement, je prends l'______ .",["avion","vélo","métro","bus"],0,"Đi nhanh đường dài → máy bay (l'avion).");
+q(12,"vocabulaire","Transports de voyage","Nous voyageons en ______ pour visiter plusieurs villes.",["train","plage","poème","tableau"],0,"Đi nhiều thành phố bằng tàu hỏa (le train).");
+q(12,"vocabulaire","Transports de voyage","Le ______ est un train à grande vitesse en France.",["TGV","taxi","bateau","bus"],0,"TGV = Train à Grande Vitesse (tàu cao tốc Pháp).");
+q(12,"vocabulaire","Transports de voyage","Pour traverser la mer, les touristes prennent un ______ .",["bateau","avion","métro","vélo"],0,"Vượt biển thì đi thuyền (un bateau).");
+q(12,"vocabulaire","Carte postale","Pour écrire à un ami pendant les vacances, j'envoie une ______ .",["carte postale","salle de bains","chemise","piscine"],0,"Carte postale = bưu thiếp gửi từ nơi du lịch.");
+q(12,"vocabulaire","Carte postale","Sur une carte postale, on décrit souvent :",["le voyage, les lieux visités et les impressions","uniquement le prix","seulement la grammaire","les numéros de téléphone"],0,"Bưu thiếp thường kể về chuyến đi, nơi đã thăm và cảm nhận.");
+q(12,"vocabulaire","Lieux touristiques","Marseille est une ville française avec un célèbre ______ .",["Vieux-Port","immeuble","bureau","couloir"],0,"Marseille nổi tiếng với Vieux-Port.");
+q(12,"vocabulaire","Lieux touristiques","Le ______ est un ancien fort sur une petite île près de Marseille.",["Château d'If","Vieux-Port","Musée Cantini","office de tourisme"],0,"Château d'If là pháo đài cổ trên đảo nhỏ ngoài khơi Marseille.");
+q(12,"vocabulaire","Lieux touristiques","Pour monter à Notre-Dame-de-la-Garde, on peut prendre ______ .",["le bus","le métro","l'avion","le bateau"],0,"Đi lên đồi bằng xe buýt là hợp lý nhất.");
+q(12,"vocabulaire","Lieux touristiques","Les ______ sont des criques rocheuses entre Marseille et Cassis.",["Calanques","avenues","gares","banques"],0,"Calanques là các vịnh nhỏ đá vôi đẹp.");
+q(12,"vocabulaire","Transports de voyage","Le TGV part de la ______ de Marseille-Saint-Charles.",["gare","plage","piscine","poste"],0,"Tàu TGV khởi hành từ ga Marseille-Saint-Charles.");
+q(12,"vocabulaire","Transports de voyage","À Marseille, on peut se déplacer ______ dans le centre-ville.",["à pied","en avion","en hélicoptère","en bateau"],0,"Trong trung tâm thành phố thì đi bộ là tiện nhất.");
+q(12,"vocabulaire","Lieux touristiques","L'______ de tourisme donne des plans et des informations.",["office","agence","entrée","ascenseur"],0,"'Office de tourisme' = phòng thông tin du lịch.");
+q(12,"vocabulaire","Carte postale","« Je passe des vacances magnifiques à Marseille » : cette phrase exprime ______ .",["une impression de vacances","un prix","une taille","une direction"],0,"Câu này diễn tả cảm nhận về kỳ nghỉ.");
+q(12,"vocabulaire","Lieux touristiques","Le Vieux-Port de Marseille est un lieu ______ .",["touristique","immobilier","administratif","commercial"],0,"Vieux-Port là điểm du lịch (lieu touristique).");
+q(12,"vocabulaire","Transports de voyage","Pour aller de Marseille à Paris très vite, on prend ______ .",["le TGV","le vélo","le bateau","les rollers"],0,"Đi nhanh Marseille–Paris là TGV.");
+q(12,"vocabulaire","Transports de voyage","Pour aller sur les îles du Frioul, on prend ______ .",["le bateau","le métro","le train","le taxi"],0,"Ra đảo thì phải đi thuyền.");
+q(12,"vocabulaire","Lieux touristiques","Le Musée Cantini se trouve près du ______ de Marseille.",["centre-ville","désert","aéroport","parking"],0,"Musée Cantini nằm gần trung tâm thành phố Marseille.");
+q(12,"vocabulaire","Carte postale","Sur une carte postale, on commence souvent par ______ .",["« Bonjour de Marseille ! »","« Combien ça coûte ? »","« Quelle taille ? »","« Tournez à gauche. »"],0,"Bưu thiếp thường mở đầu bằng lời chào từ nơi du lịch.");
+/* Ngữ pháp ôn tập Leçon 12 */
+q(12,"grammaire","Révision","Il faut ______ à gauche après le pont.",["tourner","tourne","tournez","tournes"],0,"Sau 'il faut' dùng động từ nguyên mẫu: il faut tourner.");
+q(12,"grammaire","Révision","Nous allons ______ musée Cantini.",["au","à le","aux","à la"],0,"à + le = au → au musée.");
+q(12,"grammaire","Révision","Je vais ______ Paris en TGV.",["à","au","en","dans"],0,"Thành phố thường dùng 'à' (à Paris).");
+q(12,"grammaire","Révision","— Tu vas au Vieux-Port ? — Oui, j'______ vais.",["y","en","au","le"],0,"'y' thay cho 'au Vieux-Port'.");
+q(12,"grammaire","Révision","On ______ le TGV pour aller à Marseille.",["prend","prenons","prenez","prennent"],0,"'On' chia như ngôi 3 số ít: on prend.");
+q(12,"grammaire","Révision","Marseille est ______ ville du sud de la France.",["une","un","des","la"],0,"'Ville' giống cái số ít → une ville.");
+q(12,"grammaire","Révision","Prenez la première rue ______ gauche.",["à","au","en","de"],0,"'À gauche' là cụm cố định, dùng 'à'.");
+q(12,"grammaire","Révision","Nous sommes ______ bord de la mer.",["au","à la","aux","en"],0,"'Au bord de' = bên bờ (à + le = au).");
+q(12,"grammaire","Révision","Marseille se trouve ______ sud de la France.",["au","à la","aux","en"],0,"'Au sud de' = ở phía nam của...");
+q(12,"grammaire","Révision","______ visite le Vieux-Port et les Calanques.",["On","Nous","Vous","Ils"],0,"'On' chia ngôi 3 số ít: on visite.");
+
+/* ============================================================
+   2. TIỆN ÍCH
+   ============================================================ */
+function esc(s){
+  return String(s).replace(/[&<>"']/g, c => ({
+    "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"
+  }[c]));
+}
+function shuffle(arr){
+  const a = arr.slice();
+  for(let i = a.length - 1; i > 0; i--){
+    const j = Math.floor(Math.random() * (i + 1));
+    [a[i], a[j]] = [a[j], a[i]];
+  }
+  return a;
+}
+const LETTERS = ["A","B","C","D"];
+
+/* ============================================================
+   3. LƯU TRỮ
+   ============================================================ */
+const PROG_KEY = "fr_a1_progress_v1";
+const SESS_KEY = "fr_a1_session_v1";
+
+function defaultProgress(){
+  return {
+    quizzesCompleted: 0,
+    totalAnswered: 0,
+    totalCorrect: 0,
+    totalIncorrect: 0,
+    bestScore: 0,
+    bestTotal: 0,
+    history: [],
+    lessons: {},
+    wrongIds: {},
+    seenIds: {}
+  };
+}
+function loadProgress(){
+  try{
+    const raw = localStorage.getItem(PROG_KEY);
+    if(!raw) return defaultProgress();
+    const p = JSON.parse(raw);
+    return Object.assign(defaultProgress(), p);
+  }catch(e){ return defaultProgress(); }
+}
+function saveProgress(p){
+  try{ localStorage.setItem(PROG_KEY, JSON.stringify(p)); }catch(e){}
+}
+
+let saveTimer = null;
+function saveSession(){
+  if(saveTimer) clearTimeout(saveTimer);
+  saveTimer = setTimeout(() => {
+    try{
+      if(!state.quiz){ localStorage.removeItem(SESS_KEY); return; }
+      localStorage.setItem(SESS_KEY, JSON.stringify({
+        mode: state.quiz.mode,
+        title: state.quiz.title,
+        questions: state.quiz.questions,
+        index: state.quiz.index,
+        startedAt: state.quiz.startedAt
+      }));
+    }catch(e){}
+  }, 350);
+}
+function loadSession(){
+  try{
+    const raw = localStorage.getItem(SESS_KEY);
+    if(!raw) return null;
+    const s = JSON.parse(raw);
+    if(!s || !Array.isArray(s.questions) || !s.questions.length) return null;
+    return s;
+  }catch(e){ return null; }
+}
+function clearSession(){
+  if(saveTimer) clearTimeout(saveTimer);
+  try{ localStorage.removeItem(SESS_KEY); }catch(e){}
+}
+
+/* ============================================================
+   4. TẠO ĐỀ
+   ============================================================ */
+const state = {
+  view: "home",
+  quiz: null,
+  result: null,
+  notice: "",
+  navOpen: false,
+  lastConfig: null
+};
+
+function prepareQuestion(item){
+  const order = shuffle(item.options.map((_, i) => i));
+  const options = order.map(i => item.options[i]);
+  const correct = order.indexOf(item.correct);
+  return {
+    id: item.id,
+    lesson: item.lesson,
+    category: item.category,
+    topic: item.topic,
+    question: item.question,
+    explanation: item.explanation,
+    options,
+    correct,
+    selected: null
+  };
+}
+
+/* FIX 1: thêm tham số skipShuffle để giữ nguyên thứ tự ưu tiên cho chế độ "smart" */
+function buildQuiz(mode, title, pool, limit, skipShuffle){
+  let picked = skipShuffle ? pool.slice() : shuffle(pool);
+  const available = picked.length;
+  if(limit && picked.length > limit) picked = picked.slice(0, limit);
+  if(!picked.length){
+    state.notice = "Không có câu hỏi nào phù hợp với chế độ này. Hãy thử chế độ khác.";
+    state.view = "home";
+    render();
+    return;
+  }
+  state.notice = (limit && available < limit)
+    ? "Ngân hàng chỉ có " + available + " câu cho chế độ này, nên bài luyện tập gồm " + available + " câu."
+    : "";
+  state.quiz = {
+    mode: mode,
+    title: title,
+    questions: picked.map(prepareQuestion),
+    index: 0,
+    startedAt: Date.now()
+  };
+  state.result = null;
+  state.view = "quiz";
+  state.navOpen = false;
+  saveSession();
+  render();
+}
+
+function smartPool(){
+  const p = loadProgress();
+  const wrong = BANK.filter(x => p.wrongIds[x.id]);
+  const unseen = BANK.filter(x => !p.seenIds[x.id] && !p.wrongIds[x.id]);
+  const rest = BANK.filter(x => p.seenIds[x.id] && !p.wrongIds[x.id]);
+  return shuffle(wrong).concat(shuffle(unseen)).concat(shuffle(rest));
+}
+
+function startMode(mode){
+  if(mode === "mixed") return buildQuiz("mixed","Luyện tập tổng hợp 30 câu", BANK, 30);
+  if(mode === "vocab") return buildQuiz("vocab","Luyện tập từ vựng", BANK.filter(x => x.category === "vocabulaire"), 30);
+  if(mode === "grammar") return buildQuiz("grammar","Luyện tập ngữ pháp", BANK.filter(x => x.category === "grammaire"), 30);
+  /* FIX 1: truyền skipShuffle = true để giữ thứ tự ưu tiên (sai → chưa gặp → còn lại) */
+  if(mode === "smart") return buildQuiz("smart","Ôn tập thông minh", smartPool(), 30, true);
+  if(mode === "mistakes"){
+    const p = loadProgress();
+    const pool = BANK.filter(x => p.wrongIds[x.id]);
+    if(!pool.length){
+      state.notice = "Bạn chưa có câu trả lời sai nào. Hãy làm một bài kiểm tra trước nhé!";
+      state.view = "home";
+      render();
+      return;
+    }
+    return buildQuiz("mistakes","Ôn tập câu sai", pool, 30);
+  }
+  if(mode === "full") return buildQuiz("full","Luyện tập toàn bộ ngân hàng (" + BANK.length + " câu)", BANK, null);
+}
+function startLesson(lesson){
+  buildQuiz("lesson","Leçon " + lesson + " — " + LESSON_NAMES[lesson],
+            BANK.filter(x => x.lesson === lesson), 30);
+}
+
+/* ============================================================
+   5. GIAO DIỆN
+   ============================================================ */
+const App = document.getElementById("app");
+
+function render(){
+  switch(state.view){
+    case "home":      App.innerHTML = viewHome(); break;
+    case "quiz":      App.innerHTML = viewQuiz(); break;
+    case "result":    App.innerHTML = viewResult(); break;
+    case "review":    App.innerHTML = viewReview(); break;
+    case "dashboard": App.innerHTML = viewDashboard(); break;
+    case "mistakes":  App.innerHTML = viewMistakes(); break;
+  }
+  window.scrollTo(0, 0);
+}
+
+/* ---------- TRANG CHỦ ---------- */
+function viewHome(){
+  const p = loadProgress();
+  const acc = p.totalAnswered ? Math.round(p.totalCorrect / p.totalAnswered * 100) : 0;
+  const sess = loadSession();
+  const wrongCount = Object.keys(p.wrongIds).length;
+
+  return `
+  <header class="hero">
+    <h1>🇫🇷 Ôn tập tiếng Pháp A1</h1>
+    <p class="sub">Le Nouveau Taxi ! 1 — Leçons 7–12 · ${BANK.length} câu hỏi trong ngân hàng</p>
   </header>
 
-  <main>
-    <!-- ==================== HOME ==================== -->
-    <section id="view-home" class="view">
-      <div id="bankWarning" class="banner warn hidden"></div>
-
-      <div class="card hero">
-        <h2>Luyện ngữ pháp tiếng Pháp trình độ A1</h2>
-        <p>
-          Ngân hàng <b id="bankCount">0</b> câu hỏi ·
-          Mỗi lượt <b id="perSession">25</b> câu ·
-          <b>Không giới hạn thời gian</b>
-        </p>
+  ${state.notice ? `<div class="notice">${esc(state.notice)}</div>` : ""}
+  ${sess ? `
+    <div class="card">
+      <h2>⏸️ Lượt luyện tập chưa hoàn thành</h2>
+      <p><strong>${esc(sess.title)}</strong><br>
+      Đã trả lời ${sess.questions.filter(x => x.selected !== null && x.selected !== undefined).length}/${sess.questions.length} câu.</p>
+      <div class="row">
+        <button class="btn primary" data-act="resume">▶ Tiếp tục luyện tập</button>
+        <button class="btn ghost" data-act="discard-session">Xóa lượt này</button>
       </div>
+    </div>` : ""}
 
-      <div class="modes">
-        <button class="mode-card" id="modeTest">
-          <span class="mode-icon">📝</span>
-          <h3>Chế độ kiểm tra</h3>
-          <ul>
-            <li>25 câu ngẫu nhiên</li>
-            <li>Xem giải thích sau khi nộp bài</li>
-            <li>Phù hợp để đánh giá kiến thức</li>
-          </ul>
-          <span class="mode-cta">Bắt đầu kiểm tra →</span>
-        </button>
+  <section class="card">
+    <h2>Chọn chế độ luyện tập</h2>
+    <div class="grid">
+      <button class="mode" data-act="start" data-mode="mixed">
+        <span class="ic">🎯</span><strong>Luyện tập 30 câu ngẫu nhiên</strong>
+        <small>Tổng hợp từ vựng + ngữ pháp · mỗi lượt 30 câu mới</small>
+      </button>
+      <button class="mode" data-act="start" data-mode="vocab">
+        <span class="ic">📚</span><strong>Luyện tập từ vựng</strong>
+        <small>Chỉ câu hỏi từ vựng Leçons 7–12</small>
+      </button>
+      <button class="mode" data-act="start" data-mode="grammar">
+        <span class="ic">✏️</span><strong>Luyện tập ngữ pháp</strong>
+        <small>Chỉ câu hỏi ngữ pháp Leçons 7–12</small>
+      </button>
+      <button class="mode" data-act="start" data-mode="smart">
+        <span class="ic">🧠</span><strong>Ôn tập thông minh</strong>
+        <small>Ưu tiên câu từng làm sai và câu chưa gặp</small>
+      </button>
+      <button class="mode" data-act="start" data-mode="mistakes">
+        <span class="ic">🔁</span><strong>Ôn tập câu sai</strong>
+        <small>${wrongCount ? wrongCount + " câu bạn đã trả lời sai" : "Chưa có câu sai nào"}</small>
+      </button>
+      <button class="mode" data-act="start" data-mode="full">
+        <span class="ic">🗂️</span><strong>Luyện tập toàn bộ ngân hàng</strong>
+        <small>Làm tất cả ${BANK.length} câu · xáo trộn · không lặp lại</small>
+      </button>
+    </div>
+  </section>
 
-        <button class="mode-card" id="modePractice">
-          <span class="mode-icon">📚</span>
-          <h3>Chế độ luyện tập</h3>
-          <ul>
-            <li>25 câu ngẫu nhiên</li>
-            <li>Xem giải thích ngay sau mỗi câu</li>
-            <li>Phù hợp để học và củng cố kiến thức</li>
-          </ul>
-          <span class="mode-cta">Bắt đầu luyện tập →</span>
-        </button>
-      </div>
+  <section class="card">
+    <h2>Luyện tập theo bài</h2>
+    <div class="lessons">
+      ${[7,8,9,10,11,12].map(l => `
+        <button class="lesson-btn" data-act="start" data-mode="lesson" data-lesson="${l}">
+          <strong>Leçon ${l}</strong>
+          <small>${esc(LESSON_NAMES[l])} · ${BANK.filter(x => x.lesson === l).length} câu</small>
+        </button>`).join("")}
+    </div>
+  </section>
 
-      <div class="card">
-        <h3>📊 Tiến độ của bạn</h3>
-        <div class="stat-grid" id="statGrid"></div>
-      </div>
+  <section class="card">
+    <h2>Tiến độ &amp; ôn tập</h2>
+    <div class="grid two">
+      <button class="mode" data-act="dashboard">
+        <span class="ic">📊</span><strong>Bảng tiến độ học tập</strong>
+        <small>${p.quizzesCompleted} bài đã làm · Độ chính xác ${acc}%</small>
+      </button>
+      <button class="mode" data-act="mistakes-page">
+        <span class="ic">📝</span><strong>Sổ tay câu sai</strong>
+        <small>${wrongCount} câu cần ôn lại cùng giải thích</small>
+      </button>
+    </div>
+  </section>
 
-      <div class="card">
-        <h3>🕘 Lịch sử 10 lượt gần nhất</h3>
-        <div id="historyList"></div>
-      </div>
+  <p class="foot">Dữ liệu tiến độ được lưu trong trình duyệt của bạn (localStorage).<br>
+  Nhấn phím <span class="kbd">1</span>–<span class="kbd">4</span> để chọn đáp án, <span class="kbd">←</span> <span class="kbd">→</span> để chuyển câu.</p>`;
+}
 
-      <div class="card">
-        <h3>📚 Tiến độ theo Leçon</h3>
-        <div id="lessonStats"></div>
-      </div>
+/* ---------- TRANG LÀM BÀI ---------- */
+function viewQuiz(){
+  const qz = state.quiz;
+  if(!qz) return viewHome();
+  const qq = qz.questions[qz.index];
+  const answeredCount = qz.questions.filter(x => x.selected !== null).length;
+  const pctDone = Math.round(answeredCount / qz.questions.length * 100);
+  const progressPct = ((qz.index + 1) / qz.questions.length * 100).toFixed(1);
 
-      <div class="card">
-        <h3>❌ Câu thường trả lời sai</h3>
-        <div id="wrongList"></div>
-        <div class="row" style="margin-top:12px;">
-          <button id="btnReviewWrong" class="btn btn-primary">🔁 Luyện tập câu sai</button>
-          <button id="btnClearWrong" class="btn btn-ghost">Xóa lịch sử câu sai</button>
-        </div>
-      </div>
+  const navGrid = state.navOpen ? `
+    <div class="nav-grid">
+      ${qz.questions.map((x, i) =>
+        `<button class="navcell ${x.selected !== null ? "done" : ""} ${i === qz.index ? "cur" : ""}"
+          data-act="goto" data-i="${i}" title="Câu ${i + 1}">${i + 1}</button>`).join("")}
+    </div>` : "";
 
-      <div class="card danger-zone">
-        <button id="btnResetAll" class="btn btn-danger btn-block">🗑️ Xóa toàn bộ dữ liệu tiến độ</button>
-      </div>
-    </section>
+  return `
+  <div class="qhead">
+    <button class="btn ghost small" data-act="home">← Trang chủ</button>
+    <span class="qtitle">${esc(qz.title)}</span>
+    <span class="qcount">Câu ${qz.index + 1}/${qz.questions.length}</span>
+  </div>
+  <div class="progress"><div class="bar" style="width:${progressPct}%"></div></div>
 
-    <!-- ==================== QUIZ ==================== -->
-    <section id="view-quiz" class="view hidden">
-      <div class="card quiz-top">
-        <div class="quiz-top-row">
-          <span id="modeBadge" class="badge">📝 Kiểm tra</span>
-          <span id="qCounter" class="counter">Câu 1/25</span>
-        </div>
-        <div class="progress"><div id="progressBar" class="progress-bar"></div></div>
-      </div>
-
-      <div class="card question-card">
-        <div class="tags">
-          <span id="qLesson" class="tag"></span>
-          <span id="qTopic" class="tag tag-soft"></span>
-        </div>
-        <p id="qText" class="q-text"></p>
-        <div id="qOptions" class="options"></div>
-        <div id="feedback" class="feedback hidden"></div>
-        <div id="practiceActions" class="practice-actions hidden">
-          <button id="btnCheck" class="btn btn-primary" disabled>✔️ Kiểm tra đáp án</button>
-        </div>
-      </div>
-
-      <div class="card nav-card">
-        <div class="nav-head">Điều hướng câu hỏi</div>
-        <div id="navGrid" class="nav-grid"></div>
-        <div class="legend">
-          <span><i style="background:#fff;border-color:var(--border-strong);"></i>Chưa trả lời</span>
-          <span><i style="background:var(--primary-soft);border-color:var(--primary);"></i>Đã trả lời</span>
-          <span><i style="background:#5a9ee0;border-color:var(--primary-dark);"></i>Đang xem</span>
-          <span id="legendResult" class="hidden"><i style="background:var(--ok-soft);border-color:var(--ok);"></i>Đúng</span>
-          <span id="legendResult2" class="hidden"><i style="background:var(--bad-soft);border-color:var(--bad);"></i>Sai</span>
-        </div>
-      </div>
-
-      <div class="quiz-footer">
-        <button id="btnPrev" class="btn btn-ghost">← Câu trước</button>
-        <button id="btnSubmit" class="btn btn-secondary">Nộp bài</button>
-        <button id="btnNext" class="btn btn-primary">Câu tiếp theo →</button>
-      </div>
-    </section>
-
-    <!-- ==================== RESULT ==================== -->
-    <section id="view-result" class="view hidden">
-      <div class="card result-hero">
-        <div class="score-ring" id="scoreRing">
-          <div class="inner">
-            <div class="big" id="scoreBig">0/25</div>
-            <div class="small" id="scorePct">0%</div>
-          </div>
-        </div>
-        <h2 id="resultTitle">Kết quả</h2>
-        <p class="level-msg" id="levelMsg"></p>
-        <div class="result-stats">
-          <div class="stat"><div class="val" id="rsCorrect">0</div><div class="lbl">Câu đúng</div></div>
-          <div class="stat"><div class="val" id="rsWrong">0</div><div class="lbl">Câu sai</div></div>
-          <div class="stat"><div class="val" id="rsPct">0%</div><div class="lbl">Chính xác</div></div>
-        </div>
-      </div>
-
-      <div class="card">
-        <div class="row" style="margin-bottom:14px;">
-          <button id="btnRetry" class="btn btn-primary">🔄 Làm lại bài mới</button>
-          <button id="btnRetryWrong" class="btn btn-secondary">🔁 Luyện lại câu sai</button>
-          <button id="btnBackHome" class="btn btn-ghost">🏠 Về trang chủ</button>
-        </div>
-        <label class="switch">
-          <input type="checkbox" id="onlyWrong" />
-          Chỉ xem câu sai
-        </label>
-      </div>
-
-      <div id="reviewList"></div>
-    </section>
-  </main>
-</div>
-
-<div id="modal" class="modal hidden">
-  <div class="modal-box">
-    <h3 id="modalTitle">Xác nhận</h3>
-    <p id="modalBody"></p>
-    <div class="modal-actions">
-      <button id="modalCancel" class="btn btn-ghost">Hủy</button>
-      <button id="modalConfirm" class="btn btn-primary">Đồng ý</button>
+  <div class="card qcard">
+    <div class="tag">Leçon ${qq.lesson} · ${qq.category === "vocabulaire" ? "Từ vựng" : "Ngữ pháp"} · ${esc(qq.topic)}</div>
+    <h2 class="qtext">${esc(qq.question)}</h2>
+    <div class="opts">
+      ${qq.options.map((opt, i) => `
+        <button class="opt ${qq.selected === i ? "selected" : ""}" data-act="opt" data-i="${i}"
+          aria-pressed="${qq.selected === i}">
+          <span class="letter">${LETTERS[i]}</span>
+          <span class="otext">${esc(opt)}</span>
+        </button>`).join("")}
     </div>
   </div>
-</div>
 
-<script>
-/* ==================================================================
-   FRENCH GRAMMAR QUIZ A1 — Le Nouveau Taxi ! 1, Leçons 7–12
-   Ngân hàng 120 câu hỏi (Leçons 7–10 + phần bổ sung Leçons 11–12)
-   ================================================================== */
-(function () {
-  'use strict';
+  <div class="row nav">
+    <button class="btn ghost" data-act="prev" ${qz.index === 0 ? "disabled" : ""}>← Câu trước</button>
+    <button class="btn primary" data-act="next" ${qz.index === qz.questions.length - 1 ? "disabled" : ""}>Câu tiếp theo →</button>
+  </div>
 
-  /* ================================================================
-     1. NGÂN HÀNG CÂU HỎI — 120 câu
-     ================================================================ */
-  var TOPICS = [
-    'Adjectifs démonstratifs',
-    'Adjectifs interrogatifs',
-    'Comment et Combien',
-    'Prépositions de lieu',
-    'Pronoms toniques',
-    'Où',
-    'Impératif',
-    'Prendre au présent',
-    'Articles contractés',
-    'Prépositions de transport',
-    'Pronom adverbial Y',
-    "C'est",
-    'On'
-  ];
+  <div class="submitbar">
+    <button class="btn primary" data-act="submit">Nộp bài ✓</button>
+  </div>
 
-  var QUESTION_BANK = [
-    /* ===== LEÇON 7 — Adjectifs démonstratifs (1–10) ===== */
-    {id:1,lesson:"Leçon 7",topic:"Adjectifs démonstratifs",question:"___ pantalon est noir.",options:["Cette","Ce","Ces","Cet"],correct:1,explanation:"Pantalon là danh từ giống đực số ít, bắt đầu bằng phụ âm → dùng « ce ».",translation:"Chiếc quần này màu đen.",grammarNote:"Ce + danh từ giống đực số ít bắt đầu bằng phụ âm."},
-    {id:2,lesson:"Leçon 7",topic:"Adjectifs démonstratifs",question:"___ robe est très jolie.",options:["Ce","Cet","Cette","Ces"],correct:2,explanation:"Robe là danh từ giống cái số ít → dùng « cette ».",translation:"Chiếc váy này rất xinh.",grammarNote:"Cette + danh từ giống cái số ít."},
-    {id:3,lesson:"Leçon 7",topic:"Adjectifs démonstratifs",question:"___ hôtel est moderne.",options:["Ce","Cette","Ces","Cet"],correct:3,explanation:"Hôtel là danh từ giống đực số ít bắt đầu bằng nguyên âm « h » câm → dùng « cet ».",translation:"Khách sạn này hiện đại.",grammarNote:"Cet + danh từ giống đực số ít bắt đầu bằng nguyên âm hoặc h câm."},
-    {id:4,lesson:"Leçon 7",topic:"Adjectifs démonstratifs",question:"___ chaussures sont chères.",options:["Cette","Ces","Cet","Ce"],correct:1,explanation:"Chaussures là danh từ giống cái số nhiều → dùng « ces ».",translation:"Đôi giày này đắt.",grammarNote:"Ces + danh từ số nhiều (cả hai giống)."},
-    {id:5,lesson:"Leçon 7",topic:"Adjectifs démonstratifs",question:"___ appartement est grand.",options:["Ce","Cette","Cet","Ces"],correct:2,explanation:"Appartement là danh từ giống đực số ít bắt đầu bằng nguyên âm « a » → dùng « cet ».",translation:"Căn hộ này rộng.",grammarNote:"Cet + danh từ giống đực số ít bắt đầu bằng nguyên âm."},
-    {id:6,lesson:"Leçon 7",topic:"Adjectifs démonstratifs",question:"___ chemise est blanche.",options:["Cette","Ce","Cet","Ces"],correct:0,explanation:"Chemise là danh từ giống cái số ít → dùng « cette ».",translation:"Chiếc áo sơ mi này màu trắng.",grammarNote:"Cette + danh từ giống cái số ít."},
-    {id:7,lesson:"Leçon 7",topic:"Adjectifs démonstratifs",question:"___ livres sont intéressants.",options:["Cet","Cette","Ce","Ces"],correct:3,explanation:"Livres là danh từ giống đực số nhiều → dùng « ces ».",translation:"Những cuốn sách này thú vị.",grammarNote:"Ces + danh từ số nhiều."},
-    {id:8,lesson:"Leçon 7",topic:"Adjectifs démonstratifs",question:"___ objet est joli.",options:["Cette","Cet","Ce","Ces"],correct:1,explanation:"Objet là danh từ giống đực số ít bắt đầu bằng nguyên âm « o » → dùng « cet ».",translation:"Đồ vật này đẹp.",grammarNote:"Cet + danh từ giống đực số ít bắt đầu bằng nguyên âm."},
-    {id:9,lesson:"Leçon 7",topic:"Adjectifs démonstratifs",question:"J'aime ___ pull bleu.",options:["cette","ces","ce","cet"],correct:2,explanation:"Pull là danh từ giống đực số ít bắt đầu bằng phụ âm « p » → dùng « ce ».",translation:"Tôi thích chiếc áo len xanh này.",grammarNote:"Ce + danh từ giống đực số ít bắt đầu bằng phụ âm."},
-    {id:10,lesson:"Leçon 7",topic:"Adjectifs démonstratifs",question:"Elle achète ___ jupe.",options:["cette","ce","cet","ces"],correct:0,explanation:"Jupe là danh từ giống cái số ít → dùng « cette ».",translation:"Cô ấy mua chiếc váy này.",grammarNote:"Cette + danh từ giống cái số ít."},
+  <div class="card">
+    <div class="row" style="justify-content:space-between">
+      <button class="navtoggle" data-act="toggle-nav">${state.navOpen ? "▾ Ẩn danh sách câu" : "▸ Xem danh sách câu hỏi"}</button>
+      <button class="navtoggle" data-act="pause">⏸ Tạm dừng &amp; lưu</button>
+    </div>
+    ${navGrid}
+    <p class="hint">Đã trả lời ${answeredCount}/${qz.questions.length} câu (${pctDone}%). Bạn có thể quay lại thay đổi đáp án trước khi nộp bài.</p>
+  </div>`;
+}
 
-    /* ===== LEÇON 7 — Adjectifs interrogatifs (11–20) ===== */
-    {id:11,lesson:"Leçon 7",topic:"Adjectifs interrogatifs",question:"___ pantalon tu préfères ?",options:["Quelle","Quels","Quel","Quelles"],correct:2,explanation:"Pantalon giống đực số ít → dùng « quel ».",translation:"Bạn thích chiếc quần nào?",grammarNote:"Quel + danh từ giống đực số ít."},
-    {id:12,lesson:"Leçon 7",topic:"Adjectifs interrogatifs",question:"___ couleur tu aimes ?",options:["Quel","Quelle","Quels","Quelles"],correct:1,explanation:"Couleur giống cái số ít → dùng « quelle ».",translation:"Bạn thích màu nào?",grammarNote:"Quelle + danh từ giống cái số ít."},
-    {id:13,lesson:"Leçon 7",topic:"Adjectifs interrogatifs",question:"___ chaussures tu achètes ?",options:["Quelle","Quel","Quelles","Quels"],correct:2,explanation:"Chaussures giống cái số nhiều → dùng « quelles ».",translation:"Bạn mua đôi giày nào?",grammarNote:"Quelles + danh từ giống cái số nhiều."},
-    {id:14,lesson:"Leçon 7",topic:"Adjectifs interrogatifs",question:"___ vêtements sont à toi ?",options:["Quels","Quelle","Quel","Quelles"],correct:0,explanation:"Vêtements giống đực số nhiều → dùng « quels ».",translation:"Những bộ quần áo nào là của bạn?",grammarNote:"Quels + danh từ giống đực số nhiều."},
-    {id:15,lesson:"Leçon 7",topic:"Adjectifs interrogatifs",question:"___ robe est la moins chère ?",options:["Quel","Quels","Quelle","Quelles"],correct:2,explanation:"Robe giống cái số ít → dùng « quelle ».",translation:"Chiếc váy nào rẻ nhất?",grammarNote:"Quelle + danh từ giống cái số ít."},
-    {id:16,lesson:"Leçon 7",topic:"Adjectifs interrogatifs",question:"___ appartement cherchez-vous ?",options:["Quelles","Quel","Quelle","Quels"],correct:1,explanation:"Appartement giống đực số ít → dùng « quel ».",translation:"Bạn đang tìm căn hộ nào?",grammarNote:"Quel + danh từ giống đực số ít."},
-    {id:17,lesson:"Leçon 7",topic:"Adjectifs interrogatifs",question:"___ couleurs préfères-tu ?",options:["Quels","Quelle","Quel","Quelles"],correct:3,explanation:"Couleurs giống cái số nhiều → dùng « quelles ».",translation:"Bạn thích những màu nào?",grammarNote:"Quelles + danh từ giống cái số nhiều."},
-    {id:18,lesson:"Leçon 7",topic:"Adjectifs interrogatifs",question:"___ objet est sur la table ?",options:["Quelle","Quels","Quel","Quelles"],correct:2,explanation:"Objet giống đực số ít → dùng « quel ».",translation:"Đồ vật nào ở trên bàn?",grammarNote:"Quel + danh từ giống đực số ít."},
-    {id:19,lesson:"Leçon 7",topic:"Adjectifs interrogatifs",question:"___ taille faites-vous ?",options:["Quelle","Quels","Quel","Quelles"],correct:0,explanation:"Taille giống cái số ít → dùng « quelle ».",translation:"Bạn mặc cỡ nào?",grammarNote:"Quelle + danh từ giống cái số ít."},
-    {id:20,lesson:"Leçon 7",topic:"Adjectifs interrogatifs",question:"___ pantalons sont en promotion ?",options:["Quelle","Quels","Quel","Quelles"],correct:1,explanation:"Pantalons giống đực số nhiều → dùng « quels ».",translation:"Những chiếc quần nào đang giảm giá?",grammarNote:"Quels + danh từ giống đực số nhiều."},
+/* ---------- TRANG KẾT QUẢ ---------- */
+function viewResult(){
+  const r = state.result;
+  if(!r) return viewHome();
+  const pct = Math.round(r.correct / r.total * 100);
+  let msg, color;
+  if(pct >= 90){ msg = "Xuất sắc ! Bạn nắm bài rất tốt."; color = "var(--ok)"; }
+  else if(pct >= 75){ msg = "Rất tốt ! Chỉ cần ôn thêm vài điểm nhỏ."; color = "var(--ok)"; }
+  else if(pct >= 60){ msg = "Khá tốt. Hãy xem lại phần giải thích bên dưới."; color = "var(--primary-d)"; }
+  else if(pct >= 40){ msg = "Cần ôn thêm. Đừng lo, hãy luyện lại vài lần nữa."; color = "var(--warn)"; }
+  else { msg = "Hãy tiếp tục luyện tập ! Mỗi lần làm lại bạn sẽ tiến bộ hơn."; color = "var(--warn)"; }
 
-    /* ===== LEÇON 7 — Comment et Combien (21–30) ===== */
-    {id:21,lesson:"Leçon 7",topic:"Comment et Combien",question:"Comment tu ___ ce pantalon ?",options:["trouves","trouve","trouver","trouvez"],correct:0,explanation:"Với chủ ngữ « tu » ở thì hiện tại, động từ « trouver » chia thành « trouves ».",translation:"Bạn thấy chiếc quần này thế nào?",grammarNote:"Tu + động từ nhóm 1 → đuôi -es."},
-    {id:22,lesson:"Leçon 7",topic:"Comment et Combien",question:"Elle est ___, cette robe ?",options:["où","combien","comment","quel"],correct:2,explanation:"Để hỏi tính chất, dùng « comment ».",translation:"Chiếc váy này thế nào?",grammarNote:"Comment = thế nào (hỏi tính chất)."},
-    {id:23,lesson:"Leçon 7",topic:"Comment et Combien",question:"___ coûte cette chemise ?",options:["Où","Comment","Combien","Quelle"],correct:2,explanation:"Để hỏi giá cả, dùng « combien ».",translation:"Chiếc áo sơ mi này giá bao nhiêu?",grammarNote:"Combien = bao nhiêu (hỏi giá/số lượng)."},
-    {id:24,lesson:"Leçon 7",topic:"Comment et Combien",question:"Combien ___ ces chaussures ?",options:["coûte","coûtent","coûter","coûtes"],correct:1,explanation:"Chủ ngữ « ces chaussures » số nhiều → động từ chia « coûtent ».",translation:"Đôi giày này giá bao nhiêu?",grammarNote:"Động từ phải hợp với chủ ngữ số nhiều."},
-    {id:25,lesson:"Leçon 7",topic:"Comment et Combien",question:"Ça fait ___ ?",options:["quel","où","comment","combien"],correct:3,explanation:"Hỏi tổng số tiền, dùng « combien ».",translation:"Tổng cộng bao nhiêu?",grammarNote:"Combien = bao nhiêu."},
-    {id:26,lesson:"Leçon 7",topic:"Comment et Combien",question:"Comment ___ ce pull ?",options:["tu trouves","trouves tu","trouve tu","tu trouver"],correct:0,explanation:"Trật tự chuẩn: Comment + chủ ngữ + động từ (không đảo trong câu hỏi thân mật).",translation:"Bạn thấy chiếc áo len này thế nào?",grammarNote:"Comment + tu + động từ chia."},
-    {id:27,lesson:"Leçon 7",topic:"Comment et Combien",question:"Cette robe coûte ___ euros.",options:["comment","soixante","où","quelle"],correct:1,explanation:"Số từ « soixante » (60) phù hợp để trả lời giá.",translation:"Chiếc váy này giá 60 euro.",grammarNote:"Soixante = 60."},
-    {id:28,lesson:"Leçon 7",topic:"Comment et Combien",question:"Combien coûtent ___ pantalons ?",options:["ce","cet","ces","cette"],correct:2,explanation:"Pantalons số nhiều → dùng « ces ».",translation:"Những chiếc quần này giá bao nhiêu?",grammarNote:"Ces + danh từ số nhiều."},
-    {id:29,lesson:"Leçon 7",topic:"Comment et Combien",question:"Comment est ___ appartement ?",options:["cet","cette","ces","ce"],correct:0,explanation:"Appartement giống đực số ít bắt đầu bằng nguyên âm → dùng « cet ».",translation:"Căn hộ này thế nào?",grammarNote:"Cet + danh từ giống đực số ít bắt đầu bằng nguyên âm."},
-    {id:30,lesson:"Leçon 7",topic:"Comment et Combien",question:"___ coûte ce manteau ?",options:["Quelle","Combien","Comment","Où"],correct:1,explanation:"Hỏi giá → dùng « combien ».",translation:"Chiếc áo khoác này giá bao nhiêu?",grammarNote:"Combien coûte... = ... giá bao nhiêu?"},
+  const lessonRows = [7,8,9,10,11,12].map(l => {
+    const items = r.questions.filter(x => x.lesson === l);
+    if(!items.length) return "";
+    const ok = items.filter(x => x.selected === x.correct).length;
+    return `<div class="lessonbar">
+      <div class="lb-head"><span>Leçon ${l} — ${esc(LESSON_NAMES[l])}</span><span>${ok}/${items.length}</span></div>
+      <div class="lb-track"><div class="lb-fill" style="width:${(ok / items.length * 100).toFixed(1)}%"></div></div>
+    </div>`;
+  }).join("");
 
-    /* ===== LEÇON 8 — Prépositions de lieu (31–45) ===== */
-    {id:31,lesson:"Leçon 8",topic:"Prépositions de lieu",question:"Le tableau est ___ la table.",options:["sur","sous","entre","derrière"],correct:0,explanation:"Bức tranh treo trên bàn → « sur ».",translation:"Bức tranh ở trên bàn.",grammarNote:"Sur = ở trên (bề mặt)."},
-    {id:32,lesson:"Leçon 8",topic:"Prépositions de lieu",question:"Le sac est ___ la chaise.",options:["devant","sous","à gauche","contre"],correct:1,explanation:"Cái túi ở dưới ghế → « sous ».",translation:"Cái túi ở dưới ghế.",grammarNote:"Sous = ở dưới."},
-    {id:33,lesson:"Leçon 8",topic:"Prépositions de lieu",question:"La banque est ___ le musée.",options:["entre","à droite de","sous","sur"],correct:1,explanation:"Ngân hàng ở bên phải bảo tàng → « à droite de ».",translation:"Ngân hàng ở bên phải bảo tàng.",grammarNote:"À droite de = ở bên phải."},
-    {id:34,lesson:"Leçon 8",topic:"Prépositions de lieu",question:"Le café est ___ la poste et la gare.",options:["derrière","sur","entre","contre"],correct:2,explanation:"Quán cà phê ở giữa bưu điện và nhà ga → « entre ».",translation:"Quán cà phê ở giữa bưu điện và nhà ga.",grammarNote:"Entre A et B = ở giữa A và B."},
-    {id:35,lesson:"Leçon 8",topic:"Prépositions de lieu",question:"Le bus est ___ la gare.",options:["devant","sous","entre","sur"],correct:0,explanation:"Xe buýt ở trước nhà ga → « devant ».",translation:"Xe buýt ở trước nhà ga.",grammarNote:"Devant = ở phía trước."},
-    {id:36,lesson:"Leçon 8",topic:"Prépositions de lieu",question:"Le vélo est ___ le mur.",options:["à côté","contre","dans","au centre"],correct:1,explanation:"Xe đạp dựa vào tường → « contre ».",translation:"Xe đạp dựa vào tường.",grammarNote:"Contre = dựa vào, chống vào."},
-    {id:37,lesson:"Leçon 8",topic:"Prépositions de lieu",question:"Le tableau est ___ de la salle.",options:["au centre","entre","contre","sous"],correct:0,explanation:"Bức tranh ở giữa phòng → « au centre de ».",translation:"Bức tranh ở giữa phòng.",grammarNote:"Au centre de = ở giữa."},
-    {id:38,lesson:"Leçon 8",topic:"Prépositions de lieu",question:"La chaise est ___ la table.",options:["à côté de","entre","sur","derrière"],correct:0,explanation:"Cái ghế ở bên cạnh bàn → « à côté de ».",translation:"Cái ghế ở bên cạnh bàn.",grammarNote:"À côté de = ở bên cạnh."},
-    {id:39,lesson:"Leçon 8",topic:"Prépositions de lieu",question:"La poste est à gauche ___ musée.",options:["à","au","du","de le"],correct:2,explanation:"À gauche de + le → « du ».",translation:"Bưu điện ở bên trái bảo tàng.",grammarNote:"de + le = du."},
-    {id:40,lesson:"Leçon 8",topic:"Prépositions de lieu",question:"Le livre est ___ la table, pas sous la table.",options:["sur","entre","derrière","contre"],correct:0,explanation:"Đối lập với « sous » là « sur ».",translation:"Cuốn sách ở trên bàn, không phải dưới bàn.",grammarNote:"Sur = ở trên."},
-    {id:41,lesson:"Leçon 8",topic:"Prépositions de lieu",question:"Le tableau est à droite ___ la porte.",options:["de","du","au","des"],correct:0,explanation:"À droite de + la porte → « de la ».",translation:"Bức tranh ở bên phải cửa.",grammarNote:"de + la = de la."},
-    {id:42,lesson:"Leçon 8",topic:"Prépositions de lieu",question:"Le musée est ___ la banque et l'hôtel.",options:["devant","entre","sous","contre"],correct:1,explanation:"Bảo tàng ở giữa ngân hàng và khách sạn → « entre ».",translation:"Bảo tàng ở giữa ngân hàng và khách sạn.",grammarNote:"Entre A et B."},
-    {id:43,lesson:"Leçon 8",topic:"Prépositions de lieu",question:"Le chat est ___ la chaise.",options:["derrière","entre","au centre","à gauche"],correct:0,explanation:"Con mèo ở sau ghế → « derrière ».",translation:"Con mèo ở sau ghế.",grammarNote:"Derrière = ở phía sau."},
-    {id:44,lesson:"Leçon 8",topic:"Prépositions de lieu",question:"La lampe est ___ la table.",options:["sur","entre","contre","à droite"],correct:0,explanation:"Đèn ở trên bàn → « sur ».",translation:"Đèn ở trên bàn.",grammarNote:"Sur = ở trên."},
-    {id:45,lesson:"Leçon 8",topic:"Prépositions de lieu",question:"Le magasin est à gauche ___ la banque.",options:["du","de la","de","au"],correct:2,explanation:"Cấu trúc chỉ vị trí: « à gauche de + danh từ ».",translation:"Cửa hàng ở bên trái ngân hàng.",grammarNote:"Cấu trúc: à gauche de + danh từ."},
+  return `
+  <div class="card scorecard">
+    <h2>KẾT QUẢ BÀI KIỂM TRA</h2>
+    <div class="big">${r.correct}/${r.total}</div>
+    <div class="pct">Tỷ lệ đúng : ${pct}%</div>
+    <div class="msg" style="color:${color}">${esc(msg)}</div>
+    <div class="stats">
+      <div class="stat ok"><div class="n">${r.correct}</div><div class="l">Đúng</div></div>
+      <div class="stat bad"><div class="n">${r.wrong}</div><div class="l">Sai</div></div>
+      <div class="stat warn"><div class="n">${r.blank}</div><div class="l">Chưa trả lời</div></div>
+      <div class="stat"><div class="n">${r.timeText}</div><div class="l">Thời gian</div></div>
+    </div>
+    <div class="row center">
+      <button class="btn primary" data-act="new-quiz">🔄 Làm đề mới</button>
+      <button class="btn ghost" data-act="retry-same">↻ Làm lại đề hiện tại</button>
+      <button class="btn ghost" data-act="show-review">📖 Xem chi tiết đáp án</button>
+      <button class="btn ghost" data-act="home">🏠 Quay về trang chủ</button>
+    </div>
+  </div>
+  <div class="card">
+    <h2>Kết quả theo từng bài</h2>
+    ${lessonRows || "<p>Không có dữ liệu.</p>"}
+  </div>`;
+}
 
-    /* ===== LEÇON 8 — Pronoms toniques (46–55) ===== */
-    {id:46,lesson:"Leçon 8",topic:"Pronoms toniques",question:"Ce sac est à ___.",options:["je","moi","me","mon"],correct:1,explanation:"Sau giới từ « à », dùng đại từ nhấn mạnh « moi ».",translation:"Cái túi này là của tôi.",grammarNote:"Đại từ nhấn mạnh: moi, toi, lui, elle, nous, vous, eux, elles."},
-    {id:47,lesson:"Leçon 8",topic:"Pronoms toniques",question:"Je parle avec ___.",options:["tu","toi","te","ton"],correct:1,explanation:"Sau giới từ « avec », dùng « toi ».",translation:"Tôi nói chuyện với bạn.",grammarNote:"Avec + đại từ nhấn mạnh."},
-    {id:48,lesson:"Leçon 8",topic:"Pronoms toniques",question:"___, j'aime ce pantalon.",options:["Je","Moi","Me","Mon"],correct:1,explanation:"Dùng « Moi » để nhấn mạnh chủ ngữ.",translation:"Tôi, tôi thích chiếc quần này.",grammarNote:"Đại từ nhấn mạnh đứng đầu câu để nhấn mạnh."},
-    {id:49,lesson:"Leçon 8",topic:"Pronoms toniques",question:"Lui, ___ a un blouson.",options:["il","lui","je","toi"],correct:0,explanation:"Sau « Lui » (nhấn mạnh), dùng « il » làm chủ ngữ.",translation:"Anh ấy, anh ấy có một chiếc áo khoác.",grammarNote:"Cấu trúc: Đại từ nhấn mạnh + chủ ngữ + động từ."},
-    {id:50,lesson:"Leçon 8",topic:"Pronoms toniques",question:"Elle vient chez ___.",options:["je","tu","moi","me"],correct:2,explanation:"Sau « chez », dùng « moi ».",translation:"Cô ấy đến nhà tôi.",grammarNote:"Chez + đại từ nhấn mạnh."},
-    {id:51,lesson:"Leçon 8",topic:"Pronoms toniques",question:"Je vais chez ___.",options:["elle","elle-même uniquement","la","lui"],correct:0,explanation:"Sau « chez », dùng « elle ».",translation:"Tôi đến nhà cô ấy.",grammarNote:"Chez + đại từ nhấn mạnh."},
-    {id:52,lesson:"Leçon 8",topic:"Pronoms toniques",question:"___, tu préfères cette robe ?",options:["Toi","Te","Tu","Ton"],correct:0,explanation:"Dùng « Toi » để nhấn mạnh.",translation:"Còn bạn, bạn thích chiếc váy này không?",grammarNote:"Đại từ nhấn mạnh đứng đầu câu."},
-    {id:53,lesson:"Leçon 8",topic:"Pronoms toniques",question:"La chemise n'est pas à ___.",options:["je","moi","me","mon"],correct:1,explanation:"Sau « à », dùng « moi ».",translation:"Chiếc áo sơ mi không phải của tôi.",grammarNote:"À + đại từ nhấn mạnh."},
-    {id:54,lesson:"Leçon 8",topic:"Pronoms toniques",question:"Il travaille avec ___.",options:["elle","la","lui-même uniquement","ils"],correct:0,explanation:"Sau « avec », dùng « elle ».",translation:"Anh ấy làm việc với cô ấy.",grammarNote:"Avec + đại từ nhấn mạnh."},
-    {id:55,lesson:"Leçon 8",topic:"Pronoms toniques",question:"___, elle habite à Paris.",options:["Elle","La","Elle-même uniquement","Moi"],correct:0,explanation:"Dùng « Elle » để nhấn mạnh chủ ngữ.",translation:"Cô ấy, cô ấy sống ở Paris.",grammarNote:"Đại từ nhấn mạnh đứng đầu câu."},
+/* ---------- XEM LẠI CHI TIẾT ---------- */
+function viewReview(){
+  const qz = state.quiz;
+  if(!qz) return viewHome();
+  const items = qz.questions.map((qq, i) => {
+    const isBlank = qq.selected === null;
+    const isCorrect = qq.selected === qq.correct;
+    const status = isBlank ? "blank" : (isCorrect ? "correct" : "incorrect");
+    const statusText = isBlank ? "Chưa trả lời" : (isCorrect ? "Đúng" : "Sai");
+    const userText = isBlank ? "—" : LETTERS[qq.selected] + ". " + esc(qq.options[qq.selected]);
+    return `
+    <div class="revitem ${status}">
+      <div class="row" style="justify-content:space-between">
+        <strong>Câu ${i + 1}</strong>
+        <span class="pill ${status}">${statusText}</span>
+      </div>
+      <div class="tag" style="margin-top:8px">Leçon ${qq.lesson} · ${qq.category === "vocabulaire" ? "Từ vựng" : "Ngữ pháp"} · ${esc(qq.topic)}</div>
+      <div class="rq">${esc(qq.question)}</div>
+      <div class="ansline">Bạn chọn : <b>${userText}</b></div>
+      <div class="ansline">Đáp án đúng : <b>${LETTERS[qq.correct]}. ${esc(qq.options[qq.correct])}</b></div>
+      <div class="expl"><b>Giải thích :</b> ${esc(qq.explanation)}</div>
+    </div>`;
+  }).join("");
 
-    /* ===== LEÇON 9 — Pronoms toniques au pluriel (56–60) ===== */
-    {id:56,lesson:"Leçon 9",topic:"Pronoms toniques",question:"Nous habitons chez ___.",options:["ils","eux","leur","les"],correct:1,explanation:"Sau « chez », dùng « eux » (đại từ nhấn mạnh giống đực số nhiều).",translation:"Chúng tôi sống ở nhà họ.",grammarNote:"Chez + eux."},
-    {id:57,lesson:"Leçon 9",topic:"Pronoms toniques",question:"Vous êtes chez ___.",options:["nous","on","ils","elles-mêmes uniquement"],correct:0,explanation:"Sau « chez », dùng « nous ».",translation:"Các bạn đang ở nhà chúng tôi.",grammarNote:"Chez + nous."},
-    {id:58,lesson:"Leçon 9",topic:"Pronoms toniques",question:"Ils mangent chez ___.",options:["elles","leur","ils","les"],correct:0,explanation:"Sau « chez », dùng « elles ».",translation:"Họ ăn ở nhà các cô ấy.",grammarNote:"Chez + elles."},
-    {id:59,lesson:"Leçon 9",topic:"Pronoms toniques",question:"Elle vient chez ___.",options:["nous","on","ils","leur"],correct:0,explanation:"Sau « chez », dùng « nous ».",translation:"Cô ấy đến nhà chúng tôi.",grammarNote:"Chez + nous."},
-    {id:60,lesson:"Leçon 9",topic:"Pronoms toniques",question:"Je travaille avec ___.",options:["eux","ils","leur","les"],correct:0,explanation:"Sau « avec », dùng « eux ».",translation:"Tôi làm việc với họ.",grammarNote:"Avec + eux."},
+  return `
+  <div class="qhead">
+    <button class="btn ghost small" data-act="back-result">← Kết quả</button>
+    <span class="qtitle">Chi tiết đáp án</span>
+    <span class="qcount">${qz.questions.length} câu</span>
+  </div>
+  ${items}
+  <div class="row center" style="margin-top:16px">
+    <button class="btn primary" data-act="new-quiz">🔄 Làm đề mới</button>
+    <button class="btn ghost" data-act="retry-same">↻ Làm lại đề hiện tại</button>
+    <button class="btn ghost" data-act="home">🏠 Quay về trang chủ</button>
+  </div>`;
+}
 
-    /* ===== LEÇON 9 — Prépositions de lieu (61–68) ===== */
-    {id:61,lesson:"Leçon 9",topic:"Prépositions de lieu",question:"La banque est ___ la poste.",options:["en face de","sur","sous","contre"],correct:0,explanation:"Ngân hàng đối diện bưu điện → « en face de ».",translation:"Ngân hàng đối diện bưu điện.",grammarNote:"En face de = đối diện."},
-    {id:62,lesson:"Leçon 9",topic:"Prépositions de lieu",question:"Le café est ___ la rue.",options:["au coin de","sur","chez","avec"],correct:0,explanation:"Quán cà phê ở góc phố → « au coin de ».",translation:"Quán cà phê ở góc phố.",grammarNote:"Au coin de = ở góc."},
-    {id:63,lesson:"Leçon 9",topic:"Prépositions de lieu",question:"L'appartement est ___ du couloir.",options:["à côté","au bout","devant de","en face"],correct:1,explanation:"Căn hộ ở cuối hành lang → « au bout ».",translation:"Căn hộ ở cuối hành lang.",grammarNote:"Au bout de = ở cuối."},
-    {id:64,lesson:"Leçon 9",topic:"Prépositions de lieu",question:"Le musée est ___ la gare.",options:["près de","sous","avec","pour"],correct:0,explanation:"Bảo tàng ở gần nhà ga → « près de ».",translation:"Bảo tàng ở gần nhà ga.",grammarNote:"Près de = gần."},
-    {id:65,lesson:"Leçon 9",topic:"Prépositions de lieu",question:"Le livre est ___ le sac.",options:["dans","au coin","au bout","chez"],correct:0,explanation:"Cuốn sách ở trong túi → « dans ».",translation:"Cuốn sách ở trong túi.",grammarNote:"Dans = ở trong."},
-    {id:66,lesson:"Leçon 9",topic:"Prépositions de lieu",question:"Ce cadeau est ___ toi.",options:["dans","pour","sous","entre"],correct:1,explanation:"Món quà dành cho bạn → « pour ».",translation:"Món quà này dành cho bạn.",grammarNote:"Pour = dành cho."},
-    {id:67,lesson:"Leçon 9",topic:"Prépositions de lieu",question:"Je vais au cinéma ___ mes amis.",options:["pour","avec","dans","de"],correct:1,explanation:"Đi cùng bạn bè → « avec ».",translation:"Tôi đi xem phim với bạn bè.",grammarNote:"Avec = cùng với."},
-    {id:68,lesson:"Leçon 9",topic:"Prépositions de lieu",question:"Le restaurant est ___ la banque.",options:["en face de","avec","pour","dans"],correct:0,explanation:"Nhà hàng đối diện ngân hàng → « en face de ».",translation:"Nhà hàng đối diện ngân hàng.",grammarNote:"En face de = đối diện."},
+/* ---------- BẢNG TIẾN ĐỘ ---------- */
+function viewDashboard(){
+  const p = loadProgress();
+  const acc = p.totalAnswered ? Math.round(p.totalCorrect / p.totalAnswered * 100) : 0;
 
-    /* ===== LEÇON 9 — Où (69–75) ===== */
-    {id:69,lesson:"Leçon 9",topic:"Où",question:"___ est la gare ?",options:["Comment","Combien","Où","Quel"],correct:2,explanation:"Hỏi vị trí → « Où ».",translation:"Nhà ga ở đâu?",grammarNote:"Où = ở đâu."},
-    {id:70,lesson:"Leçon 9",topic:"Où",question:"La poste, c'est ___ ?",options:["combien","où","comment","quel"],correct:1,explanation:"Hỏi vị trí → « où ».",translation:"Bưu điện ở đâu?",grammarNote:"Où = ở đâu."},
-    {id:71,lesson:"Leçon 9",topic:"Où",question:"Le musée, ça se trouve ___ ?",options:["quelle","où","comment","combien"],correct:1,explanation:"Hỏi vị trí → « où ».",translation:"Bảo tàng nằm ở đâu?",grammarNote:"Où = ở đâu."},
-    {id:72,lesson:"Leçon 9",topic:"Où",question:"___ est ton appartement ?",options:["Où","Quel","Comment","Combien"],correct:0,explanation:"Hỏi vị trí → « Où ».",translation:"Căn hộ của bạn ở đâu?",grammarNote:"Où = ở đâu."},
-    {id:73,lesson:"Leçon 9",topic:"Où",question:"La banque est où ? — Elle est ___ la gare.",options:["près de","quel","combien","comment"],correct:0,explanation:"Trả lời vị trí: « près de la gare ».",translation:"Ngân hàng ở đâu? — Nó ở gần nhà ga.",grammarNote:"Près de = gần."},
-    {id:74,lesson:"Leçon 9",topic:"Où",question:"Où ___ les toilettes ?",options:["est","sont","être","es"],correct:1,explanation:"Chủ ngữ « les toilettes » số nhiều → « sont ».",translation:"Nhà vệ sinh ở đâu?",grammarNote:"Số nhiều dùng « sont »."},
-    {id:75,lesson:"Leçon 9",topic:"Où",question:"Où ___ le musée ?",options:["sont","es","est","êtes"],correct:2,explanation:"Chủ ngữ « le musée » số ít → « est ».",translation:"Bảo tàng ở đâu?",grammarNote:"Số ít dùng « est »."},
+  const lessonBars = [7,8,9,10,11,12].map(l => {
+    const s = p.lessons[l] || { answered: 0, correct: 0 };
+    const a = s.answered;
+    const pct = a ? Math.round(s.correct / a * 100) : 0;
+    return `<div class="lessonbar">
+      <div class="lb-head">
+        <span>Leçon ${l} — ${esc(LESSON_NAMES[l])}</span>
+        <span>${a ? s.correct + "/" + a + " (" + pct + "%)" : "chưa làm"}</span>
+      </div>
+      <div class="lb-track"><div class="lb-fill" style="width:${pct}%"></div></div>
+    </div>`;
+  }).join("");
 
-    /* ===== LEÇON 10 — Impératif (76–85) ===== */
-    {id:76,lesson:"Leçon 10",topic:"Impératif",question:"___ à gauche ! (tu)",options:["Tournes","Tourne","Tournez","Tourner"],correct:1,explanation:"Mệnh lệnh với « tu », động từ nhóm 1 bỏ « s » → « Tourne ».",translation:"Rẽ trái! (bạn)",grammarNote:"Impératif với tu: bỏ -s ở động từ nhóm 1."},
-    {id:77,lesson:"Leçon 10",topic:"Impératif",question:"___ tout droit ! (vous)",options:["Va","Allez","Vas","Aller"],correct:1,explanation:"Mệnh lệnh với « vous » của « aller » là « Allez ».",translation:"Đi thẳng! (các bạn)",grammarNote:"Impératif với vous: Allez."},
-    {id:78,lesson:"Leçon 10",topic:"Impératif",question:"___ le bus ! (tu)",options:["Prends","Prenez","Prend","Prendre"],correct:0,explanation:"Mệnh lệnh với « tu » của « prendre » là « Prends ».",translation:"Bắt xe buýt! (bạn)",grammarNote:"Impératif với tu: Prends."},
-    {id:79,lesson:"Leçon 10",topic:"Impératif",question:"___ à droite ! (vous)",options:["Tourne","Tournes","Tournez","Tourner"],correct:2,explanation:"Mệnh lệnh với « vous » của « tourner » là « Tournez ».",translation:"Rẽ phải! (các bạn)",grammarNote:"Impératif với vous: Tournez."},
-    {id:80,lesson:"Leçon 10",topic:"Impératif",question:"___ la rue ! (vous)",options:["Traverse","Traversez","Traverses","Traverser"],correct:1,explanation:"Mệnh lệnh với « vous » của « traverser » là « Traversez ».",translation:"Băng qua đường! (các bạn)",grammarNote:"Impératif với vous: Traversez."},
-    {id:81,lesson:"Leçon 10",topic:"Impératif",question:"___ devant le musée ! (tu)",options:["Passe","Passez","Passes","Passer"],correct:0,explanation:"Mệnh lệnh với « tu » của « passer » là « Passe ».",translation:"Đi qua trước bảo tàng! (bạn)",grammarNote:"Impératif với tu: Passe."},
-    {id:82,lesson:"Leçon 10",topic:"Impératif",question:"___ le métro ! (vous)",options:["Prends","Prenez","Prend","Prendre"],correct:1,explanation:"Mệnh lệnh với « vous » của « prendre » là « Prenez ».",translation:"Bắt tàu điện ngầm! (các bạn)",grammarNote:"Impératif với vous: Prenez."},
-    {id:83,lesson:"Leçon 10",topic:"Impératif",question:"___ tout droit ! (tu)",options:["Allez","Vas","Va","Aller"],correct:2,explanation:"Mệnh lệnh với « tu » của « aller » là « Va ».",translation:"Đi thẳng! (bạn)",grammarNote:"Impératif với tu: Va (bất quy tắc)."},
-    {id:84,lesson:"Leçon 10",topic:"Impératif",question:"___ à gauche ! (vous)",options:["Tourne","Tournez","Tournes","Tourner"],correct:1,explanation:"Mệnh lệnh với « vous » của « tourner » là « Tournez ».",translation:"Rẽ trái! (các bạn)",grammarNote:"Impératif với vous: Tournez."},
-    {id:85,lesson:"Leçon 10",topic:"Impératif",question:"___ la rue ! (tu)",options:["Traverse","Traversez","Traverses","Traverser"],correct:0,explanation:"Mệnh lệnh với « tu » của « traverser » là « Traverse ».",translation:"Băng qua đường! (bạn)",grammarNote:"Impératif với tu: Traverse."},
+  const history = p.history.length ? p.history.map(h => `
+    <div class="ansline" style="display:flex;justify-content:space-between;gap:10px;border-bottom:1px solid #eef3f9;padding:6px 0">
+      <span>${esc(h.title)}</span>
+      <span><b>${h.score}/${h.total}</b> · ${h.percent}% <span style="color:var(--muted);font-size:.85em">${new Date(h.date).toLocaleDateString("vi-VN")}</span></span>
+    </div>`).join("") : "<p>Chưa có lượt luyện tập nào.</p>";
 
-    /* ===== LEÇON 10 — Prendre au présent (86–91) ===== */
-    {id:86,lesson:"Leçon 10",topic:"Prendre au présent",question:"Je ___ le bus.",options:["prend","prends","prenez","prennent"],correct:1,explanation:"« Je » + prendre → « prends ».",translation:"Tôi bắt xe buýt.",grammarNote:"Je prends."},
-    {id:87,lesson:"Leçon 10",topic:"Prendre au présent",question:"Tu ___ le métro.",options:["prend","prenons","prends","prenez"],correct:2,explanation:"« Tu » + prendre → « prends ».",translation:"Bạn bắt tàu điện ngầm.",grammarNote:"Tu prends."},
-    {id:88,lesson:"Leçon 10",topic:"Prendre au présent",question:"Il ___ un taxi.",options:["prends","prennent","prend","prenez"],correct:2,explanation:"« Il » + prendre → « prend ».",translation:"Anh ấy bắt taxi.",grammarNote:"Il prend."},
-    {id:89,lesson:"Leçon 10",topic:"Prendre au présent",question:"Nous ___ le train.",options:["prenons","prenez","prennent","prend"],correct:0,explanation:"« Nous » + prendre → « prenons ».",translation:"Chúng tôi bắt tàu hỏa.",grammarNote:"Nous prenons."},
-    {id:90,lesson:"Leçon 10",topic:"Prendre au présent",question:"Vous ___ la voiture.",options:["prends","prenez","prenons","prennent"],correct:1,explanation:"« Vous » + prendre → « prenez ».",translation:"Các bạn lái xe hơi.",grammarNote:"Vous prenez."},
-    {id:91,lesson:"Leçon 10",topic:"Prendre au présent",question:"Elles ___ le bus.",options:["prend","prenons","prenez","prennent"],correct:3,explanation:"« Elles » + prendre → « prennent ».",translation:"Họ bắt xe buýt.",grammarNote:"Elles prennent."},
+  return `
+  <div class="qhead">
+    <button class="btn ghost small" data-act="home">← Trang chủ</button>
+    <span class="qtitle">TỔNG QUAN HỌC TẬP</span>
+    <span></span>
+  </div>
 
-    /* ===== LEÇON 10 — Articles contractés (92–100) ===== */
-    {id:92,lesson:"Leçon 10",topic:"Articles contractés",question:"Je vais ___ musée.",options:["à le","au","aux","du"],correct:1,explanation:"À + le → « au ».",translation:"Tôi đi đến bảo tàng.",grammarNote:"à + le = au."},
-    {id:93,lesson:"Leçon 10",topic:"Articles contractés",question:"Nous allons ___ toilettes.",options:["au","à la","aux","du"],correct:2,explanation:"À + les → « aux ».",translation:"Chúng tôi đi đến nhà vệ sinh.",grammarNote:"à + les = aux."},
-    {id:94,lesson:"Leçon 10",topic:"Articles contractés",question:"Il revient ___ musée.",options:["au","du","des","à le"],correct:1,explanation:"De + le → « du ».",translation:"Anh ấy trở về từ bảo tàng.",grammarNote:"de + le = du."},
-    {id:95,lesson:"Leçon 10",topic:"Articles contractés",question:"Elle parle ___ étudiants.",options:["du","au","aux","de la"],correct:2,explanation:"À + les → « aux ».",translation:"Cô ấy nói với các sinh viên.",grammarNote:"à + les = aux."},
-    {id:96,lesson:"Leçon 10",topic:"Articles contractés",question:"Je viens ___ cinéma.",options:["au","du","aux","à la"],correct:1,explanation:"De + le → « du ».",translation:"Tôi đến từ rạp chiếu phim.",grammarNote:"de + le = du."},
-    {id:97,lesson:"Leçon 10",topic:"Articles contractés",question:"Ils vont ___ banque.",options:["au","aux","à la","du"],correct:2,explanation:"À + la → « à la » (không co lại).",translation:"Họ đi đến ngân hàng.",grammarNote:"à + la = à la."},
-    {id:98,lesson:"Leçon 10",topic:"Articles contractés",question:"Le livre est ___ professeur.",options:["du","au","aux","des"],correct:0,explanation:"De + le → « du » (chỉ sở hữu).",translation:"Cuốn sách là của giáo viên.",grammarNote:"de + le = du."},
-    {id:99,lesson:"Leçon 10",topic:"Articles contractés",question:"Nous parlons ___ enfants.",options:["du","des","au","à la"],correct:1,explanation:"De + les → « des ».",translation:"Chúng tôi nói về bọn trẻ.",grammarNote:"de + les = des."},
-    {id:100,lesson:"Leçon 10",topic:"Articles contractés",question:"Il va ___ aéroport.",options:["au","à la","à l'","aux"],correct:2,explanation:"À + le → « au », nhưng « aéroport » bắt đầu bằng nguyên âm nên dùng « à l' ».",translation:"Anh ấy đi đến sân bay.",grammarNote:"à + l' (trước nguyên âm)."},
+  <div class="card">
+    <h2>Thống kê chung</h2>
+    <div class="stats">
+      <div class="stat"><div class="n">${p.quizzesCompleted}</div><div class="l">Bài đã làm</div></div>
+      <div class="stat"><div class="n">${p.totalAnswered}</div><div class="l">Câu đã trả lời</div></div>
+      <div class="stat ok"><div class="n">${acc}%</div><div class="l">Tỷ lệ chính xác</div></div>
+      <div class="stat"><div class="n">${p.bestScore}/${p.bestTotal || 30}</div><div class="l">Điểm cao nhất</div></div>
+      <div class="stat bad"><div class="n">${p.totalIncorrect}</div><div class="l">Câu sai</div></div>
+      <div class="stat warn"><div class="n">${Object.keys(p.wrongIds).length}</div><div class="l">Câu cần ôn</div></div>
+    </div>
+    <p class="hint">Dữ liệu chỉ được lưu trong trình duyệt của bạn.</p>
+  </div>
 
-    /* ===== PHẦN BỔ SUNG — Prépositions de transport (101–105) ===== */
-    {id:101,lesson:"Leçon 11",topic:"Prépositions de transport",question:"Je vais à l'école ___ pied.",options:["en","à","au","dans"],correct:1,explanation:"Đi bộ dùng « à pied ».",translation:"Tôi đi bộ đến trường.",grammarNote:"À pied = đi bộ."},
-    {id:102,lesson:"Leçon 11",topic:"Prépositions de transport",question:"Nous allons au musée ___ bus.",options:["à","en","au","de"],correct:1,explanation:"Đi bằng xe buýt dùng « en bus ».",translation:"Chúng tôi đi đến bảo tàng bằng xe buýt.",grammarNote:"En + phương tiện (bus, train, voiture...)."},
-    {id:103,lesson:"Leçon 11",topic:"Prépositions de transport",question:"Elle voyage ___ voiture.",options:["à","au","en","dans"],correct:2,explanation:"Đi bằng xe hơi dùng « en voiture ».",translation:"Cô ấy đi du lịch bằng xe hơi.",grammarNote:"En voiture."},
-    {id:104,lesson:"Leçon 11",topic:"Prépositions de transport",question:"Tu vas au travail ___ vélo.",options:["en","à","au","dans"],correct:1,explanation:"Đi bằng xe đạp dùng « à vélo ».",translation:"Bạn đi làm bằng xe đạp.",grammarNote:"À vélo = đi xe đạp."},
-    {id:105,lesson:"Leçon 11",topic:"Prépositions de transport",question:"Ils vont à la gare ___ taxi.",options:["à","en","au","sur"],correct:1,explanation:"Đi bằng taxi dùng « en taxi ».",translation:"Họ đi đến nhà ga bằng taxi.",grammarNote:"En taxi."},
+  <div class="card">
+    <h2>Kết quả theo từng bài</h2>
+    ${lessonBars}
+  </div>
 
-    /* ===== PHẦN BỔ SUNG — Pronom adverbial Y (106–110) ===== */
-    {id:106,lesson:"Leçon 11",topic:"Pronom adverbial Y",question:"Tu vas à la banque ? — Oui, j'___ vais.",options:["en","y","au","à"],correct:1,explanation:"Đại từ « y » thay thế cho « à la banque ».",translation:"Bạn đi đến ngân hàng à? — Ừ, tôi đi đến đó.",grammarNote:"Y thay thế cho nơi chốn với « à »."},
-    {id:107,lesson:"Leçon 11",topic:"Pronom adverbial Y",question:"Nous allons au musée. → Nous ___ allons.",options:["en","y","au","du"],correct:1,explanation:"« Y » thay thế cho « au musée ».",translation:"Chúng tôi đi đến bảo tàng. → Chúng tôi đi đến đó.",grammarNote:"Y thay thế cho « à + nơi chốn »."},
-    {id:108,lesson:"Leçon 11",topic:"Pronom adverbial Y",question:"Elle est à la gare. → Elle ___ est.",options:["y","en","au","la"],correct:0,explanation:"« Y » thay thế cho « à la gare ».",translation:"Cô ấy ở nhà ga. → Cô ấy ở đó.",grammarNote:"Y thay thế cho nơi chốn."},
-    {id:109,lesson:"Leçon 11",topic:"Pronom adverbial Y",question:"Je vais à Paris. → J'___ vais.",options:["en","au","y","à"],correct:2,explanation:"« Y » thay thế cho « à Paris ».",translation:"Tôi đi Paris. → Tôi đi đến đó.",grammarNote:"Y thay thế cho nơi chốn."},
-    {id:110,lesson:"Leçon 11",topic:"Pronom adverbial Y",question:"Tu veux aller au restaurant ? — Oui, je vais ___ aller.",options:["y","en","au","à"],correct:0,explanation:"« Y » đứng trước động từ nguyên thể « aller ».",translation:"Bạn muốn đi đến nhà hàng à? — Ừ, tôi sẽ đi đến đó.",grammarNote:"Y + động từ nguyên thể."},
+  <div class="card">
+    <h2>Lịch sử gần đây</h2>
+    ${history}
+  </div>
 
-    /* ===== PHẦN BỔ SUNG — C'est (111–115) ===== */
-    {id:111,lesson:"Leçon 12",topic:"C'est",question:"___ un hôtel.",options:["Il est","C'est","Elle est","Ils sont"],correct:1,explanation:"Giới thiệu chung → « C'est ».",translation:"Đó là một khách sạn.",grammarNote:"C'est + danh từ (giới thiệu)."},
-    {id:112,lesson:"Leçon 12",topic:"C'est",question:"___ au nord de l'île.",options:["C'est","Ils sont","Elle sont","Il ont"],correct:0,explanation:"Chỉ vị trí chung → « C'est ».",translation:"Nó ở phía bắc của hòn đảo.",grammarNote:"C'est + vị trí."},
-    {id:113,lesson:"Leçon 12",topic:"C'est",question:"___ parfait !",options:["Il est","C'est","Ils sont","Elles ont"],correct:1,explanation:"Nhận xét chung → « C'est ».",translation:"Thật hoàn hảo!",grammarNote:"C'est + tính từ (nhận xét)."},
-    {id:114,lesson:"Leçon 12",topic:"C'est",question:"C'est ___ plage.",options:["un","une","des","du"],correct:1,explanation:"« Plage » giống cái số ít → « une ».",translation:"Đó là một bãi biển.",grammarNote:"C'est + un/une + danh từ."},
-    {id:115,lesson:"Leçon 12",topic:"C'est",question:"C'est ___ hôtel au bord de la mer.",options:["une","des","un","de la"],correct:2,explanation:"« Hôtel » giống đực số ít → « un ».",translation:"Đó là một khách sạn bên bờ biển.",grammarNote:"C'est + un + danh từ giống đực."},
+  <div class="card">
+    <h2>Quản lý dữ liệu</h2>
+    <div class="row">
+      <button class="btn ghost" data-act="mistakes-page">📝 Mở sổ tay câu sai</button>
+      <button class="btn ghost" data-act="reset-progress" style="color:var(--bad);border-color:#f0c9c6">🗑️ Xóa toàn bộ tiến độ</button>
+    </div>
+  </div>
 
-    /* ===== PHẦN BỔ SUNG — On (116–120) ===== */
-    {id:116,lesson:"Leçon 12",topic:"On",question:"On ___ l'île.",options:["visitons","visite","visitez","visiter"],correct:1,explanation:"« On » chia như ngôi thứ ba số ít → « visite ».",translation:"Người ta tham quan hòn đảo.",grammarNote:"On + động từ chia như il/elle."},
-    {id:117,lesson:"Leçon 12",topic:"On",question:"On ___ au restaurant.",options:["allons","allez","va","vont"],correct:2,explanation:"« On » + aller → « va ».",translation:"Người ta đi đến nhà hàng.",grammarNote:"On va."},
-    {id:118,lesson:"Leçon 12",topic:"On",question:"On ___ le bus.",options:["prend","prenons","prenez","prennent"],correct:0,explanation:"« On » + prendre → « prend ».",translation:"Người ta bắt xe buýt.",grammarNote:"On prend."},
-    {id:119,lesson:"Leçon 12",topic:"On",question:"À la Martinique, on ___ français.",options:["parlent","parles","parle","parlons"],correct:2,explanation:"« On » + parler → « parle ».",translation:"Ở Martinique, người ta nói tiếng Pháp.",grammarNote:"On parle."},
-    {id:120,lesson:"Leçon 12",topic:"On",question:"On ___ souvent du pain en France.",options:["mange","mangeons","mangent","mangez"],correct:0,explanation:"« On » + manger → « mange ».",translation:"Ở Pháp, người ta thường ăn bánh mì.",grammarNote:"On mange."}
-  ];
+  <div class="row center">
+    <button class="btn primary" data-act="home">🏠 Quay về trang chủ</button>
+  </div>`;
+}
 
-  /* ================================================================
-     2. HẰNG SỐ & TIỆN ÍCH
-     ================================================================ */
-  var SESSION_SIZE = 25;
-  var HISTORY_LIMIT = 10;
-  var LS_KEYS = {
-    session: 'fgq_session_v1',
-    stats:   'fgq_stats_v1',
-    wrong:   'fgq_wrong_v1'
-  };
-  var OPTION_KEYS = ['A', 'B', 'C', 'D'];
+/* ---------- SỔ TAY CÂU SAI ---------- */
+function viewMistakes(){
+  const p = loadProgress();
+  const ids = Object.keys(p.wrongIds).map(Number);
+  const items = ids.map(id => BANK.find(x => x.id === id)).filter(Boolean);
 
-  function fisherYates(arr) {
-    for (var i = arr.length - 1; i > 0; i--) {
-      var j = Math.floor(Math.random() * (i + 1));
-      var tmp = arr[i]; arr[i] = arr[j]; arr[j] = tmp;
-    }
-    return arr;
+  if(!items.length){
+    return `
+    <div class="qhead">
+      <button class="btn ghost small" data-act="home">← Trang chủ</button>
+      <span class="qtitle">SỔ TAY CÂU SAI</span><span></span>
+    </div>
+    <div class="card">
+      <h2>Chưa có câu sai nào 🎉</h2>
+      <p>Bạn chưa trả lời sai câu nào. Hãy làm một bài kiểm tra để bắt đầu ghi lại những câu cần ôn tập.</p>
+      <div class="row"><button class="btn primary" data-act="new-quiz">🎯 Làm bài kiểm tra</button></div>
+    </div>`;
   }
 
-  function esc(s) {
-    return String(s == null ? '' : s).replace(/[&<>"']/g, function (c) {
-      return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c];
-    });
+  const blocks = items.map((item, idx) => {
+    const similar = BANK.find(x => x.topic === item.topic && x.id !== item.id);
+    const count = p.wrongIds[item.id] || 1;
+    return `
+    <details class="mistake">
+      <summary>Câu ${idx + 1} · Leçon ${item.lesson} · ${esc(item.topic)} <span class="pill incorrect">sai ${count} lần</span></summary>
+      <div class="rq">${esc(item.question)}</div>
+      <div class="ansline">Đáp án đúng : <b>${esc(item.options[item.correct])}</b></div>
+      <div class="expl"><b>Giải thích :</b> ${esc(item.explanation)}</div>
+      ${similar ? `
+      <div class="similar">
+        <b>🔁 Câu luyện tập tương tự :</b><br>
+        ${esc(similar.question)}<br>
+        <span style="color:var(--ok)"><b>Đáp án :</b> ${esc(similar.options[similar.correct])}</span><br>
+        <span style="color:var(--muted)">${esc(similar.explanation)}</span>
+      </div>` : ""}
+    </details>`;
+  }).join("");
+
+  return `
+  <div class="qhead">
+    <button class="btn ghost small" data-act="home">← Trang chủ</button>
+    <span class="qtitle">SỔ TAY CÂU SAI (${items.length})</span><span></span>
+  </div>
+  <div class="card">
+    <p class="hint" style="margin:0 0 12px">Nhấn vào từng câu để xem đáp án, giải thích và một câu luyện tập tương tự.</p>
+    ${blocks}
+    <div class="row center" style="margin-top:14px">
+      <button class="btn primary" data-act="start" data-mode="mistakes">🔁 Luyện tập các câu sai</button>
+      <button class="btn ghost" data-act="dashboard">📊 Xem tiến độ</button>
+    </div>
+  </div>`;
+}
+
+/* ============================================================
+   6. XỬ LÝ SỰ KIỆN
+   ============================================================ */
+document.addEventListener("click", function(e){
+  const el = e.target.closest("[data-act]");
+  if(!el) return;
+  const act = el.dataset.act;
+
+  if(act === "home"){
+    state.view = "home";
+    state.notice = "";
+    render();
+    return;
   }
 
-  function loadJSON(key, fallback) {
-    try {
-      var raw = localStorage.getItem(key);
-      if (!raw) return fallback;
-      var val = JSON.parse(raw);
-      return (val === null || val === undefined) ? fallback : val;
-    } catch (e) { console.warn('[FGQ] localStorage read error:', key, e); return fallback; }
-  }
-  function saveJSON(key, val) {
-    try { localStorage.setItem(key, JSON.stringify(val)); }
-    catch (e) { console.warn('[FGQ] localStorage write error:', key, e); }
-  }
-  function removeKey(key) { try { localStorage.removeItem(key); } catch (e) {} }
-
-  function $(id) { return document.getElementById(id); }
-  function show(el) { if (el) el.classList.remove('hidden'); }
-  function hide(el) { if (el) el.classList.add('hidden'); }
-
-  /* ================================================================
-     3. KIỂM TRA DỮ LIỆU
-     ================================================================ */
-  function validateBank(bank) {
-    var problems = [];
-    var seenIds = Object.create(null);
-    if (!Array.isArray(bank)) return ['QUESTION_BANK không phải là mảng.'];
-    bank.forEach(function (q, i) {
-      var at = 'Câu #' + (i + 1) + (q && q.id != null ? ' (id=' + q.id + ')' : '');
-      if (!q || typeof q !== 'object') { problems.push(at + ': không phải object.'); return; }
-      if (typeof q.id !== 'number' || !isFinite(q.id)) problems.push(at + ': thiếu/sai "id".');
-      else if (seenIds[q.id]) problems.push(at + ': "id" bị trùng.');
-      else seenIds[q.id] = true;
-      if (!q.lesson || typeof q.lesson !== 'string') problems.push(at + ': thiếu "lesson".');
-      if (!q.topic || typeof q.topic !== 'string') problems.push(at + ': thiếu "topic".');
-      else if (TOPICS.indexOf(q.topic) === -1) problems.push(at + ': topic không hợp lệ (' + q.topic + ').');
-      if (!q.question || typeof q.question !== 'string') problems.push(at + ': thiếu "question".');
-      if (!Array.isArray(q.options) || q.options.length !== 4) problems.push(at + ': cần đúng 4 options.');
-      if (typeof q.correct !== 'number' || q.correct < 0 || q.correct > 3) problems.push(at + ': "correct" phải 0–3.');
-      if (!q.explanation || typeof q.explanation !== 'string') problems.push(at + ': thiếu "explanation".');
-    });
-    return problems;
+  if(act === "start"){
+    const mode = el.dataset.mode;
+    if(mode === "lesson") startLesson(Number(el.dataset.lesson));
+    else startMode(mode);
+    return;
   }
 
-  /* ================================================================
-     4. STORAGE
-     ================================================================ */
-  function defaultStats() {
-    return {
-      testSessions: 0, practiceSessions: 0,
-      totalAnswered: 0, totalCorrect: 0,
-      testScoreSum: 0, testQuestionSum: 0,
-      practiceAnswered: 0, practiceCorrect: 0,
-      bestPercent: 0, bestScoreText: '—',
-      lessons: {}, history: []
-    };
-  }
-  function loadStats() {
-    var s = loadJSON(LS_KEYS.stats, null);
-    if (!s || typeof s !== 'object') return defaultStats();
-    var d = defaultStats();
-    for (var k in d) if (!(k in s)) s[k] = d[k];
-    if (!s.lessons || typeof s.lessons !== 'object') s.lessons = {};
-    if (!Array.isArray(s.history)) s.history = [];
-    return s;
-  }
-  function saveStats(s) { saveJSON(LS_KEYS.stats, s); }
+  if(act === "dashboard"){ state.view = "dashboard"; render(); return; }
+  if(act === "mistakes-page"){ state.view = "mistakes"; render(); return; }
 
-  function loadWrong() {
-    var w = loadJSON(LS_KEYS.wrong, null);
-    return (w && typeof w === 'object' && !Array.isArray(w)) ? w : {};
-  }
-  function saveWrong(w) { saveJSON(LS_KEYS.wrong, w); }
-
-  function recordWrong(qid) {
-    var w = loadWrong();
-    var key = String(qid);
-    if (!w[key]) w[key] = { count: 0, last: 0 };
-    w[key].count += 1;
-    w[key].last = Date.now();
-    saveWrong(w);
-  }
-
-  /* ================================================================
-     5. SESSION ENGINE
-     ================================================================ */
-  function buildSession(mode, pool, label) {
-    var source = (Array.isArray(pool) && pool.length) ? pool : QUESTION_BANK;
-    var size = Math.min(SESSION_SIZE, source.length);
-    var shuffledPool = fisherYates(source.slice());
-    var picked = shuffledPool.slice(0, size);
-
-    var questions = picked.map(function (q) {
-      var wrapped = q.options.map(function (text, i) {
-        return { text: text, isCorrect: (i === q.correct) };
-      });
-      fisherYates(wrapped);
-      var correctIndex = -1;
-      var opts = wrapped.map(function (o, i) {
-        if (o.isCorrect) correctIndex = i;
-        return o.text;
-      });
-      if (correctIndex === -1) {
-        console.error('[FGQ] Lỗi dữ liệu: câu id=' + q.id);
-        correctIndex = 0;
-      }
-      return {
-        qid: q.id, lesson: q.lesson, topic: q.topic,
-        question: q.question, explanation: q.explanation,
-        translation: q.translation || '', grammarNote: q.grammarNote || '',
-        options: opts, correct: correctIndex,
-        selected: null, checked: false, wrongRecorded: false
+  if(act === "resume"){
+    const s = loadSession();
+    if(s){
+      state.quiz = {
+        mode: s.mode, title: s.title, questions: s.questions,
+        index: Math.min(s.index || 0, s.questions.length - 1),
+        startedAt: s.startedAt || Date.now()
       };
-    });
+      state.result = null;
+      state.view = "quiz";
+      render();
+    }
+    return;
+  }
+  if(act === "discard-session"){
+    clearSession();
+    state.notice = "Đã xóa lượt luyện tập đang dang dở.";
+    render();
+    return;
+  }
+  if(act === "pause"){
+    saveSession();
+    state.notice = "Đã lưu lượt luyện tập. Bạn có thể tiếp tục sau.";
+    state.view = "home";
+    render();
+    return;
+  }
 
-    return {
-      mode: mode,
-      label: label || (mode === 'test' ? 'Chế độ kiểm tra' : 'Chế độ luyện tập'),
-      questions: questions, current: 0,
-      startedAt: Date.now(), finished: false
+  if(act === "opt"){
+    if(!state.quiz) return;
+    const i = Number(el.dataset.i);
+    const qq = state.quiz.questions[state.quiz.index];
+    qq.selected = (qq.selected === i) ? null : i;
+    saveSession();
+    render();
+    return;
+  }
+
+  if(act === "prev"){
+    if(!state.quiz || state.quiz.index === 0) return;
+    state.quiz.index--;
+    saveSession();
+    render();
+    return;
+  }
+  if(act === "next"){
+    if(!state.quiz) return;
+    if(state.quiz.index < state.quiz.questions.length - 1){
+      state.quiz.index++;
+      saveSession();
+      render();
+    }
+    return;
+  }
+  if(act === "goto"){
+    if(!state.quiz) return;
+    const i = Number(el.dataset.i);
+    if(i >= 0 && i < state.quiz.questions.length){
+      state.quiz.index = i;
+      saveSession();
+      render();
+    }
+    return;
+  }
+  if(act === "toggle-nav"){
+    state.navOpen = !state.navOpen;
+    render();
+    return;
+  }
+
+  if(act === "submit"){
+    finishQuiz();
+    return;
+  }
+
+  if(act === "back-result"){ state.view = "result"; render(); return; }
+  if(act === "show-review"){ state.view = "review"; render(); return; }
+
+  if(act === "retry-same"){
+    if(!state.quiz) return;
+    const ids = state.quiz.questions.map(x => x.id);
+    const pool = ids.map(id => BANK.find(b => b.id === id)).filter(Boolean);
+    state.quiz = {
+      mode: state.quiz.mode,
+      title: state.quiz.title,
+      questions: shuffle(pool).map(prepareQuestion),
+      index: 0,
+      startedAt: Date.now()
     };
-  }
-
-  var session = null;
-  var stats = null;
-
-  function saveSession() { if (session) saveJSON(LS_KEYS.session, session); }
-  function clearSession() { session = null; removeKey(LS_KEYS.session); }
-
-  /* ================================================================
-     6. ROUTER
-     ================================================================ */
-  var viewHome = $('view-home');
-  var viewQuiz = $('view-quiz');
-  var viewResult = $('view-result');
-  var btnHome = $('btnHome');
-
-  function showView(name) {
-    hide(viewHome); hide(viewQuiz); hide(viewResult);
-    if (name === 'home') { show(viewHome); hide(btnHome); }
-    if (name === 'quiz') { show(viewQuiz); show(btnHome); }
-    if (name === 'result') { show(viewResult); show(btnHome); }
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  }
-
-  /* ================================================================
-     7. MODAL
-     ================================================================ */
-  var modal = $('modal'), modalTitle = $('modalTitle'), modalBody = $('modalBody');
-  var modalConfirm = $('modalConfirm'), modalCancel = $('modalCancel');
-  var modalCallback = null;
-
-  function openModal(opts) {
-    modalTitle.textContent = opts.title || 'Xác nhận';
-    modalBody.textContent = opts.body || '';
-    modalConfirm.textContent = opts.confirmText || 'Đồng ý';
-    modalCancel.textContent = opts.cancelText || 'Hủy';
-    modalConfirm.className = 'btn ' + (opts.danger ? 'btn-danger' : 'btn-primary');
-    modalCallback = opts.onConfirm || null;
-    show(modal); modalConfirm.focus();
-  }
-  function closeModal() { hide(modal); modalCallback = null; }
-  modalConfirm.addEventListener('click', function () {
-    var cb = modalCallback; closeModal();
-    if (typeof cb === 'function') cb();
-  });
-  modalCancel.addEventListener('click', closeModal);
-  modal.addEventListener('click', function (e) { if (e.target === modal) closeModal(); });
-  document.addEventListener('keydown', function (e) {
-    if (e.key === 'Escape' && !modal.classList.contains('hidden')) closeModal();
-  });
-
-  /* ================================================================
-     8. HOME
-     ================================================================ */
-  function renderHome() {
-    var warn = $('bankWarning');
-    var problems = validateBank(QUESTION_BANK);
-
-    if (QUESTION_BANK.length < 100) {
-      warn.innerHTML = '<b>⚠️ Ngân hàng câu hỏi chưa đủ 100 câu.</b><br>Hiện có <b>' +
-        QUESTION_BANK.length + '/100</b> câu.';
-      show(warn);
-    } else if (problems.length) {
-      warn.innerHTML = '<b>⚠️ Phát hiện ' + problems.length + ' vấn đề trong dữ liệu câu hỏi.</b><br>' +
-        esc(problems.slice(0, 5).join(' • ')) + (problems.length > 5 ? ' …' : '');
-      show(warn);
-    } else { hide(warn); }
-
-    $('bankCount').textContent = QUESTION_BANK.length;
-    $('perSession').textContent = Math.min(SESSION_SIZE, QUESTION_BANK.length);
-
-    var totalSessions = stats.testSessions + stats.practiceSessions;
-    var avgTest = stats.testQuestionSum > 0 ? Math.round((stats.testScoreSum / stats.testQuestionSum) * 100) : 0;
-    var practiceAcc = stats.practiceAnswered > 0 ? Math.round((stats.practiceCorrect / stats.practiceAnswered) * 100) : 0;
-    var overallAcc = stats.totalAnswered > 0 ? Math.round((stats.totalCorrect / stats.totalAnswered) * 100) : 0;
-
-    $('statGrid').innerHTML =
-      statCard(totalSessions, 'Tổng lượt làm bài') +
-      statCard(stats.testSessions, 'Bài kiểm tra') +
-      statCard(stats.practiceSessions, 'Bài luyện tập') +
-      statCard(stats.totalAnswered, 'Tổng câu đã làm') +
-      statCard(stats.totalCorrect, 'Tổng câu đúng') +
-      statCard(overallAcc + '%', 'Tỉ lệ đúng chung') +
-      statCard(avgTest + '%', 'Điểm TB kiểm tra') +
-      statCard(practiceAcc + '%', 'Đúng khi luyện tập') +
-      statCard(stats.bestScoreText, 'Điểm cao nhất');
-
-    var hl = $('historyList');
-    if (!stats.history.length) {
-      hl.innerHTML = '<p class="empty-note">Chưa có lượt làm bài nào. Hãy bắt đầu ngay!</p>';
-    } else {
-      hl.innerHTML = stats.history.slice().reverse().map(function (h) {
-        var isTest = h.mode === 'test';
-        return '<div class="history-item"><div>' +
-          '<div class="h-mode">' + (isTest ? '📝 Chế độ kiểm tra' : '📚 Chế độ luyện tập') + '</div>' +
-          '<div class="h-date">' + esc(h.date) + '</div></div>' +
-          '<span class="pill">' + h.score + '/' + h.total + ' · ' + h.percent + '%</span></div>';
-      }).join('');
-    }
-
-    var ls = $('lessonStats');
-    var lessonKeys = Object.keys(stats.lessons).filter(function (k) {
-      return stats.lessons[k] && stats.lessons[k].answered > 0;
-    }).sort();
-    if (!lessonKeys.length) {
-      ls.innerHTML = '<p class="empty-note">Chưa có dữ liệu. Tiến độ theo từng Leçon sẽ xuất hiện sau khi bạn làm bài.</p>';
-    } else {
-      ls.innerHTML = lessonKeys.map(function (k) {
-        var d = stats.lessons[k];
-        var pct = d.answered > 0 ? Math.round((d.correct / d.answered) * 100) : 0;
-        return '<div class="lesson-row"><div class="lr-top"><span>' + esc(k) + '</span>' +
-          '<span>' + d.correct + '/' + d.answered + ' · ' + pct + '%</span></div>' +
-          '<div class="bar"><i style="width:' + pct + '%"></i></div></div>';
-      }).join('');
-    }
-
-    var wl = $('wrongList');
-    var wrongStore = loadWrong();
-    var byId = {};
-    QUESTION_BANK.forEach(function (q) { byId[q.id] = q; });
-
-    var wrongEntries = Object.keys(wrongStore)
-      .map(function (k) { return { qid: Number(k), count: wrongStore[k].count, last: wrongStore[k].last }; })
-      .filter(function (e) { return byId[e.qid]; })
-      .sort(function (a, b) { return b.count - a.count || b.last - a.last; });
-
-    if (!wrongEntries.length) {
-      wl.innerHTML = '<p class="empty-note">Chưa có câu nào bị sai. Tuyệt vời! 🎉</p>';
-      $('btnReviewWrong').disabled = true;
-    } else {
-      $('btnReviewWrong').disabled = false;
-      wl.innerHTML = wrongEntries.slice(0, 15).map(function (e) {
-        var q = byId[e.qid];
-        return '<div class="wrong-item"><div style="min-width:0;">' +
-          '<div class="w-q">' + esc(q.question) + '</div>' +
-          '<div class="w-meta">' + esc(q.lesson) + ' · ' + esc(q.topic) + '</div></div>' +
-          '<span class="w-count">' + e.count + ' lần</span></div>';
-      }).join('') + (wrongEntries.length > 15
-        ? '<p class="empty-note">… và ' + (wrongEntries.length - 15) + ' câu khác.</p>' : '');
-    }
-  }
-  function statCard(val, label) {
-    return '<div class="stat"><div class="val">' + esc(val) + '</div><div class="lbl">' + esc(label) + '</div></div>';
-  }
-
-  /* ================================================================
-     9. QUIZ RENDER
-     ================================================================ */
-  function renderQuiz() {
-    if (!session) return;
-    var q = session.questions[session.current];
-    var total = session.questions.length;
-    var isPractice = session.mode === 'practice';
-
-    $('qCounter').textContent = 'Câu ' + (session.current + 1) + '/' + total;
-    $('progressBar').style.width = ((session.current + 1) / total * 100) + '%';
-
-    var badge = $('modeBadge');
-    badge.textContent = (isPractice ? '📚 ' : '📝 ') + session.label;
-    badge.className = 'badge' + (isPractice ? ' practice' : '');
-
-    $('qLesson').textContent = q.lesson;
-    $('qTopic').textContent = q.topic;
-    $('qText').innerHTML = esc(q.question).replace(/___+/g, '<span class="blank">______</span>');
-
-    var locked = isPractice && q.checked;
-    $('qOptions').innerHTML = q.options.map(function (text, i) {
-      var cls = 'option', mark = '';
-      if (isPractice && q.checked) {
-        if (i === q.correct) { cls += ' correct'; mark = '✅'; }
-        else if (i === q.selected) { cls += ' wrong'; mark = '❌'; }
-        cls += ' locked';
-      } else if (i === q.selected) cls += ' selected';
-      return '<button class="' + cls + '" data-opt="' + i + '"' + (locked ? ' disabled' : '') + '>' +
-        '<span class="opt-key">' + OPTION_KEYS[i] + '</span>' +
-        '<span class="opt-text">' + esc(text) + '</span>' +
-        (mark ? '<span class="opt-mark">' + mark + '</span>' : '') + '</button>';
-    }).join('');
-
-    var fb = $('feedback');
-    if (isPractice && q.checked) {
-      var isCorrect = q.selected === q.correct;
-      fb.className = 'feedback ' + (isCorrect ? 'ok' : 'bad');
-      var html = '<div class="fb-title">' + (isCorrect ? '✅ Chính xác!' : '❌ Chưa chính xác.') + '</div>';
-      if (!isCorrect) {
-        html += '<div class="fb-block"><span class="fb-label">Đáp án đúng</span><b>' +
-          OPTION_KEYS[q.correct] + '. ' + esc(q.options[q.correct]) + '</b></div>';
-      }
-      html += '<div class="fb-block"><span class="fb-label">Giải thích</span>' + esc(q.explanation) + '</div>';
-      if (q.grammarNote) {
-        html += '<div class="fb-block"><span class="fb-label">Ghi chú ngữ pháp</span>' + esc(q.grammarNote) + '</div>';
-      }
-      if (q.translation) {
-        html += '<div class="fb-trans"><b>Dịch:</b> ' + esc(q.translation) + '</div>';
-      }
-      fb.innerHTML = html; show(fb);
-    } else { hide(fb); fb.innerHTML = ''; }
-
-    var pa = $('practiceActions');
-    if (isPractice && !q.checked) {
-      show(pa);
-      $('btnCheck').disabled = (q.selected === null);
-    } else { hide(pa); }
-
-    $('navGrid').innerHTML = session.questions.map(function (item, i) {
-      var cls = 'nav-btn';
-      if (isPractice && item.checked) cls += (item.selected === item.correct) ? ' ok' : ' no';
-      else if (item.selected !== null) cls += ' answered';
-      if (i === session.current) cls += ' current';
-      return '<button class="' + cls + '" data-nav="' + i + '">' + (i + 1) + '</button>';
-    }).join('');
-
-    if (isPractice) { show($('legendResult')); show($('legendResult2')); }
-    else { hide($('legendResult')); hide($('legendResult2')); }
-
-    $('btnPrev').disabled = (session.current === 0);
-    $('btnNext').disabled = (session.current === total - 1);
-    $('btnNext').textContent = (session.current === total - 1) ? 'Câu cuối ✓' : 'Câu tiếp theo →';
-  }
-
-  /* ================================================================
-     10. ACTIONS
-     ================================================================ */
-  function selectOption(index) {
-    if (!session) return;
-    var q = session.questions[session.current];
-    if (session.mode === 'practice' && q.checked) return;
-    q.selected = index; saveSession(); renderQuiz();
-  }
-  function checkAnswer() {
-    if (!session || session.mode !== 'practice') return;
-    var q = session.questions[session.current];
-    if (q.selected === null || q.checked) return;
-    q.checked = true;
-    if (q.selected !== q.correct && !q.wrongRecorded) {
-      q.wrongRecorded = true; recordWrong(q.qid);
-    }
-    saveSession(); renderQuiz();
-  }
-  function goTo(index) {
-    if (!session) return;
-    if (index < 0 || index >= session.questions.length) return;
-    session.current = index; saveSession(); renderQuiz();
-    var card = document.querySelector('.question-card');
-    if (card) {
-      var top = card.getBoundingClientRect().top + window.pageYOffset - 80;
-      window.scrollTo({ top: top, behavior: 'smooth' });
-    }
-  }
-  function countAnswered() {
-    return session.questions.filter(function (q) { return q.selected !== null; }).length;
-  }
-  function requestSubmit() {
-    if (!session) return;
-    var total = session.questions.length;
-    var answered = countAnswered();
-    var unanswered = total - answered;
-    var body = 'Bạn đã trả lời ' + answered + '/' + total + ' câu.';
-    if (unanswered > 0) body += '\nCòn ' + unanswered + ' câu chưa trả lời — những câu này sẽ được tính là sai.';
-    body += '\n\nBạn có chắc muốn nộp bài?';
-    openModal({
-      title: 'Nộp bài?', body: body,
-      confirmText: 'Nộp bài', cancelText: 'Tiếp tục làm',
-      onConfirm: finishSession
-    });
-  }
-
-  /* ================================================================
-     11. FINISH
-     ================================================================ */
-  function finishSession() {
-    if (!session) return;
-    var total = session.questions.length;
-    var correctCount = 0, wrongCount = 0;
-    var isPractice = session.mode === 'practice';
-
-    session.questions.forEach(function (q) {
-      var ok = (q.selected !== null && q.selected === q.correct);
-      if (ok) correctCount++; else wrongCount++;
-      if (!ok && !q.wrongRecorded && q.selected !== null) {
-        q.wrongRecorded = true; recordWrong(q.qid);
-      }
-      if (!stats.lessons[q.lesson]) stats.lessons[q.lesson] = { answered: 0, correct: 0 };
-      stats.lessons[q.lesson].answered += 1;
-      if (ok) stats.lessons[q.lesson].correct += 1;
-    });
-
-    var percent = total > 0 ? Math.round((correctCount / total) * 100) : 0;
-    stats.totalAnswered += total;
-    stats.totalCorrect += correctCount;
-    if (isPractice) {
-      stats.practiceSessions += 1;
-      stats.practiceAnswered += total;
-      stats.practiceCorrect += correctCount;
-    } else {
-      stats.testSessions += 1;
-      stats.testScoreSum += correctCount;
-      stats.testQuestionSum += total;
-      if (percent >= stats.bestPercent) {
-        stats.bestPercent = percent;
-        stats.bestScoreText = correctCount + '/' + total;
-      }
-    }
-    stats.history.push({
-      mode: session.mode, score: correctCount, total: total, percent: percent,
-      date: new Date().toLocaleString('vi-VN', {
-        day: '2-digit', month: '2-digit', year: 'numeric',
-        hour: '2-digit', minute: '2-digit'
-      })
-    });
-    if (stats.history.length > HISTORY_LIMIT) stats.history = stats.history.slice(-HISTORY_LIMIT);
-    saveStats(stats);
-
-    session.finished = true;
-    session.score = correctCount;
-    session.percent = percent;
+    state.result = null;
+    state.view = "quiz";
+    state.navOpen = false;
     saveSession();
-
-    renderResult();
-    showView('result');
+    render();
+    return;
   }
 
-  /* ================================================================
-     12. RESULT
-     ================================================================ */
-  function renderResult() {
-    if (!session) return;
-    var total = session.questions.length;
-    var correct = 0;
-    session.questions.forEach(function (q) {
-      if (q.selected !== null && q.selected === q.correct) correct++;
-    });
-    var wrong = total - correct;
-    var percent = total > 0 ? Math.round((correct / total) * 100) : 0;
-
-    var ring = $('scoreRing');
-    var deg = Math.round(percent * 3.6);
-    ring.style.background = 'conic-gradient(var(--primary) ' + deg + 'deg, var(--primary-soft) ' + deg + 'deg)';
-    $('scoreBig').textContent = correct + '/' + total;
-    $('scorePct').textContent = percent + '%';
-    $('rsCorrect').textContent = correct;
-    $('rsWrong').textContent = wrong;
-    $('rsPct').textContent = percent + '%';
-
-    var title, msg;
-    if (percent >= 90) { title = 'Xuất sắc! 🌟'; msg = 'Bạn nắm ngữ pháp Leçons 7–12 rất vững. Hãy thử một lượt mới để duy trì phong độ nhé.'; }
-    else if (percent >= 75) { title = 'Rất tốt! 👏'; msg = 'Bạn đã hiểu khá chắc các chủ điểm. Xem lại vài câu sai để hoàn thiện thêm.'; }
-    else if (percent >= 50) { title = 'Khá ổn! 💪'; msg = 'Bạn đã nắm được phần lớn kiến thức. Chế độ luyện tập sẽ giúp bạn củng cố các chủ điểm còn yếu.'; }
-    else if (percent >= 25) { title = 'Đang tiến bộ! 📚'; msg = 'Đây là bước khởi đầu tốt. Hãy đọc kỹ phần giải thích và luyện tập thêm từng chủ điểm.'; }
-    else { title = 'Hãy tiếp tục cố gắng! 🌱'; msg = 'Kiến thức này còn mới với bạn. Chế độ luyện tập có giải thích ngay sẽ giúp bạn hiểu nhanh hơn.'; }
-    $('resultTitle').textContent = title;
-    $('levelMsg').textContent = msg;
-    $('btnRetryWrong').style.display = wrong > 0 ? '' : 'none';
-    renderReview();
-    $('onlyWrong').checked = false;
+  if(act === "new-quiz"){
+    const m = state.quiz ? state.quiz.mode : "mixed";
+    if(m === "lesson"){
+      const l = state.quiz.questions[0] ? state.quiz.questions[0].lesson : 7;
+      startLesson(l);
+    } else {
+      startMode(m);
+    }
+    return;
   }
 
-  function renderReview() {
-    if (!session) return;
-    var onlyWrong = $('onlyWrong').checked;
-    var list = $('reviewList');
-    var html = '', shown = 0;
+  if(act === "reset-progress"){
+    if(confirm("Bạn có chắc muốn xóa toàn bộ tiến độ học tập? Hành động này không thể hoàn tác.")){
+      localStorage.removeItem(PROG_KEY);
+      clearSession();
+      state.notice = "Đã xóa toàn bộ tiến độ học tập.";
+      state.view = "home";
+      render();
+    }
+    return;
+  }
+});
 
-    session.questions.forEach(function (q, idx) {
-      var isCorrect = (q.selected !== null && q.selected === q.correct);
-      if (onlyWrong && isCorrect) return;
-      shown++;
+/* Bàn phím: 1-4 chọn đáp án, ← → chuyển câu */
+document.addEventListener("keydown", function(e){
+  if(state.view !== "quiz" || !state.quiz) return;
+  const tag = (e.target.tagName || "").toLowerCase();
+  if(tag === "input" || tag === "textarea") return;
 
-      var optsHtml = q.options.map(function (text, i) {
-        var cls = 'rv-opt', tag = '';
-        if (i === q.correct) { cls += ' correct'; tag = '<span class="rv-tag">Đáp án đúng</span>'; }
-        else if (i === q.selected) { cls += ' wrong'; tag = '<span class="rv-tag">Bạn chọn</span>'; }
-        return '<div class="' + cls + '"><span class="rv-key">' + OPTION_KEYS[i] + '.</span>' +
-          '<span>' + esc(text) + '</span>' + tag + '</div>';
-      }).join('');
+  if(["1","2","3","4"].includes(e.key)){
+    const i = Number(e.key) - 1;
+    const qq = state.quiz.questions[state.quiz.index];
+    if(i < qq.options.length){
+      qq.selected = (qq.selected === i) ? null : i;
+      saveSession();
+      render();
+    }
+    e.preventDefault();
+  } else if(e.key === "ArrowLeft"){
+    if(state.quiz.index > 0){ state.quiz.index--; saveSession(); render(); }
+    e.preventDefault();
+  } else if(e.key === "ArrowRight"){
+    if(state.quiz.index < state.quiz.questions.length - 1){ state.quiz.index++; saveSession(); render(); }
+    e.preventDefault();
+  }
+});
 
-      var userAnswer = q.selected === null
-        ? '<b style="color:var(--bad);">Không trả lời</b>'
-        : '<b>' + OPTION_KEYS[q.selected] + '. ' + esc(q.options[q.selected]) + '</b>';
+/* ============================================================
+   7. NỘP BÀI & TÍNH ĐIỂM
+   ============================================================ */
+function finishQuiz(){
+  const qz = state.quiz;
+  if(!qz) return;
 
-      var explHtml = '<div class="rv-expl">' +
-        '<span class="rv-lbl">Giải thích</span><p>' + esc(q.explanation) + '</p>' +
-        (q.grammarNote ? '<span class="rv-lbl">Ghi chú ngữ pháp</span><p>' + esc(q.grammarNote) + '</p>' : '') +
-        (q.translation ? '<span class="rv-lbl">Dịch câu</span><p>' + esc(q.translation) + '</p>' : '') +
-        '</div>';
-
-      html += '<div class="review-item' + (isCorrect ? '' : ' is-wrong') + '">' +
-        '<div class="rv-head">' +
-          '<span class="rv-num">CÂU ' + (idx + 1) + '</span>' +
-          '<span class="tag">' + esc(q.lesson) + '</span>' +
-          '<span class="tag tag-soft">' + esc(q.topic) + '</span>' +
-          '<span class="badge" style="margin-left:auto;' +
-            (isCorrect ? 'background:var(--ok-soft);color:#1f7a52;' : 'background:var(--bad-soft);color:#a83b3b;') +
-          '">' + (isCorrect ? '✅ Đúng' : '❌ Sai') + '</span>' +
-        '</div>' +
-        '<div class="rv-q">' + esc(q.question).replace(/___+/g, '<span class="blank">______</span>') + '</div>' +
-        '<div class="rv-opts">' + optsHtml + '</div>' +
-        '<div class="rv-answer-line">Bạn chọn: ' + userAnswer + '</div>' +
-        '<div class="rv-answer-line">Đáp án đúng: <b>' + OPTION_KEYS[q.correct] + '. ' +
-          esc(q.options[q.correct]) + '</b></div>' +
-        explHtml + '</div>';
-    });
-
-    if (shown === 0) list.innerHTML = '<div class="card"><p class="empty-note">Không có câu sai nào. Tuyệt vời! 🎉</p></div>';
-    else list.innerHTML = html;
+  const answeredCount = qz.questions.filter(x => x.selected !== null).length;
+  if(answeredCount < qz.questions.length){
+    const remain = qz.questions.length - answeredCount;
+    if(!confirm("Bạn còn " + remain + " câu chưa trả lời. Vẫn nộp bài ?")) return;
   }
 
-  /* ================================================================
-     13. START SESSION
-     ================================================================ */
-  function startSession(mode, pool, label) {
-    if (!QUESTION_BANK.length) {
-      openModal({ title: 'Chưa có câu hỏi', body: 'Ngân hàng câu hỏi đang trống.',
-        confirmText: 'Đã hiểu', cancelText: 'Đóng' });
-      return;
-    }
-    var problems = validateBank(QUESTION_BANK);
-    if (problems.length) {
-      openModal({
-        title: 'Dữ liệu câu hỏi có vấn đề',
-        body: problems.slice(0, 6).join('\n') +
-              (problems.length > 6 ? '\n… và ' + (problems.length - 6) + ' vấn đề khác.' : ''),
-        confirmText: 'Đã hiểu', cancelText: 'Đóng'
-      });
-      return;
-    }
-    session = buildSession(mode, pool, label);
-    saveSession();
-    renderQuiz();
-    showView('quiz');
-  }
+  const p = loadProgress();
+  let correct = 0, wrong = 0, blank = 0;
+  const lessonAgg = {};
 
-  /* ================================================================
-     14. EVENTS
-     ================================================================ */
-  $('modeTest').addEventListener('click', function () {
-    startSession('test', QUESTION_BANK, 'Chế độ kiểm tra');
-  });
-  $('modePractice').addEventListener('click', function () {
-    startSession('practice', QUESTION_BANK, 'Chế độ luyện tập');
-  });
+  qz.questions.forEach(qq => {
+    const isBlank = qq.selected === null;
+    const isCorrect = qq.selected === qq.correct;
 
-  $('btnReviewWrong').addEventListener('click', function () {
-    var wrongStore = loadWrong();
-    var wrongIds = Object.keys(wrongStore).map(Number);
-    var pool = QUESTION_BANK.filter(function (q) { return wrongIds.indexOf(q.id) !== -1; });
-    if (!pool.length) {
-      openModal({ title: 'Chưa có câu sai',
-        body: 'Bạn chưa có câu trả lời sai nào được ghi nhận. Hãy làm một bài trước nhé!',
-        confirmText: 'Đã hiểu', cancelText: 'Đóng' });
-      return;
-    }
-    startSession('practice', pool, 'Luyện câu sai');
-  });
-
-  $('btnClearWrong').addEventListener('click', function () {
-    openModal({
-      title: 'Xóa lịch sử câu sai?',
-      body: 'Danh sách các câu bạn thường trả lời sai sẽ bị xóa vĩnh viễn. Thống kê chung vẫn được giữ nguyên.',
-      confirmText: 'Xóa', danger: true,
-      onConfirm: function () { removeKey(LS_KEYS.wrong); renderHome(); }
-    });
-  });
-
-  $('btnResetAll').addEventListener('click', function () {
-    openModal({
-      title: 'Xóa toàn bộ dữ liệu tiến độ?',
-      body: 'Tất cả thống kê, lịch sử làm bài và danh sách câu sai sẽ bị xóa vĩnh viễn. Hành động này không thể hoàn tác.',
-      confirmText: 'Xóa tất cả', danger: true,
-      onConfirm: function () {
-        removeKey(LS_KEYS.stats); removeKey(LS_KEYS.wrong); removeKey(LS_KEYS.session);
-        stats = defaultStats(); session = null; saveStats(stats);
-        showView('home'); renderHome();
-      }
-    });
-  });
-
-  $('qOptions').addEventListener('click', function (e) {
-    var btn = e.target.closest('[data-opt]');
-    if (!btn || btn.disabled) return;
-    selectOption(Number(btn.dataset.opt));
-  });
-  $('btnCheck').addEventListener('click', checkAnswer);
-  $('navGrid').addEventListener('click', function (e) {
-    var btn = e.target.closest('[data-nav]');
-    if (!btn) return;
-    goTo(Number(btn.dataset.nav));
-  });
-  $('btnPrev').addEventListener('click', function () { goTo(session.current - 1); });
-  $('btnNext').addEventListener('click', function () { goTo(session.current + 1); });
-  $('btnSubmit').addEventListener('click', requestSubmit);
-
-  $('btnHome').addEventListener('click', function () {
-    openModal({
-      title: 'Rời khỏi bài làm?',
-      body: 'Bài làm hiện tại sẽ được lưu lại. Bạn có thể quay lại tiếp tục bất cứ lúc nào từ trang chủ.',
-      confirmText: 'Về trang chủ', cancelText: 'Ở lại',
-      onConfirm: function () { saveSession(); showView('home'); renderHome(); }
-    });
-  });
-
-  $('btnRetry').addEventListener('click', function () {
-    var mode = session ? session.mode : 'test';
-    var label = (mode === 'practice') ? 'Chế độ luyện tập' : 'Chế độ kiểm tra';
-    clearSession();
-    startSession(mode === 'practice' ? 'practice' : 'test', QUESTION_BANK, label);
-  });
-
-  $('btnRetryWrong').addEventListener('click', function () {
-    if (!session) return;
-    var pool = session.questions
-      .filter(function (q) { return q.selected === null || q.selected !== q.correct; })
-      .map(function (q) { return QUESTION_BANK.filter(function (b) { return b.id === q.qid; })[0]; })
-      .filter(Boolean);
-    if (!pool.length) {
-      openModal({ title: 'Không có câu sai',
-        body: 'Bạn đã trả lời đúng tất cả các câu. Tuyệt vời!',
-        confirmText: 'Đã hiểu', cancelText: 'Đóng' });
-      return;
-    }
-    clearSession();
-    startSession('practice', pool, 'Luyện lại câu sai');
-  });
-
-  $('btnBackHome').addEventListener('click', function () {
-    clearSession(); showView('home'); renderHome();
-  });
-  $('onlyWrong').addEventListener('change', renderReview);
-
-  /* ================================================================
-     15. INIT
-     ================================================================ */
-  function init() {
-    stats = loadStats();
-
-    var problems = validateBank(QUESTION_BANK);
-    if (problems.length) {
-      console.warn('[FGQ] Phát hiện ' + problems.length + ' vấn đề trong QUESTION_BANK:');
-      problems.forEach(function (p) { console.warn('  • ' + p); });
-    }
-    if (QUESTION_BANK.length < 100) {
-      console.warn('[FGQ] Ngân hàng câu hỏi hiện có ' + QUESTION_BANK.length + '/100 câu.');
+    if(isBlank){ blank++; }
+    else {
+      if(isCorrect) correct++; else wrong++;
+      const L = lessonAgg[qq.lesson] || (lessonAgg[qq.lesson] = { a: 0, c: 0 });
+      L.a++;
+      if(isCorrect) L.c++;
     }
 
-    var saved = loadJSON(LS_KEYS.session, null);
-    if (saved && Array.isArray(saved.questions) && saved.questions.length) {
-      var valid = saved.questions.every(function (q) {
-        return q && Array.isArray(q.options) && q.options.length === 4 &&
-               typeof q.correct === 'number' && q.correct >= 0 && q.correct <= 3;
-      });
-      if (valid) {
-        session = saved;
-        if (session.finished) { renderResult(); showView('result'); }
-        else {
-          if (typeof session.current !== 'number' ||
-              session.current < 0 || session.current >= session.questions.length) {
-            session.current = 0;
-          }
-          renderQuiz(); showView('quiz');
+    if(!isBlank){
+      if(isCorrect){
+        if(p.wrongIds[qq.id]){
+          p.wrongIds[qq.id]--;
+          if(p.wrongIds[qq.id] <= 0) delete p.wrongIds[qq.id];
         }
-        return;
       } else {
-        console.warn('[FGQ] Session đã lưu không hợp lệ — đã bỏ qua.');
-        removeKey(LS_KEYS.session);
+        p.wrongIds[qq.id] = (p.wrongIds[qq.id] || 0) + 1;
       }
+      p.seenIds[qq.id] = (p.seenIds[qq.id] || 0) + 1;
     }
+  });
 
-    renderHome();
-    showView('home');
+  const total = qz.questions.length;
+  const answered = correct + wrong;
+
+  p.quizzesCompleted++;
+  p.totalAnswered += answered;
+  p.totalCorrect += correct;
+  p.totalIncorrect += wrong;
+
+  /* FIX 2: so sánh kỷ lục theo TỶ LỆ %, không theo số câu tuyệt đối */
+  const curPct = total ? correct / total : 0;
+  const bestPct = p.bestTotal ? p.bestScore / p.bestTotal : 0;
+  if(curPct > bestPct || (curPct === bestPct && correct > p.bestScore)){
+    p.bestScore = correct;
+    p.bestTotal = total;
   }
 
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', init);
-  } else { init(); }
-})();
+  Object.keys(lessonAgg).forEach(k => {
+    const s = p.lessons[k] || (p.lessons[k] = { answered: 0, correct: 0 });
+    s.answered += lessonAgg[k].a;
+    s.correct += lessonAgg[k].c;
+  });
+
+  const elapsedMs = Date.now() - (qz.startedAt || Date.now());
+  const mins = Math.floor(elapsedMs / 60000);
+  const secs = Math.floor((elapsedMs % 60000) / 1000);
+  const timeText = mins + ":" + String(secs).padStart(2, "0");
+
+  p.history.unshift({
+    date: Date.now(),
+    mode: qz.mode,
+    title: qz.title,
+    score: correct,
+    total: total,
+    percent: Math.round(correct / total * 100)
+  });
+  p.history = p.history.slice(0, 25);
+  saveProgress(p);
+
+  state.result = {
+    correct, wrong, blank, total,
+    timeText,
+    questions: qz.questions.map(x => Object.assign({}, x))
+  };
+  state.view = "result";
+  clearSession();
+  render();
+}
+
+/* ============================================================
+   8. KHỞI ĐỘNG
+   ============================================================ */
+render();
 </script>
 </body>
 </html>
