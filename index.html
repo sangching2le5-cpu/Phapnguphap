@@ -81,6 +81,20 @@ p{margin:0 0 .8em}
 }
 .opt.selected{border-color:var(--primary);background:var(--primary-l)}
 .opt.selected .letter{background:var(--primary);color:#fff}
+.opt.correct,.opt.correct:hover{border-color:var(--ok);background:var(--ok-bg)}
+.opt.correct .letter{background:var(--ok);color:#fff}
+.opt.wrong,.opt.wrong:hover{border-color:var(--bad);background:var(--bad-bg)}
+.opt.wrong .letter{background:var(--bad);color:#fff}
+.opt.locked{cursor:default}
+.opt.locked:focus-visible{outline:none}
+.feedback{margin-top:14px;padding:13px 15px;border-radius:11px;font-size:.94rem;line-height:1.55;border:1px solid transparent}
+.feedback.ok{background:var(--ok-bg);border-color:#b7dfc8;color:#1f6d43}
+.feedback.bad{background:var(--bad-bg);border-color:#f0c9c6;color:#8a332c}
+.feedback .fb-title{font-weight:800;display:block;margin-bottom:5px;font-size:1rem}
+.feedback .fb-ans{display:block;margin-bottom:7px}
+.feedback .fb-exp{color:#2c4258}
+.feedback.ok .fb-exp{color:#1f5a3a}
+.feedback.bad .fb-exp{color:#6b2b25}
 .hint{color:var(--muted);font-size:.85rem;text-align:center;margin-top:10px}
 .navtoggle{background:none;border:none;color:var(--primary-d);font:inherit;font-size:.86rem;font-weight:600;cursor:pointer;padding:6px 0;text-decoration:underline}
 .nav-grid{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px;max-height:220px;overflow-y:auto;padding:4px}
@@ -161,7 +175,6 @@ const LESSON_NAMES = {
 };
 
 /* ---------------- LEÇON 7 — SHOPPING ---------------- */
-/* Từ vựng: quần áo & phụ kiện */
 q(7,"vocabulaire","Vêtements","Il fait froid aujourd'hui. Je mets un ______ chaud.",["manteau","tableau","musée","pont"],0,"Trời lạnh nên mặc áo khoác ấm: un manteau.");
 q(7,"vocabulaire","Vêtements","Marie porte une jolie ______ rouge pour la fête.",["robe","gare","cuisine","photo"],0,"Une robe = váy/đầm. 'Jolie robe rouge' hợp với ngữ cảnh dự tiệc.");
 q(7,"vocabulaire","Vêtements","Pour aller à l'université, Paul porte un ______ et un pantalon.",["pull","île","poète","salon"],0,"Un pull = áo len, mặc cùng pantalon khi đi học.");
@@ -175,8 +188,7 @@ q(7,"vocabulaire","Vêtements","Je mets mes livres dans mon ______.",["sac","pul
 q(7,"vocabulaire","Vêtements","En été, il met un ______ sur sa tête.",["chapeau","sac","jean","pull"],0,"Un chapeau = mũ, đội trên đầu (sur la tête).");
 q(7,"vocabulaire","Vêtements","Ces ______ sont trop petites pour mes pieds.",["chaussures","lunettes","robes","chemises"],0,"Chaussures = giày, đi ở chân (aux pieds).");
 q(7,"vocabulaire","Vêtements","Elle achète une ______ pour l'été : c'est plus léger qu'un manteau.",["robe","gare","poste","cour"],0,"Une robe = váy, nhẹ hơn manteau nên hợp mùa hè.");
-q(7,"vocabulaire","Vêtements","Ce ______ est trop petit : je ne peux pas mettre mes bras.",["manteau","bus","pont","film"],0,"Manteau là áo khoác; nếu quá nhỏ thì không mặc vừa.");
-/* Từ vựng: màu sắc */
+q(7,"vocabulaire","Vêtements","Ce ______ est trop petit : je ne peux pas mettre mes mains.",["manteau","bus","pont","film"],0,"Manteau là áo khoác; nếu quá nhỏ thì không mặc vừa.");
 q(7,"vocabulaire","Couleurs","Le ciel est généralement ______ quand il fait beau.",["bleu","rouge","noir","gris"],0,"Trời đẹp thì bầu trời thường màu xanh dương: bleu.");
 q(7,"vocabulaire","Couleurs","La tomate est souvent ______.",["rouge","jaune","verte","blanche"],0,"Cà chua thường có màu đỏ: rouge.");
 q(7,"vocabulaire","Couleurs","L'herbe est ______.",["verte","grise","noire","bleue"],0,"Cỏ màu xanh lá: verte (herbe là danh từ giống cái).");
@@ -188,7 +200,6 @@ q(7,"vocabulaire","Couleurs","Elle porte une robe ______ comme une tomate.",["ro
 q(7,"vocabulaire","Couleurs","Il aime les vêtements de couleur ______, comme l'herbe.",["vert","noir","blanc","gris"],0,"So sánh với herbe (cỏ) → màu xanh lá: vert.");
 q(7,"vocabulaire","Couleurs","Elle achète un pantalon ______ pour une tenue élégante.",["noir","rouge","jaune","vert"],0,"Quần đen (noir) thường được coi là thanh lịch.");
 q(7,"vocabulaire","Couleurs","La chemise de Paul n'est ni blanche ni noire : elle est ______.",["grise","rouge","jaune","verte"],0,"Không trắng không đen → màu xám: grise (chemise giống cái).");
-/* Từ vựng: kích cỡ, giá, số đếm */
 q(7,"vocabulaire","Taille et prix","« Vous faites quelle ______ ? » — « Je fais du 38. »",["taille","prix","couleur","voyage"],0,"Câu hỏi về cỡ quần áo dùng 'la taille'; trả lời 'je fais du 38'.");
 q(7,"vocabulaire","Taille et prix","« Combien coûte cette robe ? » — « Le ______ est de 60 euros. »",["prix","taille","salon","métro"],0,"Le prix = giá cả. Câu hỏi về tiền thì trả lời bằng prix.");
 q(7,"vocabulaire","Taille et prix","Ce tee-shirt coûte 20 ______.",["euros","tailles","robes","couleurs"],0,"Đơn vị tiền tệ châu Âu là euros.");
@@ -202,7 +213,6 @@ q(7,"vocabulaire","Nombres","La voiture coûte 1000 euros. On dit :",["mille","c
 q(7,"vocabulaire","Nombres","71 se dit :",["soixante et onze","soixante-dix","quatre-vingt-onze","septante et un"],0,"71 = soixante et onze (có 'et' vì 1).");
 q(7,"vocabulaire","Nombres","90 se dit :",["quatre-vingt-dix","quatre-vingts","nonante","neuf-dix"],0,"90 = quatre-vingt-dix (80 + 10), không có 's'.");
 q(7,"vocabulaire","Nombres","100 se dit :",["cent","mille","dix","cents"],0,"100 = cent (số ít, không có 's').");
-/* Ngữ pháp: tính từ chỉ định */
 q(7,"grammaire","Adjectifs démonstratifs","___ pantalon est très beau.",["Ce","Cette","Ces","Cet"],0,"Pantalon là danh từ giống đực số ít, bắt đầu bằng phụ âm → dùng 'ce'.");
 q(7,"grammaire","Adjectifs démonstratifs","J'aime ___ robe rouge.",["cette","ce","cet","ces"],0,"Robe là danh từ giống cái số ít → dùng 'cette'.");
 q(7,"grammaire","Adjectifs démonstratifs","Regarde ___ hôtel !",["cet","ce","cette","ces"],0,"Hôtel giống đực số ít, bắt đầu bằng nguyên âm/h câm → dùng 'cet'.");
@@ -215,14 +225,12 @@ q(7,"grammaire","Adjectifs démonstratifs","Elle aime ___ objets.",["Ces","Cette
 q(7,"grammaire","Adjectifs démonstratifs","___ manteau coûte 100 euros.",["Ce","Cet","Cette","Ces"],0,"Manteau giống đực số ít, phụ âm đầu → 'ce'.");
 q(7,"grammaire","Adjectifs démonstratifs","___ amie est très sympathique.",["Cette","Ce","Cet","Ces"],0,"Amie giống cái số ít → 'cette'.");
 q(7,"grammaire","Adjectifs démonstratifs","___ arbre est très grand.",["Cet","Ce","Cette","Ces"],0,"Arbre giống đực số ít, bắt đầu bằng nguyên âm → 'cet'.");
-/* Ngữ pháp: tính từ nghi vấn */
 q(7,"grammaire","Adjectifs interrogatifs","___ pantalon tu préfères ?",["Quel","Quelle","Quels","Quelles"],0,"Pantalon giống đực số ít → 'quel'.");
 q(7,"grammaire","Adjectifs interrogatifs","___ couleur aimes-tu ?",["Quelle","Quel","Quels","Quelles"],0,"Couleur giống cái số ít → 'quelle'.");
 q(7,"grammaire","Adjectifs interrogatifs","___ vêtements achètes-tu ?",["Quels","Quel","Quelle","Quelles"],0,"Vêtements giống đực số nhiều → 'quels'.");
 q(7,"grammaire","Adjectifs interrogatifs","___ chaussures sont à ta taille ?",["Quelles","Quel","Quelle","Quels"],0,"Chaussures giống cái số nhiều → 'quelles'.");
 q(7,"grammaire","Adjectifs interrogatifs","___ robe est la plus jolie ?",["Quelle","Quel","Quels","Quelles"],0,"Robe giống cái số ít → 'quelle'.");
 q(7,"grammaire","Adjectifs interrogatifs","___ prix fait ce sac ?",["Quel","Quelle","Quels","Quelles"],0,"Prix giống đực số ít → 'quel'.");
-/* Ngữ pháp: Comment / Combien */
 q(7,"grammaire","Comment / Combien","— Comment tu trouves ce pull ? — ______",["Il est très joli.","Il coûte 30 euros.","Il est à la banque.","Il est chez moi."],0,"'Comment tu trouves...' hỏi ý kiến/nhận xét → trả lời bằng tính từ như 'très joli'.");
 q(7,"grammaire","Comment / Combien","— Combien coûte cette chemise ? — ______",["Elle coûte 25 euros.","Elle est rouge.","Elle est devant.","Elle est grande."],0,"'Combien coûte' hỏi giá → trả lời bằng số tiền.");
 q(7,"grammaire","Comment / Combien","— Ça fait combien ? — ______",["Ça fait 80 euros.","C'est un hôtel.","C'est à gauche.","C'est noir."],0,"'Ça fait combien ?' hỏi tổng số tiền → trả lời 'Ça fait + số tiền'.");
@@ -251,7 +259,6 @@ q(8,"vocabulaire","Œuvres d'art","J'ai vu un beau ______ au cinéma hier soir."
 q(8,"vocabulaire","Œuvres d'art","Il prend une ______ de la tour Eiffel.",["photo","peinture","chanson","statue"],0,"'Prendre une photo de...' = chụp ảnh cái gì.");
 q(8,"vocabulaire","Œuvres d'art","Le musée expose un ______ de Monet dans la salle 3.",["tableau","film","poème","livre"],0,"Tác phẩm hội họa là un tableau.");
 q(8,"vocabulaire","Œuvres d'art","Elle lit un ______ de Rimbaud.",["poème","tableau","film","roman"],0,"Rimbaud là nhà thơ → đọc un poème.");
-/* Ngữ pháp: giới từ vị trí */
 q(8,"grammaire","Prépositions de lieu","Le tableau est ___ centre du mur.",["au","à la","aux","du"],0,"'Au centre' = ở giữa (au = à + le).");
 q(8,"grammaire","Prépositions de lieu","Le sac est ___ la chaise : il est par terre, dessous.",["sous","entre","contre","devant"],0,"'Sous' = ở dưới. Túi ở dưới ghế.");
 q(8,"grammaire","Prépositions de lieu","Le musée est ___ la banque et la poste.",["entre","à droite","sous","derrière de"],0,"'Entre... et...' = ở giữa hai vật.");
@@ -267,7 +274,6 @@ q(8,"grammaire","Prépositions de lieu","L'affiche est collée ___ le mur, dans 
 q(8,"grammaire","Prépositions de lieu","La lampe est ___ du lit.",["au-dessus","entre","contre","devant"],0,"'Au-dessus de' = ở phía trên. (Đèn ở phía trên giường.)");
 q(8,"grammaire","Prépositions de lieu","Le jardin est ___ la maison.",["derrière","entre","contre","sur"],0,"'Derrière' = phía sau. Vườn ở sau nhà.");
 q(8,"grammaire","Prépositions de lieu","Le sculpteur se place ___ son œuvre pour la photo.",["devant","sous","entre","contre"],0,"Đứng trước tác phẩm để chụp ảnh → 'devant'.");
-/* Ngữ pháp: đại từ nhấn mạnh */
 q(8,"grammaire","Pronoms toniques","___, j'aime beaucoup la musique classique.",["Moi","Je","Me","Mon"],0,"'Moi' là đại từ nhấn mạnh dùng để nhấn chủ ngữ đứng đầu câu.");
 q(8,"grammaire","Pronoms toniques","Tu viens avec ___ au musée ?",["moi","je","me","mon"],0,"Sau giới từ 'avec' phải dùng đại từ nhấn mạnh: moi.");
 q(8,"grammaire","Pronoms toniques","L'homme brun, ___, a un blouson noir.",["lui","il","le","son"],0,"'Lui' nhấn mạnh cho chủ ngữ giống đực số ít.");
@@ -312,7 +318,6 @@ q(9,"vocabulaire","Abréviations","Dans une annonce, « cuis. » signifie :",["c
 q(9,"vocabulaire","Abréviations","Dans une annonce, « sdb » signifie :",["salle de bains","salle à manger","salon de beauté","sous-sol"],0,"'sdb' là viết tắt của 'salle de bains' (phòng tắm).");
 q(9,"vocabulaire","Abréviations","Dans une annonce, « imm. » signifie :",["immeuble","immédiat","immense","immobilier"],0,"'imm.' là viết tắt của 'immeuble' (tòa nhà).");
 q(9,"vocabulaire","Abréviations","Dans une annonce, « park. » signifie :",["parking","parc","parka","parquet"],0,"'park.' là viết tắt của 'parking' (bãi đỗ xe).");
-/* Ngữ pháp: đại từ nhấn mạnh số nhiều */
 q(9,"grammaire","Pronoms toniques (pluriel)","___ , nous habitons au centre-ville.",["Nous","On","Notre","Nos"],0,"'Nous' là đại từ nhấn mạnh số nhiều ngôi 1.");
 q(9,"grammaire","Pronoms toniques (pluriel)","Je viens avec ___ , si vous êtes d'accord.",["vous","votre","vos","on"],0,"Sau 'avec' dùng đại từ nhấn mạnh: vous.");
 q(9,"grammaire","Pronoms toniques (pluriel)","___ , ils ont un grand appartement.",["Eux","Ils","Les","Leurs"],0,"'Eux' là đại từ nhấn mạnh số nhiều giống đực.");
@@ -332,7 +337,6 @@ q(9,"grammaire","Prépositions","Nous louons un studio ___ une cuisine équipée
 q(9,"grammaire","Prépositions","C'est un cadeau ___ ma sœur.",["pour","avec","dans","sur"],0,"'Pour' = dành cho, để tặng cho ai.");
 q(9,"grammaire","Prépositions","La boulangerie est ___ côté de la pharmacie.",["à","au","de","en"],0,"'À côté de' = bên cạnh (à + côté).");
 q(9,"grammaire","Prépositions","Le parking est ___ sous-sol de l'immeuble.",["au","à la","aux","en"],0,"'Au sous-sol' = ở tầng hầm (à + le = au).");
-/* Ngữ pháp: Où */
 q(9,"grammaire","Questions avec Où","— ___ est l'appartement ? — Il est au deuxième étage.",["Où","Comment","Combien","Quel"],0,"Hỏi vị trí dùng 'Où'.");
 q(9,"grammaire","Questions avec Où","— La poste, c'est ___ ? — C'est en face de la banque.",["où","comment","combien","quelle"],0,"'C'est où ?' là cách hỏi vị trí thân mật.");
 q(9,"grammaire","Questions avec Où","— Ça se trouve où ? — ______",["C'est près de la gare.","Ça coûte 50 euros.","Il est rouge.","C'est une chemise."],0,"Câu hỏi vị trí → trả lời bằng nơi chốn.");
@@ -360,7 +364,6 @@ q(10,"vocabulaire","Lieux publics","Il y a beaucoup de fleurs dans le ______ pub
 q(10,"vocabulaire","Lieux publics","Pour retirer de l'argent, je vais à la ______ .",["banque","poste","gare","piscine"],0,"Rút tiền thì đến ngân hàng (la banque).");
 q(10,"vocabulaire","Lieux publics","Pour envoyer une carte postale, je vais à la ______ .",["poste","banque","place","cour"],0,"Gửi bưu thiếp thì đến bưu điện (la poste).");
 q(10,"vocabulaire","Lieux publics","Les élèves jouent dans la ______ de l'école.",["cour","gare","poste","banque"],0,"Học sinh chơi ở sân trường (la cour).");
-/* Ngữ pháp: phương tiện */
 q(10,"vocabulaire","Transports","L'école est proche de chez moi. J'y vais ______.",["à pied","en voiture","en métro","en taxi"],0,"Đi bộ thì dùng 'à pied'.");
 q(10,"vocabulaire","Transports","Pour faire du sport, je vais au parc ______.",["à vélo","en avion","en bus","en train"],0,"Đạp xe thì dùng 'à vélo'.");
 q(10,"vocabulaire","Transports","Mon frère conduit une moto. Il va au travail ______.",["à moto","en rollers","à pied","en métro"],0,"Đi xe máy thì dùng 'à moto'.");
@@ -371,7 +374,6 @@ q(10,"vocabulaire","Transports","Il est tard. Je prends un ______ pour rentrer."
 q(10,"vocabulaire","Transports","Ma famille voyage ______ pour les vacances.",["en voiture","à pied","à vélo","en rollers"],0,"Cả nhà đi nghỉ bằng ô tô → 'en voiture'.");
 q(10,"vocabulaire","Transports","Je préfère me déplacer ______ parce que je n'ai pas de voiture.",["à pied","en voiture","en avion","en bateau"],0,"Không có xe hơi thì đi bộ: 'à pied'.");
 q(10,"vocabulaire","Transports","Pour visiter la ville, nous louons des vélos et nous circulons ______.",["à vélo","en taxi","en bus","en métro"],0,"Thuê xe đạp thì đi 'à vélo'.");
-/* Ngữ pháp: mệnh lệnh */
 q(10,"grammaire","Impératif","___ à gauche ! (tu)",["Tourne","Tournes","Tournez","Tourner"],0,"Mệnh lệnh với 'tu' bỏ 's' ở động từ nhóm 1: Tourne !");
 q(10,"grammaire","Impératif","___ tout droit ! (vous)",["Allez","Va","Vas","Aller"],0,"Mệnh lệnh với 'vous' dùng dạng 'vous allez' → Allez !");
 q(10,"grammaire","Impératif","___ le bus ! (tu)",["Prends","Prenez","Prend","Prendre"],0,"Mệnh lệnh với 'tu': Prends ! (động từ prendre giữ 's').");
@@ -384,7 +386,6 @@ q(10,"grammaire","Impératif","___ à gauche, puis traverse la rue. (tu)",["Tour
 q(10,"grammaire","Impératif","___ au musée ! (vous)",["Allez","Va","Vas","Aller"],0,"Với 'vous': Allez !");
 q(10,"grammaire","Impératif","Ne ___ pas à droite ! (tu)",["tourne","tournes","tournez","tourner"],0,"Phủ định mệnh lệnh: Ne + động từ + pas. Với 'tu' bỏ 's'.");
 q(10,"grammaire","Impératif","___ bien les explications ! (vous)",["Écoutez","Écoute","Écoutes","Écouter"],0,"Với 'vous': Écoutez !");
-/* Ngữ pháp: prendre */
 q(10,"grammaire","Prendre au présent","Je ___ le bus tous les matins.",["prends","prend","prenez","prennent"],0,"Ngôi 1 số ít của 'prendre' là 'je prends'.");
 q(10,"grammaire","Prendre au présent","Tu ___ le métro ?",["prends","prend","prenons","prenez"],0,"Ngôi 2 số ít: tu prends.");
 q(10,"grammaire","Prendre au présent","Elle ___ un taxi pour aller à l'aéroport.",["prend","prenez","prennent","prends"],0,"Ngôi 3 số ít: il/elle/on prend.");
@@ -393,7 +394,6 @@ q(10,"grammaire","Prendre au présent","Vous ___ la voiture ?",["prenez","prenon
 q(10,"grammaire","Prendre au présent","Ils ___ le bus de 7 h.",["prennent","prends","prend","prenez"],0,"Ngôi 3 số nhiều: ils/elles prennent (2 chữ n).");
 q(10,"grammaire","Prendre au présent","Je ___ le métro pour aller au travail.",["prends","prend","prenez","prennent"],0,"'Je prends' là dạng đúng ở ngôi 1 số ít.");
 q(10,"grammaire","Prendre au présent","Nous ___ le TGV pour Marseille.",["prenons","prenez","prennent","prend"],0,"'Nous prenons' là dạng đúng ở ngôi 1 số nhiều.");
-/* Ngữ pháp: mạo từ rút gọn */
 q(10,"grammaire","Articles contractés","Je vais ___ musée.",["au","à le","aux","du"],0,"à + le = au. Không bao giờ nói 'à le'.");
 q(10,"grammaire","Articles contractés","Nous allons ___ toilettes.",["aux","au","à la","du"],0,"à + les = aux (toilettes số nhiều).");
 q(10,"grammaire","Articles contractés","Elle revient ___ musée.",["du","de le","des","au"],0,"de + le = du.");
@@ -406,7 +406,6 @@ q(10,"grammaire","Articles contractés","Je vais ___ cinéma ce soir.",["au","à
 q(10,"grammaire","Articles contractés","Il rentre ___ bureau à 18 h.",["du","de le","des","au"],0,"de + le = du → du bureau.");
 q(10,"grammaire","Articles contractés","Les enfants vont ___ école.",["à l'","au","à la","aux"],0,"'École' bắt đầu bằng nguyên âm → à l'école.");
 q(10,"grammaire","Articles contractés","Nous parlons ___ étudiants de la classe.",["aux","au","à les","des"],0,"à + les = aux.");
-/* Ngữ pháp: đại từ y */
 q(10,"grammaire","Pronom Y","Tu vas à la banque ? — Oui, j'___ vais.",["y","en","au","à"],0,"'y' thay cho nơi chốn 'à la banque'.");
 q(10,"grammaire","Pronom Y","Nous allons au musée. → Nous ___ allons.",["y","en","au","le"],0,"'y' thay cho 'au musée' (nơi chốn).");
 q(10,"grammaire","Pronom Y","Elle est à la gare. → Elle ___ est.",["y","en","au","la"],0,"'y' thay cho 'à la gare'.");
@@ -445,7 +444,6 @@ q(11,"vocabulaire","Tourisme","L'______ du vol est à 6 h du matin.",["arrivée"
 q(11,"vocabulaire","Tourisme","Pour réserver un billet d'avion, je vais à l'______ de voyages.",["agence","aéroport","office","arrêt"],0,"'Agence de voyages' = đại lý du lịch.");
 q(11,"vocabulaire","Orientation","La Martinique se trouve ______ des Caraïbes.",["à l'est","au bord","au centre","au nord"],0,"'À l'est des Caraïbes' = ở phía đông vùng Caribe.");
 q(11,"vocabulaire","Hébergement","Dans l'hôtel, on monte au 5e étage par l'______ .",["ascenseur","escalier","entrée","avenue"],0,"L'ascenseur = thang máy (escalier = cầu thang bộ).");
-/* Ngữ pháp: C'est */
 q(11,"grammaire","Structures avec C'est","___ un hôtel au bord de la plage.",["C'est","Il est","Elle est","Ils sont"],0,"'C'est + danh từ có mạo từ' dùng để giới thiệu.");
 q(11,"grammaire","Structures avec C'est","___ parfait !",["C'est","Il est","Elle est","Ils sont"],0,"'C'est + tính từ' dùng để nhận xét chung: C'est parfait !");
 q(11,"grammaire","Structures avec C'est","L'hôtel est ___ nord de l'île.",["au","à la","en","du"],0,"'Au nord de' = ở phía bắc của...");
@@ -456,7 +454,6 @@ q(11,"grammaire","Structures avec C'est","Le village est ___ est de la ville.",[
 q(11,"grammaire","Structures avec C'est","___ un restaurant au bord de la mer.",["C'est","Il est","Elle est","Ils sont"],0,"'C'est un + danh từ giống đực' để giới thiệu.");
 q(11,"grammaire","Structures avec C'est","___ très joli, ce paysage !",["C'est","Il est","Elle est","Ils sont"],0,"'C'est + tính từ' khi nhận xét một sự vật/sự việc nói chung.");
 q(11,"grammaire","Structures avec C'est","L'île est ___ centre de l'océan.",["au","à la","aux","en"],0,"'Au centre de' = ở giữa.");
-/* Ngữ pháp: On */
 q(11,"grammaire","Pronom On","On ______ l'île en bateau.",["visite","visitons","visiter","visitez"],0,"'On' luôn chia như ngôi thứ 3 số ít: on visite.");
 q(11,"grammaire","Pronom On","On ______ au restaurant ce soir.",["va","allons","allez","vont"],0,"'On' + động từ chia ngôi 3 số ít: on va.");
 q(11,"grammaire","Pronom On","À la Martinique, on ______ français.",["parle","parlent","parlons","parler"],0,"'On parle' — chia như il/elle.");
@@ -494,7 +491,6 @@ q(12,"vocabulaire","Transports de voyage","Pour aller de Marseille à Paris trè
 q(12,"vocabulaire","Transports de voyage","Pour aller sur les îles du Frioul, on prend ______ .",["le bateau","le métro","le train","le taxi"],0,"Ra đảo thì phải đi thuyền.");
 q(12,"vocabulaire","Lieux touristiques","Le Musée Cantini se trouve près du ______ de Marseille.",["centre-ville","désert","aéroport","parking"],0,"Musée Cantini nằm gần trung tâm thành phố Marseille.");
 q(12,"vocabulaire","Carte postale","Sur une carte postale, on commence souvent par ______ .",["« Bonjour de Marseille ! »","« Combien ça coûte ? »","« Quelle taille ? »","« Tournez à gauche. »"],0,"Bưu thiếp thường mở đầu bằng lời chào từ nơi du lịch.");
-/* Ngữ pháp ôn tập Leçon 12 */
 q(12,"grammaire","Révision","Il faut ______ à gauche après le pont.",["tourner","tourne","tournez","tournes"],0,"Sau 'il faut' dùng động từ nguyên mẫu: il faut tourner.");
 q(12,"grammaire","Révision","Nous allons ______ musée Cantini.",["au","à le","aux","à la"],0,"à + le = au → au musée.");
 q(12,"grammaire","Révision","Je vais ______ Paris en TGV.",["à","au","en","dans"],0,"Thành phố thường dùng 'à' (à Paris).");
@@ -565,6 +561,7 @@ function saveSession(){
       localStorage.setItem(SESS_KEY, JSON.stringify({
         mode: state.quiz.mode,
         title: state.quiz.title,
+        instant: !!state.quiz.instant,
         questions: state.quiz.questions,
         index: state.quiz.index,
         startedAt: state.quiz.startedAt
@@ -594,8 +591,7 @@ const state = {
   quiz: null,
   result: null,
   notice: "",
-  navOpen: false,
-  lastConfig: null
+  navOpen: false
 };
 
 function prepareQuestion(item){
@@ -615,9 +611,8 @@ function prepareQuestion(item){
   };
 }
 
-/* FIX 1: thêm tham số skipShuffle để giữ nguyên thứ tự ưu tiên cho chế độ "smart" */
-function buildQuiz(mode, title, pool, limit, skipShuffle){
-  let picked = skipShuffle ? pool.slice() : shuffle(pool);
+function buildQuiz(mode, title, pool, limit, instant){
+  let picked = shuffle(pool);
   const available = picked.length;
   if(limit && picked.length > limit) picked = picked.slice(0, limit);
   if(!picked.length){
@@ -632,6 +627,7 @@ function buildQuiz(mode, title, pool, limit, skipShuffle){
   state.quiz = {
     mode: mode,
     title: title,
+    instant: !!instant,
     questions: picked.map(prepareQuestion),
     index: 0,
     startedAt: Date.now()
@@ -652,11 +648,12 @@ function smartPool(){
 }
 
 function startMode(mode){
-  if(mode === "mixed") return buildQuiz("mixed","Luyện tập tổng hợp 30 câu", BANK, 30);
-  if(mode === "vocab") return buildQuiz("vocab","Luyện tập từ vựng", BANK.filter(x => x.category === "vocabulaire"), 30);
-  if(mode === "grammar") return buildQuiz("grammar","Luyện tập ngữ pháp", BANK.filter(x => x.category === "grammaire"), 30);
-  /* FIX 1: truyền skipShuffle = true để giữ thứ tự ưu tiên (sai → chưa gặp → còn lại) */
-  if(mode === "smart") return buildQuiz("smart","Ôn tập thông minh", smartPool(), 30, true);
+  if(mode === "mixed")   return buildQuiz("mixed","Luyện tập tổng hợp 30 câu", BANK, 30, false);
+  if(mode === "vocab")   return buildQuiz("vocab","Luyện tập từ vựng", BANK.filter(x => x.category === "vocabulaire"), 30, false);
+  if(mode === "grammar") return buildQuiz("grammar","Luyện tập ngữ pháp", BANK.filter(x => x.category === "grammaire"), 30, false);
+  if(mode === "smart")   return buildQuiz("smart","Ôn tập thông minh", smartPool(), 30, false);
+  if(mode === "practice")return buildQuiz("practice","Luyện tập tức thì — có đáp án ngay", BANK, 30, true);
+  if(mode === "practice-full") return buildQuiz("practice-full","Luyện tập tức thì toàn bộ " + BANK.length + " câu", BANK, null, true);
   if(mode === "mistakes"){
     const p = loadProgress();
     const pool = BANK.filter(x => p.wrongIds[x.id]);
@@ -666,13 +663,13 @@ function startMode(mode){
       render();
       return;
     }
-    return buildQuiz("mistakes","Ôn tập câu sai", pool, 30);
+    return buildQuiz("mistakes","Ôn tập câu sai", pool, 30, false);
   }
-  if(mode === "full") return buildQuiz("full","Luyện tập toàn bộ ngân hàng (" + BANK.length + " câu)", BANK, null);
+  if(mode === "full")    return buildQuiz("full","Luyện tập toàn bộ ngân hàng (" + BANK.length + " câu)", BANK, null, false);
 }
 function startLesson(lesson){
   buildQuiz("lesson","Leçon " + lesson + " — " + LESSON_NAMES[lesson],
-            BANK.filter(x => x.lesson === lesson), 30);
+            BANK.filter(x => x.lesson === lesson), 30, false);
 }
 
 /* ============================================================
@@ -716,6 +713,24 @@ function viewHome(){
         <button class="btn ghost" data-act="discard-session">Xóa lượt này</button>
       </div>
     </div>` : ""}
+
+  <section class="card">
+    <h2>⚡ Chế độ luyện tập tức thì</h2>
+    <p class="hint" style="text-align:left;margin:0 0 12px">
+      Chọn đáp án → hiện ngay <strong>đáp án đúng</strong> và <strong>giải thích tiếng Việt</strong>.
+      Rất phù hợp khi bạn đang học từ mới và muốn phản hồi ngay.
+    </p>
+    <div class="grid">
+      <button class="mode" data-act="start" data-mode="practice">
+        <span class="ic">💡</span><strong>Luyện tập tức thì — 30 câu</strong>
+        <small>Chọn 30 câu ngẫu nhiên, có đáp án &amp; giải thích ngay</small>
+      </button>
+      <button class="mode" data-act="start" data-mode="practice-full">
+        <span class="ic">📖</span><strong>Luyện tập tức thì toàn bộ</strong>
+        <small>Làm lần lượt toàn bộ ${BANK.length} câu, mỗi câu hiện đáp án ngay</small>
+      </button>
+    </div>
+  </section>
 
   <section class="card">
     <h2>Chọn chế độ luyện tập</h2>
@@ -781,9 +796,40 @@ function viewQuiz(){
   const qz = state.quiz;
   if(!qz) return viewHome();
   const qq = qz.questions[qz.index];
+  const instant = !!qz.instant;
+  const answered = qq.selected !== null;
+  const reveal = instant && answered;
+  const isCorrect = reveal && qq.selected === qq.correct;
+
   const answeredCount = qz.questions.filter(x => x.selected !== null).length;
   const pctDone = Math.round(answeredCount / qz.questions.length * 100);
   const progressPct = ((qz.index + 1) / qz.questions.length * 100).toFixed(1);
+  const isLast = qz.index === qz.questions.length - 1;
+
+  const optsHtml = qq.options.map((opt, i) => {
+    let cls = "opt";
+    let ariaDisabled = false;
+    if(reveal){
+      cls += " locked";
+      if(i === qq.correct) cls += " correct";
+      else if(i === qq.selected) cls += " wrong";
+      ariaDisabled = true;
+    } else if(qq.selected === i){
+      cls += " selected";
+    }
+    const attrs = ariaDisabled ? ' aria-disabled="true"' : '';
+    return `<button class="${cls}" data-act="opt" data-i="${i}"${attrs}>
+      <span class="letter">${LETTERS[i]}</span>
+      <span class="otext">${esc(opt)}</span>
+    </button>`;
+  }).join("");
+
+  const feedbackHtml = reveal ? `
+    <div class="feedback ${isCorrect ? "ok" : "bad"}">
+      <span class="fb-title">${isCorrect ? "✓ Chính xác !" : "✗ Chưa đúng"}</span>
+      ${isCorrect ? "" : `<span class="fb-ans">Đáp án đúng : <strong>${LETTERS[qq.correct]}. ${esc(qq.options[qq.correct])}</strong></span>`}
+      <span class="fb-exp"><strong>Giải thích :</strong> ${esc(qq.explanation)}</span>
+    </div>` : "";
 
   const navGrid = state.navOpen ? `
     <div class="nav-grid">
@@ -791,6 +837,9 @@ function viewQuiz(){
         `<button class="navcell ${x.selected !== null ? "done" : ""} ${i === qz.index ? "cur" : ""}"
           data-act="goto" data-i="${i}" title="Câu ${i + 1}">${i + 1}</button>`).join("")}
     </div>` : "";
+
+  const nextLabel = (isLast && instant) ? "Xem kết quả ✓" : "Câu tiếp theo →";
+  const nextDisabled = isLast && !instant;
 
   return `
   <div class="qhead">
@@ -800,22 +849,19 @@ function viewQuiz(){
   </div>
   <div class="progress"><div class="bar" style="width:${progressPct}%"></div></div>
 
+  ${instant ? `<div class="notice" style="background:var(--primary-l);border-color:#bcd9f3;color:var(--primary-d)">
+    ⚡ <strong>Chế độ luyện tập tức thì</strong> — sau khi chọn đáp án, bạn sẽ thấy ngay đáp án đúng và giải thích.</div>` : ""}
+
   <div class="card qcard">
     <div class="tag">Leçon ${qq.lesson} · ${qq.category === "vocabulaire" ? "Từ vựng" : "Ngữ pháp"} · ${esc(qq.topic)}</div>
     <h2 class="qtext">${esc(qq.question)}</h2>
-    <div class="opts">
-      ${qq.options.map((opt, i) => `
-        <button class="opt ${qq.selected === i ? "selected" : ""}" data-act="opt" data-i="${i}"
-          aria-pressed="${qq.selected === i}">
-          <span class="letter">${LETTERS[i]}</span>
-          <span class="otext">${esc(opt)}</span>
-        </button>`).join("")}
-    </div>
+    <div class="opts">${optsHtml}</div>
+    ${feedbackHtml}
   </div>
 
   <div class="row nav">
     <button class="btn ghost" data-act="prev" ${qz.index === 0 ? "disabled" : ""}>← Câu trước</button>
-    <button class="btn primary" data-act="next" ${qz.index === qz.questions.length - 1 ? "disabled" : ""}>Câu tiếp theo →</button>
+    <button class="btn primary" data-act="next" ${nextDisabled ? "disabled" : ""}>${nextLabel}</button>
   </div>
 
   <div class="submitbar">
@@ -828,7 +874,8 @@ function viewQuiz(){
       <button class="navtoggle" data-act="pause">⏸ Tạm dừng &amp; lưu</button>
     </div>
     ${navGrid}
-    <p class="hint">Đã trả lời ${answeredCount}/${qz.questions.length} câu (${pctDone}%). Bạn có thể quay lại thay đổi đáp án trước khi nộp bài.</p>
+    <p class="hint">Đã trả lời ${answeredCount}/${qz.questions.length} câu (${pctDone}%).
+    ${instant ? "Bạn có thể xem lại đáp án của các câu đã làm." : "Bạn có thể quay lại thay đổi đáp án trước khi nộp bài."}</p>
   </div>`;
 }
 
@@ -1066,7 +1113,8 @@ document.addEventListener("click", function(e){
     const s = loadSession();
     if(s){
       state.quiz = {
-        mode: s.mode, title: s.title, questions: s.questions,
+        mode: s.mode, title: s.title, instant: !!s.instant,
+        questions: s.questions,
         index: Math.min(s.index || 0, s.questions.length - 1),
         startedAt: s.startedAt || Date.now()
       };
@@ -1092,9 +1140,15 @@ document.addEventListener("click", function(e){
 
   if(act === "opt"){
     if(!state.quiz) return;
-    const i = Number(el.dataset.i);
     const qq = state.quiz.questions[state.quiz.index];
-    qq.selected = (qq.selected === i) ? null : i;
+    /* Ở chế độ tức thì, sau khi đã trả lời thì khoá không cho đổi */
+    if(state.quiz.instant && qq.selected !== null) return;
+    const i = Number(el.dataset.i);
+    if(state.quiz.instant){
+      qq.selected = i;
+    } else {
+      qq.selected = (qq.selected === i) ? null : i;
+    }
     saveSession();
     render();
     return;
@@ -1113,6 +1167,9 @@ document.addEventListener("click", function(e){
       state.quiz.index++;
       saveSession();
       render();
+    } else if(state.quiz.instant){
+      /* Câu cuối ở chế độ tức thì → nộp bài */
+      finishQuiz();
     }
     return;
   }
@@ -1147,6 +1204,7 @@ document.addEventListener("click", function(e){
     state.quiz = {
       mode: state.quiz.mode,
       title: state.quiz.title,
+      instant: !!state.quiz.instant,
       questions: shuffle(pool).map(prepareQuestion),
       index: 0,
       startedAt: Date.now()
@@ -1191,8 +1249,13 @@ document.addEventListener("keydown", function(e){
   if(["1","2","3","4"].includes(e.key)){
     const i = Number(e.key) - 1;
     const qq = state.quiz.questions[state.quiz.index];
+    if(state.quiz.instant && qq.selected !== null) return;
     if(i < qq.options.length){
-      qq.selected = (qq.selected === i) ? null : i;
+      if(state.quiz.instant){
+        qq.selected = i;
+      } else {
+        qq.selected = (qq.selected === i) ? null : i;
+      }
       saveSession();
       render();
     }
@@ -1255,15 +1318,10 @@ function finishQuiz(){
   p.totalAnswered += answered;
   p.totalCorrect += correct;
   p.totalIncorrect += wrong;
-
-  /* FIX 2: so sánh kỷ lục theo TỶ LỆ %, không theo số câu tuyệt đối */
-  const curPct = total ? correct / total : 0;
-  const bestPct = p.bestTotal ? p.bestScore / p.bestTotal : 0;
-  if(curPct > bestPct || (curPct === bestPct && correct > p.bestScore)){
+  if(correct > p.bestScore || (correct === p.bestScore && total > p.bestTotal)){
     p.bestScore = correct;
     p.bestTotal = total;
   }
-
   Object.keys(lessonAgg).forEach(k => {
     const s = p.lessons[k] || (p.lessons[k] = { answered: 0, correct: 0 });
     s.answered += lessonAgg[k].a;
